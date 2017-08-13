@@ -9,6 +9,7 @@ class Route
     public $method;
     public $appURI;
     public $serverRawURI;
+    static $activeRoute;
 
     
     
@@ -182,9 +183,7 @@ class Route
         if($appUri == $this->uriSegment($appUri))
         {
 
-        
-                
-
+              
             if( is_callable($callback) )
             {
                
@@ -192,6 +191,7 @@ class Route
                 //return $callback();
 
                 $callback();
+         
                 return $this;
 
             }
@@ -212,6 +212,7 @@ class Route
                             $ctrlClassname = $callback[0].'Ctrl';
                             $controller = new $ctrlClassname();
                             $controller->$callback[1]();
+                            
                             return $this;
                         }
                         else
@@ -232,8 +233,31 @@ class Route
 
         }
 
+        else {
+
+            
+            
+        }
+
             
     }
+
+
+    static function Current($menuLink)
+    {
+     
+        if($menuLink == $_SERVER['REQUEST_URI'])
+        {
+            self::$activeRoute = true;
+        }
+        else 
+        {
+            self::$activeRoute = false;
+        }
+      echo (self::$activeRoute == true ? 'active' :  '');
+    }
+
+    
 
 
     public function filter($callback)

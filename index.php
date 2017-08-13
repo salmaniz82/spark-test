@@ -68,10 +68,7 @@ $route->get('/bookapi', function(){
     $db = new Database();
     $db->table = 'books';
     $data = $db->listall( ['id', 'name', 'author'] )->returnData();
-
-    http_response_code(202);
-    header('Content-Type: application/json');
-    echo json_encode($data);
+    View::responseJson($data, 200);
     
 });
 

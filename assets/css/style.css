@@ -75,9 +75,9 @@ h3.title a{color: #8676ca; text-transform: uppercase;}
 .bg-white{background-color: #fff;}
 
 h1.page-title {
-	color: #26666d;
-	font-family: verdana;
-	border-bottom: 1px solid #26666d;
+	color: #91fc20;
+	font-family: Calibri;
+	border-bottom: 1px solid #91fc20;;
 }
 
 .text-bold { font-weight: bold;	 }
@@ -87,6 +87,22 @@ h1.page-title {
 	height: 0px;
 	display: table;
 }
+
+
+ul.nav {
+	list-style-type: none;
+	padding-left: 5px;
+}
+
+ul.nav li {display: inline-block;}
+
+ul.nav li a {text-decoration: none; padding-right: 10px; color: #4b5465; font-size: 18px; transition: all 0.3s ease-in-out}
+
+ul.nav li a:hover {color: pink;}
+
+ul.nav li.active a {color: #91fc20; font-weight: bold;}
+
+header.wrapper {background-color: #fff; margin-bottom: 5px;}
 
 header.wrapper ul.nav.main-nav{float: left;}
 

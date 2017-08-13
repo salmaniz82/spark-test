@@ -149,26 +149,25 @@ $route->post('/todo/update/{id}', ['todos', 'updateTodos']);
 // remove
 $route->get('/todo/clear/{id}/{userId}', ['todos', 'clearTodos']);
 
-$route->get('/checkroute', function(){
 
-    var_dump($_SERVER);
-    
+/*-------------- Todo SPA -----------------*/
 
-});
-
-
-
-// Todo SPA
 // SHOW TODO PAGE FOR SPA
 $route->get('/todospa', ['todos', 'setSpaPage']);
+
 // RETURN LIST OF TODOS 
-$route->get('/todolistapi', ['todos', 'listTodoApi']);
+$route->get('/todospa/listapi', ['todos', 'listTodoApi']);
 
-// SAVE TODO
+// API FOR SAVE TODO
 $route->post('/todospa/add', ['todos', 'saveTodoApi']);
-// udpate with spa
-
+// API FOR UPDATE
 $route->post('/todospa/update/{id}', ['todos', 'todoSpaUpdate']);
+
+// REMOVE TODO FROM API
+
+$route->post('/todospa/clear/{id}/{userId}', ['todos', 'clearTodoApi']);
+
+
 
 
 $route->otherwise( function() {

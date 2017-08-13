@@ -8,7 +8,7 @@ angular.module('todoSPA').controller('testController', function($scope, $http){
 	$scope.todos;
 
 	
-	$http.get("/todolistapi")
+	$http.get("/todospa/listapi")
     .then(function(response) {
 	     $scope.todos =  response.data;   
     });

@@ -5,16 +5,17 @@ class todosCtrl {
 
 	public function __construct()
 	{
-		/*
-		 if( !Auth::loginStatus() ) 
+		
+		if( !Auth::loginStatus() ) 
      	{
+      
          return header("Location: /login");
-         
+       
      	}
-     	*/
-
+     	
 		$this->DB = new Database();
 		$this->DB->table = 'todos';
+
 	}	
 
 	
@@ -147,7 +148,7 @@ class todosCtrl {
 		
 		if( $this->updateHandler() ) 
 		{
-			$data['status'] = 'Succeess';
+			$data['status'] = 'Success';
 			return View::responseJson($data, 200);
 		}
 		else 
@@ -157,29 +158,59 @@ class todosCtrl {
 		}
 	}
 
-	public function clearTodos()
+
+	public function removeTodoHandler()
 	{
+
 		$id = Route::$params['id'];
 		$userId = Route::$params['userId'];
 
-		if(Auth::User()['id'] == $userId || Auth::User()['id'] ==1)
+		if(Auth::User()['id'] == $userId || Auth::User()['id'] == 1)
 		{
+			
+
 			if( $this->DB->delete($id) ) 
          	{
-            	return header("Location: /todos");
+            	return true;
          	}
          	else  
          	{
-         		echo 'failed ';
+         		return false;
         	}
 		}
 
 		else 
 		{
-			echo 'Un Authorized Access Cannot be granted for this Actions';
+			return false;
 		}
+		
 
 	}
 
+	public function clearTodos()
+	{
+		if( $this->removeTodoHandler() )
+		{
+			return header("Location: /todos");
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public function clearTodoApi()
+	{
+		if( $this->removeTodoHandler() )
+		{
+			$data['status'] = 'Success';
+			return View::responseJson($data, 200);
+		}
+		else
+		{
+			$data['status'] = 'Failed';
+			return View::responseJson($data);
+		}
+	}
 
 }

@@ -103,8 +103,6 @@ class todosCtrl {
 	{
 		$id = Route::$params['id'];
 
-		
-		
 		if( isset($_POST['is_complited']) ) {
 			$_POST['is_complited'] = $_POST['is_complited'];
 		}
@@ -112,11 +110,8 @@ class todosCtrl {
 			$_POST['is_complited'] = 0;
 		}
 
-
-
 		$keys = array('is_complited', 'date_complited');
 		$todo = $this->DB->sanitize($keys);
-		
 
 		if($this->DB->update($todo, $id))
 		{
@@ -168,7 +163,6 @@ class todosCtrl {
 		if(Auth::User()['id'] == $userId || Auth::User()['id'] == 1)
 		{
 			
-
 			if( $this->DB->delete($id) ) 
          	{
             	return true;
@@ -177,6 +171,7 @@ class todosCtrl {
          	{
          		return false;
         	}
+
 		}
 
 		else 

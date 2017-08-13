@@ -13,6 +13,11 @@ angular.module('todoSPA').controller('testController', function($scope, $http){
 	     $scope.todos =  response.data;   
     });
 
+    $scope.changeStatus = function()
+    {
+    	console.log('hello say');
+    }
+
 
 
 });

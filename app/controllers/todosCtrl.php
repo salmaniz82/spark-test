@@ -59,12 +59,17 @@ class todosCtrl {
 		return View::responseJson($data);
 	}
 
+
+	public function todoSanitizerAndInsert()
+	{
+		$keys = array('todo', 'user_id', 'date_created', 'is_complited');
+		$todo = $this->DB->sanitize($keys);
+		return $this->DB->insert($todo);
+	}
 	
 
 	public function saveTodos()
 	{
-		
-		
 		
 		if($this->todoSanitizerAndInsert())
 		{
@@ -74,19 +79,13 @@ class todosCtrl {
 		{
 			echo 'failed';
 		}
-
 	}
 
-	public function todoSanitizerAndInsert()
-	{
-		$keys = array('todo', 'user_id', 'date_created', 'is_complited');
-		$todo = $this->DB->sanitize($keys);
-		return $this->DB->insert($todo);
-	}
+	
 
 	public function saveTodoApi()
 	{
-		if($this->todoSanitizerAndInsert())
+		if( $this->todoSanitizerAndInsert() )
 		{
 			$data['status'] = 'Succeess';
 			return View::responseJson($data, 200);
@@ -99,37 +98,41 @@ class todosCtrl {
 	}
 
 
-	public function showEditTodos()
-	{
-		echo 'show edit form';
-	}
-
-	public function updateTodos()
+	public function updateHandler()
 	{
 		$id = Route::$params['id'];
+
+		
 		
 		if( isset($_POST['is_complited']) ) {
-			
+			$_POST['is_complited'] = $_POST['is_complited'];
 		}
 		else {
 			$_POST['is_complited'] = 0;
 		}
 
+
+
 		$keys = array('is_complited', 'date_complited');
 		$todo = $this->DB->sanitize($keys);
+		
 
-
-		if($todo['is_complited'] == '1')
+		if($this->DB->update($todo, $id))
 		{
-			$todo['is_complited'] == '0';	
+			return true;
 		}
-		else {
-			$todo['is_complited'] == '1';		
+		else
+		{
+			return false;
 		}
-		
 
-		
-		if( $this->DB->update($todo, $id) ) 
+	}
+
+
+	public function updateTodos()
+	{
+			
+		if( $this->updateHandler() ) 
 		{
 			return header("Location: /todos");
 		}
@@ -137,8 +140,21 @@ class todosCtrl {
 			echo 'failed';
 		}
 		
+	}
+
+	public function todoSpaUpdate()
+	{
 		
-		
+		if( $this->updateHandler() ) 
+		{
+			$data['status'] = 'Succeess';
+			return View::responseJson($data, 200);
+		}
+		else 
+		{
+			$data['status'] = 'Failed';
+			return View::responseJson($data, 200);
+		}
 	}
 
 	public function clearTodos()

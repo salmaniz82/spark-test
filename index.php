@@ -149,6 +149,13 @@ $route->post('/todo/update/{id}', ['todos', 'updateTodos']);
 // remove
 $route->get('/todo/clear/{id}/{userId}', ['todos', 'clearTodos']);
 
+$route->get('/checkroute', function(){
+
+    var_dump($_SERVER);
+    
+
+});
+
 
 
 // Todo SPA
@@ -159,7 +166,9 @@ $route->get('/todolistapi', ['todos', 'listTodoApi']);
 
 // SAVE TODO
 $route->post('/todospa/add', ['todos', 'saveTodoApi']);
+// udpate with spa
 
+$route->post('/todospa/update/{id}', ['todos', 'todoSpaUpdate']);
 
 
 $route->otherwise( function() {

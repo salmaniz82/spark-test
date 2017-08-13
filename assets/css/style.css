@@ -1,0 +1,118 @@
+body {
+	background-color: #ccc;
+	font-family: Calibri;
+}
+
+.wrapper {
+
+	width: 960px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+
+.bg-green {
+	background-color: green;
+}
+
+.bg-blue{
+	background-color: blue;
+}
+
+table {
+	width: 100%;
+}
+
+.book-list-wrapper {
+	color: #433e59;
+}
+
+.books-list-item {
+	border-radius: 10px;
+	padding: 10px;
+	margin-bottom: 20px;
+	background-color: #fff;
+	position: relative;
+}
+
+
+
+
+
+
+h3.title a{color: #8676ca; text-transform: uppercase;}
+
+.book-list-wrapper .book-meta span.author {
+	float: left;
+	display: inline-block;
+}
+
+.book-list-wrapper .book-meta span.publised_date {
+	float: right;
+	display: inline-block;
+}
+
+
+.clear-after:after{
+	content: '';
+	display: block;
+	clear: both;
+	height: 0px;
+	visibility: 0;
+
+}
+
+.page-body {background-color: #fff; padding: 10px;}
+
+.form-group {padding-bottom: 10px; width: 50%; }
+.form-control {width: 100%;height: 20px;}
+
+.message { padding: 10px; font-size: 17px; text-align: center; margin-bottom: 10px;}
+.message.success { background-color: aquamarine; }
+.message.error { background-color: darkred; color: #fff}
+
+.danger{color: red;}
+.bg-white{background-color: #fff;}
+
+h1.page-title {
+	color: #26666d;
+	font-family: verdana;
+	border-bottom: 1px solid #26666d;
+}
+
+.text-bold { font-weight: bold;	 }
+
+.clearfix {
+	clear: both;
+	height: 0px;
+	display: table;
+}
+
+header.wrapper ul.nav.main-nav{float: left;}
+
+header.wrapper ul.nav.right-nav{float: right;}
+
+ul.dashed {list-style-type: circle; color: #984c59;}
+
+form[name="login"] input[type="text"], form[name="login"] input[type="email"]  {width: 200px; padding: 10px 5px; display: inline-block; }
+
+form[name="register"] input[type="text"], form[name="register"] input[type="register"], form[name="register"] input[type="email"]  {width: 200px; padding: 10px 5px; display: block; margin-bottom: 5px; }
+
+
+
+label.markDone {font-weight: normal; font-size: 14px; color: #73d9ab;}
+
+.book-desc.todo {text-transform: capitalize;}
+
+.book-meta.todo span.publised_date {float: left;}
+.book-meta.todo span.complited_date {float: right;}
+
+a.remove-todo-btn {position: absolute; right: 10px; top: 10px; display: inline-block; text-decoration: none; color: #ccc; padding: 10px; border-radius: 55%; border: 1px solid #ccc;}
+
+
+.books-list-item.done p.status span {color: #73d9ab; font-weight: bold;}
+.books-list-item.pending p.status span {color: #f00; font-weight: bold;}
+
+.books-list-item.pending .complited_date {display: none;}
+
+.books-list-item.done .book-desc.todo {text-decoration: line-through; color: #ccc;}

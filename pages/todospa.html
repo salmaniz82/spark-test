@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="todoSPA">
+<head>
+	<title>MVC Integration with AngularJS - Todo SPA</title>
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+</head>
+<body>
+
+<div class="wrapper">
+	
+
+<div class="book-list-wrapper" ng-controller="testController">
+
+		<div>
+			<h1> {{message}} </h1>
+		</div>
+
+		<div class="books-list-item">
+                <p class="book-desc todo" style="font-size: 20px;">Add New Todo</p>
+                <form name="addnewTodoForm" method="post" action="/todo/add" method="post">
+                   
+                    <input type="text" name="todo" placeholder="Todo" style="width: 500px; padding: 5px; font-size: 20px;">
+                    <input type="hidden" name="date_created" value="">
+                    <input type="hidden" name="user_id" value="">
+                    <input type="hidden" name="is_complited" value="0">
+
+                    <button type="submit" style="padding: 5px">Add Todo</button>
+
+                </form>
+            </div>
+
+            {{todos.todos}}
+            <div class="books-list-item" ng-repeat="todo in todos.todos" ng-class="todo.is_complited == 1 ? 'done' : 'pending'">
+
+	            <p class="status">Status: <span> {{todo.is_complited == 1 ? "Done" : "Pending"}} </span> </p>
+
+	            <p class="book-desc todo" style="font-size: 20px;">
+	                   - {{todo.todo}}
+	                </p>
+
+	            <a href="/todo/clear/id/user_id" class="remove-todo-btn">X</a>
+	                
+
+	                <form name="markTodoComplepted/id" action="/todo/update/id?>" method="post">
+	                <label class="markDone"> 
+	                <input type="hidden" name="date_complited" value="">
+	                    <input type="checkbox" name="is_complited" value="{{todo.is_complited}}" ng-model="todo.is_complited" parse-int ng-true-value="1" ng-false-value="0"
+	                    ng-checked="todo.is_complited == 1"> Complited {{todo.is_complited}} </label>
+	                </form>
+
+
+	                </h3>
+	                
+	                
+	                <div class="book-meta clear-after todo">
+	                    <span class="publised_date">Published Date : date_created </span>
+	                    <span class="complited_date">Complited Date : date_complited</span>
+	                </div>
+            </div> <!-- item -->
+
+
+        
+
+
+</div>	
+
+
+
+</div><!-- wrapper -->
+
+
+
+	<script type="text/javascript" src="/assets/js/angular.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+</body>
+</html>

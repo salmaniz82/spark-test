@@ -128,7 +128,7 @@ $route->get('/dbcheck/{perPage}/{currentPage}', function() {
     $db->table = 'todos';
 
    // $data = $db->rawSql('SELECT * FROM todos LIMIT 10 OFFSET 10')->returnData();
-    $data = $db->build('S')->Colums()->Paginate($perPage, $currentPage)->go()->returnData();
+    $data = $db->build('S')->Colums('id, todo')->Paginate($perPage, $currentPage)->go()->returnData();
     var_dump($data);
 
         
@@ -136,13 +136,12 @@ $route->get('/dbcheck/{perPage}/{currentPage}', function() {
 });
 
 
+
 // list all
 $route->get('/todos', ['todos', 'listTodos']);
-
-// show add form
-$route->get('/todo/add', ['todos', 'showAddTodos']);
 // save to database
 $route->post('/todo/add', ['todos', 'saveTodos']);
+// save to for api
 
 // update
 $route->post('/todo/update/{id}', ['todos', 'updateTodos']);
@@ -152,12 +151,15 @@ $route->get('/todo/clear/{id}/{userId}', ['todos', 'clearTodos']);
 
 
 
-
-
-
+// Todo SPA
+// SHOW TODO PAGE FOR SPA
 $route->get('/todospa', ['todos', 'setSpaPage']);
-
+// RETURN LIST OF TODOS 
 $route->get('/todolistapi', ['todos', 'listTodoApi']);
+
+// SAVE TODO
+$route->post('/todospa/add', ['todos', 'saveTodoApi']);
+
 
 
 $route->otherwise( function() {

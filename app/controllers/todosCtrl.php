@@ -5,32 +5,34 @@ class todosCtrl {
 
 	public function __construct()
 	{
+		/*
 		 if( !Auth::loginStatus() ) 
      	{
          return header("Location: /login");
          
      	}
+     	*/
 
 		$this->DB = new Database();
 		$this->DB->table = 'todos';
 	}	
 
-	public function listTodos()
-	{
-		
-		$data = $this->getTodoList();
 	
-		$data['count'] = sizeof($data['todos']);
-		View::render('todos', $data);
-
-	}
-
 	public function setSpaPage()
 	{
 		View::render('todospa.html');
 	}
 
+	public function listTodos()
+	{
+		
+		$data = $this->getTodoList();
+		$data['count'] = sizeof($data['todos']);
+		View::render('todos', $data);
 
+	}
+
+	
 	public function getTodoList()
 	{
 
@@ -41,13 +43,13 @@ class todosCtrl {
 		{
 			$data['todos'] = $this->DB->listall( ['id', 'todo', 'user_id', 'date_created', 'date_complited', 'is_complited'] )->returnData();	
 		}
-			else 
-			{
-				$sqlString = "SELECT * FROM todos WHERE user_id = {$userID} ORDER BY id DESC";
-    			$data['todos'] = $this->DB->rawSql($sqlString)->returnData();
-			}
+		else 
+		{
+			$sqlString = "SELECT * FROM todos WHERE user_id = {$userID} ORDER BY id DESC";
+    		$data['todos'] = $this->DB->rawSql($sqlString)->returnData();
+		}
 
-			return $data;
+		return $data;
 	}
 
 
@@ -57,23 +59,42 @@ class todosCtrl {
 		return View::responseJson($data);
 	}
 
-	public function showAddTodos()
-	{
-		echo 'show add form to add new todos ';
-	}
+	
 
 	public function saveTodos()
 	{
 		
-		$keys = array('todo', 'user_id', 'date_created', 'is_complited');
-		$todo = $this->DB->sanitize($keys);
-		if($this->DB->insert($todo))
+		
+		
+		if($this->todoSanitizerAndInsert())
 		{
 			return header("Location: /todos");
 		}
 		else
 		{
 			echo 'failed';
+		}
+
+	}
+
+	public function todoSanitizerAndInsert()
+	{
+		$keys = array('todo', 'user_id', 'date_created', 'is_complited');
+		$todo = $this->DB->sanitize($keys);
+		return $this->DB->insert($todo);
+	}
+
+	public function saveTodoApi()
+	{
+		if($this->todoSanitizerAndInsert())
+		{
+			$data['status'] = 'Succeess';
+			return View::responseJson($data, 200);
+		}
+		else
+		{
+			$data['status'] = 'Failed';
+			return View::responseJson($data);
 		}
 	}
 

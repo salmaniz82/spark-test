@@ -136,19 +136,6 @@ $route->get('/dbcheck/{perPage}/{currentPage}', function() {
 });
 
 
-$route->get('/teststr', function() {
-
-    $string = 'page';
-
-    
-
-});
-
-
-
-
-
-
 // list all
 $route->get('/todos', ['todos', 'listTodos']);
 

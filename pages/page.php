@@ -2,22 +2,15 @@
 
 <div class="wrapper bg-white">
 
-		<?php if(isset($data['title'])) {?>
-				<h1 class="page-title"><?= $data['title']; ?></h1>
+
+<?php $page = $data['page'][0]; ?>
+
+		<?php if(isset($page['title'])) {?>
+				<h1 class="page-title"><?= ucwords($page['title']); ?></h1>
 		<?php }?>
-		<p class="text-bold"><?= $data['message']; ?></p>
 
-
-
-		<?php 
-		if(isset($data['profile'])) {
-				var_dump($data['profile']); 
-		}
-			
-		
-		?>
-
-		
+		<p class="desc"><?php echo $page['contents']; ?> </p>
+	
 </div>
 
 

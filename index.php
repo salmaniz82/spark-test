@@ -83,7 +83,6 @@ $route->get('/dbcheck/{perPage}/{currentPage}', function() {
     $data = $db->build('S')->Colums('id, todo')->Paginate($perPage, $currentPage)->go()->returnData();
     var_dump($data);
 
-        
 
 });
 
@@ -115,6 +114,11 @@ $route->post('/todospa/update/{id}', ['todos', 'todoSpaUpdate']);
 
 // REMOVE TODO FROM API
 $route->post('/todospa/clear/{id}/{userId}', ['todos', 'clearTodoApi']);
+
+
+$route->get('/testpagehandler', ['pages', 'testPageHandler']);
+
+
 
 
 

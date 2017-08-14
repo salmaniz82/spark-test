@@ -14,6 +14,8 @@ $route->get('/products', ['pages', 'productsPage']);
 $route->get('/contact', ['pages', 'contactPage']);
 
 
+
+
 $route->get('/books', ['books', 'listbooks']);
 
 $route->get('/book/add', ['books', 'showAdd']);
@@ -49,7 +51,7 @@ $route->get('/profile', ['user', 'showProfile']);
 
 
 // Dashboard routes
-$route->get('/dashboard', ['dasboard', 'dasboardLanding']);
+$route->get('/dashboard', ['dashboard', 'dasboardLanding']);
 
 
 

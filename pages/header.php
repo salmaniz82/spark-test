@@ -19,7 +19,7 @@
 		<li class="<?php Route::Current('/books') ?>"><a href="/books">Books</a></li>
 		<li class="<?php Route::Current('/todos') ?>"><a href="/todos">Todos</a></li>
 		<li class="<?php Route::Current('/contact') ?>"><a href="/contact">Contact</a></li>
-		<li class="<?php Route::Current('/todospa') ?>"><a href="/todospa">Todos - SPA</a></li>
+		<li class="<?php Route::Current('/todospa') ?>"><a href="/todospa">Todos - AngularJS</a></li>
 	</ul>
 
 	<ul class="nav right-nav">
@@ -35,7 +35,7 @@
 		<?php 
 			
 		} else { ?>
-			<li>Welcome, <?= Auth::User()['name']; ?></li>
+			<li class="userinfo">Welcome, <?= Auth::User()['name']; ?></li>
 			<li class="<?php Route::Current('/profile') ?>"><a href="/profile">Profile</a></li>
 			<li class="<?php Route::Current('/dashboard') ?>"><a href="/dashboard">Dashboard</a></li>
 			<li class="<?php Route::Current('/logout') ?>"><a href="/logout">Logout</a></li>

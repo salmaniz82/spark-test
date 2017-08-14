@@ -7,8 +7,10 @@ body {
 
 	width: 960px;
 	margin: 0 auto;
-	padding: 10px;
+	padding: 10px 0px;
 }
+
+div.wrapper { width: 940px; padding-left: 10px; padding-right:10px; }
 
 
 .bg-green {
@@ -25,12 +27,14 @@ table {
 
 .book-list-wrapper {
 	color: #433e59;
+	margin-left: -10px;
+    margin-right: -10px;
 }
 
 .books-list-item {
-	border-radius: 10px;
+	
 	padding: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 8px;
 	background-color: #fff;
 	position: relative;
 }
@@ -75,9 +79,11 @@ h3.title a{color: #8676ca; text-transform: uppercase;}
 .bg-white{background-color: #fff;}
 
 h1.page-title {
-	color: #91fc20;
+	color: pink;
 	font-family: Calibri;
-	border-bottom: 1px solid #91fc20;;
+	border-bottom: 1px solid pink;
+	font-style: normal;
+	font-size: 24px;
 }
 
 .text-bold { font-weight: bold;	 }
@@ -91,18 +97,20 @@ h1.page-title {
 
 ul.nav {
 	list-style-type: none;
-	padding-left: 5px;
+	padding-left: 0px;
 }
 
-ul.nav li {display: inline-block;}
+ul.nav li {display: inline-block; border-right: 1px solid #ccc;}
 
-ul.nav li a {text-decoration: none; padding-right: 10px; color: #4b5465; font-size: 18px; transition: all 0.3s ease-in-out}
+ul.nav li a {text-decoration: none; padding-right: 10px; padding-left: 10px; color: #4b5465; font-size: 16px; transition: all 0.3s ease-in-out}
+ul.nav li:last-child {border-right: none;}
+ul.nav li a:hover {color:  #91fc20;}
 
-ul.nav li a:hover {color: pink;}
+ul.nav li.active a {color: pink; font-weight: bold;}
 
-ul.nav li.active a {color: #91fc20; font-weight: bold;}
+ul.nav li.userinfo {position: absolute; top: 5px; right: 5px; color: #2d74a8; border-right: none;}
 
-header.wrapper {background-color: #fff; margin-bottom: 5px;}
+header.wrapper {background-color: #fff; margin-bottom: 5px; position: relative;}
 
 header.wrapper ul.nav.main-nav{float: left;}
 
@@ -118,7 +126,7 @@ form[name="register"] input[type="text"], form[name="register"] input[type="regi
 
 label.markDone {font-weight: normal; font-size: 14px; color: #73d9ab;}
 
-.book-desc.todo {text-transform: capitalize;}
+.book-desc.todo {text-transform: capitalize; margin-top: 5px; margin-bottom: 10px;}
 
 .book-meta.todo span.publised_date {float: left;}
 .book-meta.todo span.complited_date {float: right;}
@@ -131,4 +139,5 @@ a.remove-todo-btn {position: absolute; right: 10px; top: 10px; display: inline-b
 
 .books-list-item.pending .complited_date {display: none;}
 
-.books-list-item.done .book-desc.todo {text-decoration: line-through; color: #ccc;}
+.books-list-item.done .book-desc.todo {text-decoration: line-through; color: #ccc; }
+p.status {margin-top: 5px; margin-bottom: 5px;}

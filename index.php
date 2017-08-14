@@ -12,16 +12,20 @@ $route->get('/', function(){
 
     $data['features'] = array(
         
-        'Basic Authentication',
-        'RESTFUL Request Processing',
-        'Basic Database CRUD Support',
-        'Role Based Authorization',
+        'Routing handling with anonymous function (done)',
+        'Routing handling with contollers and method (done)',
+        'Basic Authentication i.e login / registration (done)',
+        'RESTFUL Route Processing (done)',
+        'Route Parameters generation and accessabality (done)',
+        'Basic Database CRUD Support (done)',
+        'JSON API (done : tested crud functionality )',
+        'Role Based Authorization (done)',
+        'Add Active class to active links (done)',
         'Middleware',
         'Form Validation',
         'CSRF Protection',
         'SQl Injection Protection',
         'Database Relationship Mapping',
-        'JSON API',  
         'JWT Authentication',
         'Local for Multilang Feature'
 

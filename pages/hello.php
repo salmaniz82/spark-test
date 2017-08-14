@@ -18,12 +18,12 @@ This will give you flavour of MVC and yet keep the door open customization and f
 
 <p>Future plans to have support for the following features. Routing, Controller Mapping and CRUD Functionality already added and working</p>
 
-<ul class="dashed">
+
 <?php foreach ($data['features'] as $value) { ?>
-	<li><?= $value?></li>
+	<p class="desc"> - <?= $value?></p>
 
 <?php }?>
-</ul>
+
 
 
 

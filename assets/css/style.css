@@ -158,3 +158,6 @@ a.remove-todo-btn {position: absolute; right: 10px; top: 10px; display: inline-b
 p.status {margin-top: 5px; margin-bottom: 5px;}
 
 .w-80 {width: 80%;}
+
+ul.features {list-style-type: none; padding-left: 10px;}
+ul.features li {margin-bottom: 5px; color: #9e9e9e;}

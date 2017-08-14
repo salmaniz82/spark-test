@@ -50,7 +50,7 @@ class dashboardCtrl{
 
         if($this->DB->update($updatedPageData, $id))
         {
-            echo 'Updated Page Success!';
+            return header("Location: {$_POST['slug']}");
         }
         else
         {

@@ -12,7 +12,12 @@
 <header class="wrapper">
 
 	<ul class="nav main-nav">
+		<li><a href="/">Public Area</a></li>
 		<li><a href="/book/add">Add Book</a></li>
+		
+	</ul>
+
+	<ul class="nav right-nav">
 		<li><a href="/logout">logout</a></li>
 	</ul>
 

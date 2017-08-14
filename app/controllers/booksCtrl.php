@@ -116,7 +116,6 @@ class booksCtrl
     public function removeBook()
     {
         $id = Route::$params['id'];
-
          if( $this->DB->delete($id) ) 
          {
             header('location: /books');
@@ -125,5 +124,16 @@ class booksCtrl
          {
          echo 'failed';
         }
-    }    
+    }
+
+    public function bookApi()
+    {
+
+      $db = new Database();
+      $db->table = 'books';
+      $data = $db->listall( ['id', 'name', 'author'] )->returnData();
+      View::responseJson($data, 200);
+
+    } 
+
 }

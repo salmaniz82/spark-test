@@ -16,9 +16,9 @@
 		<li class="<?php Route::Current('/') ?>"><a href="/">Home</a></li>
 		<li class="<?php Route::Current('/products') ?>"><a href="/products">Product</a></li>
 		<li class="<?php Route::Current('/services') ?>"><a href="/services">Services</a></li>
+		<li class="<?php Route::Current('/contact') ?>"><a href="/contact">Contact</a></li>
 		<li class="<?php Route::Current('/books') ?>"><a href="/books">Books</a></li>
 		<li class="<?php Route::Current('/todos') ?>"><a href="/todos">Todos</a></li>
-		<li class="<?php Route::Current('/contact') ?>"><a href="/contact">Contact</a></li>
 		<li class="<?php Route::Current('/todospa') ?>"><a href="/todospa">Todos - AngularJS</a></li>
 	</ul>
 

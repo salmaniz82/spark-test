@@ -12,50 +12,50 @@ class pagesCtrl{
     
     public function getPageDataHandler($slug)
     {
+        
         $data = $this->DB->build('S')->Colums()->Where("slug = '".$slug."'")->Limit(1)->go()->returnData();
         return $data;
+
     }
 
 
     public function homePage()
 	{
-
-        $data['page'] = $this->getPageDataHandler('/');;
-        View::render('page', $data);		
-
-	}
-
-	public function productsPage()
-	{
-
-		$data['page'] = $this->getPageDataHandler('/products');;
+        
+        $data['page'] = $this->getPageDataHandler('/');
+        $data['title'] = $data['page']['0']['title'];
         View::render('page', $data);
 
 	}
+
+
+	public function productsPage()
+	{
+		
+        $data['page'] = $this->getPageDataHandler('/products');
+        $data['title'] = $data['page']['0']['title'];
+        View::render('page', $data);
+
+	}
+
 
 	public function servicesPage()
 	{
 
-		
         $data['page'] = $this->getPageDataHandler('/services');
+        $data['title'] = $data['page']['0']['title'];
         View::render('page', $data);
+
 	}
+
 
 	public function contactPage()
 	{
-		
-		
-    	$data['page'] = $this->getPageDataHandler('/contact');;
+    	
+        $data['page'] = $this->getPageDataHandler('/contact');
+        $data['title'] = $data['page']['0']['title'];
         View::render('page', $data);
 
 	}
-
-
-    public function testPageHandler()
-    {
-        $data = $this->getPageDataHandler('/products');
-        var_dump($data);
-    }
-    
 	
 }

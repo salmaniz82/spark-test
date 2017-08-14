@@ -5,7 +5,7 @@
 
 <?php $page = $data['page'][0]; ?>
 
-		<?php if(isset($page['title'])) {?>
+		<?php if(isset($page['title'])) { ?>
 				<h1 class="page-title"><?= ucwords($page['title']); ?></h1>
 		<?php }?>
 

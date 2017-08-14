@@ -44,7 +44,7 @@ table {
 
 
 
-h3.title a{color: #8676ca; text-transform: uppercase;}
+h3.title a{color: #2d74a8; text-transform: capitalize; text-decoration: none; font-weight: normal;}
 
 .book-list-wrapper .book-meta span.author {
 	float: left;
@@ -156,3 +156,5 @@ a.remove-todo-btn {position: absolute; right: 10px; top: 10px; display: inline-b
 
 .books-list-item.done .book-desc.todo {text-decoration: line-through; color: #ccc; }
 p.status {margin-top: 5px; margin-bottom: 5px;}
+
+.w-80 {width: 80%;}

@@ -53,6 +53,15 @@ $route->get('/profile', ['user', 'showProfile']);
 // Dashboard routes
 $route->get('/dashboard', ['dashboard', 'dasboardLanding']);
 
+$route->get('/dashboard/pages', ['dashboard', 'pagesList']);
+
+$route->get('/dashboard/page/edit/{id}', ['dashboard', 'showPageEdit']);
+$route->post('/dashboard/page/edit', ['dashboard', 'updatePage']);
+
+
+
+
+
 
 
 
@@ -114,10 +123,6 @@ $route->post('/todospa/update/{id}', ['todos', 'todoSpaUpdate']);
 
 // REMOVE TODO FROM API
 $route->post('/todospa/clear/{id}/{userId}', ['todos', 'clearTodoApi']);
-
-
-$route->get('/testpagehandler', ['pages', 'testPageHandler']);
-
 
 
 

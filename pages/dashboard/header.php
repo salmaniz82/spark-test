@@ -14,7 +14,7 @@
 	<ul class="nav main-nav">
 		<li><a href="/">Public Area</a></li>
 		<li><a href="/book/add">Add Book</a></li>
-		
+		<li><a href="/dashboard/pages">Pages</a></li>
 	</ul>
 
 	<ul class="nav right-nav">

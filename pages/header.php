@@ -36,8 +36,8 @@
 			
 		} else { ?>
 			<li class="userinfo">Welcome, <?= Auth::User()['name']; ?></li>
-			<li class="<?php Route::Current('/profile') ?>"><a href="/profile">Profile</a></li>
 			<li class="<?php Route::Current('/dashboard') ?>"><a href="/dashboard">Dashboard</a></li>
+			<li class="<?php Route::Current('/profile') ?>"><a href="/profile">Profile</a></li>
 			<li class="<?php Route::Current('/logout') ?>"><a href="/logout">Logout</a></li>
 
 <?php  }?>

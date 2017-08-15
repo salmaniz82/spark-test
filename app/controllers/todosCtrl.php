@@ -89,6 +89,7 @@ class todosCtrl {
 
 	public function saveTodoApi()
 	{
+		Route::setPostJson();
 		if( $this->todoSanitizerAndInsert() )
 		{
 			$data['status'] = 'Succeess';

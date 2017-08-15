@@ -18,19 +18,17 @@
 
 		<div class="books-list-item">
                 <p class="book-desc todo" style="font-size: 20px;">Add New Todo</p>
-                <form name="addnewTodoForm" method="post" action="/todo/add" method="post">
+                <form name="addnewTodoForm" method="post" method="post" ng-submit="addTodo(formtodo)">
                    
-                    <input type="text" name="todo" placeholder="Todo" style="width: 500px; padding: 5px; font-size: 20px;">
-                    <input type="hidden" name="date_created" value="">
-                    <input type="hidden" name="user_id" value="">
-                    <input type="hidden" name="is_complited" value="0">
-
-                    <button type="submit" style="padding: 5px">Add Todo</button>
+                <input type="text" ng-model="formtodo.todo" name="todo" placeholder="Todo" style="width: 500px; padding: 5px; font-size: 20px;">
+                <button type="submit" style="padding: 5px">Add Todo</button>
 
                 </form>
+                
             </div>
-
+            <!--
             {{todos.todos}}
+            -->
             <div class="books-list-item" ng-repeat="todo in todos.todos" ng-class="todo.is_complited == 1 ? 'done' : 'pending'">
 
 	            <p class="status">Status: <span> {{todo.is_complited == 1 ? "Done" : "Pending"}} </span> </p>

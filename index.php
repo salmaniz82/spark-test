@@ -48,6 +48,9 @@ $route->get('/logout', ['user', 'logout']);
 
 $route->get('/profile', ['user', 'showProfile']);
 
+$route->get('/getauthenticateduser', ['user', 'checkReturnAuthenticatedUser']);
+
+
 
 
 // Dashboard routes
@@ -56,44 +59,20 @@ $route->get('/dashboard', ['dashboard', 'dasboardLanding']);
 $route->get('/dashboard/pages', ['dashboard', 'pagesList']);
 
 $route->get('/dashboard/page/edit/{id}', ['dashboard', 'showPageEdit']);
+
 $route->post('/dashboard/page/edit', ['dashboard', 'updatePage']);
 
 
 
-
-
-
-
-
-
-$route->get('/countries/{perPage}/{currentPage}', function() {
-
-  //  $db->build('S')->Colums()->Where('user_id = '. $id)->Where('book_id ='. 59)->paginate(Route::$params['perPage'], $params['currentPage'])->Limit('10');
-
-});
-
+// Simple REstful Routes for tesing purpose
 
 $route->get('/request', ['request', 'getRequest']);
+
 $route->post('/request', ['request', 'postRequest']);
+
 $route->put('/request', ['request', 'putRequest']);
+
 $route->delete('/request', ['request', 'deleteRequest']);
-
-
-$route->get('/dbcheck/{perPage}/{currentPage}', function() {
-
-    $perPage = Route::$params['perPage'];
-    $currentPage = Route::$params['currentPage'];
-
-
-    $db = new Database();
-    $db->table = 'todos';
-
-   // $data = $db->rawSql('SELECT * FROM todos LIMIT 10 OFFSET 10')->returnData();
-    $data = $db->build('S')->Colums('id, todo')->Paginate($perPage, $currentPage)->go()->returnData();
-    var_dump($data);
-
-
-});
 
 
 
@@ -127,12 +106,19 @@ $route->post('/todospa/clear/{id}/{userId}', ['todos', 'clearTodoApi']);
 
 
 
+$route->get('/dbcheck/{perPage}/{currentPage}', function() {
+
+    $perPage = Route::$params['perPage'];
+    $currentPage = Route::$params['currentPage'];
 
 
-$route->otherwise( function() {
-    
-    http_response_code(404);
-    View::render('404');
+    $db = new Database();
+    $db->table = 'todos';
+
+   // $data = $db->rawSql('SELECT * FROM todos LIMIT 10 OFFSET 10')->returnData();
+    $data = $db->build('S')->Colums('id, todo')->Paginate($perPage, $currentPage)->go()->returnData();
+    var_dump($data);
+
 
 });
 
@@ -142,5 +128,9 @@ $route->otherwise( function() {
 
 
 
+$route->otherwise( function() {
+    
+    http_response_code(404);
+    View::render('404');
 
-
+});

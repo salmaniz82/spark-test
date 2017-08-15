@@ -18,30 +18,33 @@ class userCtrl {
         $creds['email'] = $_POST['email'];
         $creds['password'] = $_POST['password'];
 
-        if (filter_var($creds['email'], FILTER_VALIDATE_EMAIL)) 
-        {          
-            // do the login stuff
+	        if (filter_var($creds['email'], FILTER_VALIDATE_EMAIL)) 
+	        {          
+	            // do the login stuff
 
-            if( $user = Auth::attemptLogin($creds) ) 
-            {
-
-            		Auth::check()->id = Auth::User()['id'];
-	                header('location: /todos');
-                
-            } else 
+	            if( $user = Auth::attemptLogin($creds) ) 
 	            {
-	                $data['message'] = 'user not found';
-	            }
+
+	            		Auth::check()->id = Auth::User()['id'];
+		                header('location: /todos');
+	                
+	            } 
+	            else 
+		        {
+		                $data['message'] = 'user not found';
+		        }
 
 
-        } else 
-	        {
-	            $data['message'] = 'Invalid Email';
-	        }
-     
-    } else 
+	        } 
+	        else 
+		    {
+		        $data['message'] = 'Invalid Email';
+		    }
+	     
+    	} 
+    	else 
 	    {
-	     $data['message'] = 'creds not found';    
+	    	 $data['message'] = 'creds not found';    
 	    }
 
 		   
@@ -111,6 +114,29 @@ class userCtrl {
 			View::render('page', $data);
 
 			}
+	}
+
+	public function checkReturnAuthenticatedUser()
+	{
+
+		if(Auth::loginStatus())
+		{
+			$response['status'] = true;
+			$response['userCount'] = 1;
+			$response['error'] = false;
+			$response['user'] = Auth::User();
+			
+			
+		}
+		else
+		{
+			$response['status'] = false;
+			$response['userCount'] = 0;
+			$response['error'] = true;
+		}
+
+	View::responseJson($response);
+
 	}
 
 }

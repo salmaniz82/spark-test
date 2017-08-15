@@ -258,7 +258,10 @@ class Route
     }
 
     
-
+    static function setPostJson()
+    {
+        $_POST = json_decode(file_get_contents('php://input'), true);
+    }
 
     public function filter($callback)
     {

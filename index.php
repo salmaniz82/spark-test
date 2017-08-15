@@ -105,7 +105,6 @@ $route->post('/todospa/clear/{id}/{userId}', ['todos', 'clearTodoApi']);
 
 
 
-
 $route->get('/dbcheck/{perPage}/{currentPage}', function() {
 
     $perPage = Route::$params['perPage'];
@@ -121,9 +120,6 @@ $route->get('/dbcheck/{perPage}/{currentPage}', function() {
 
 
 });
-
-
-
 
 
 

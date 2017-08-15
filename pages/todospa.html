@@ -3,73 +3,45 @@
 <head>
 	<title>MVC Integration with AngularJS - Todo SPA</title>
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+	<link rel='shortcut icon' type='image/png' href='/favicon.png' />
 	<link rel="apple-touch-icon" type='image/png' href="/favicon.png">
 </head>
 <body>
 
-<div class="wrapper">
+<header class="wrapper">
+
+	<ul class="nav main-nav">
+		<li class="/"><a href="/">Home</a></li>
+		<li class="" ui-sref-active="active"><a ui-sref="todos">Todos - AngularJS</a></li>
+		<li class="" ui-sref-active="active"><a ui-sref="books">Books</a></li>
+		<li class=""><a href="#/cars">Cars</a></li>
+		<li class=""><a href="#/phones">Phones</a></li>
+	</ul>
+
+	<ul class="nav right-nav">
+
 	
-
-<div class="book-list-wrapper" ng-controller="testController">
-
-		<div>
-			<h1> {{message}} </h1>
-		</div>
-
-		<div class="books-list-item">
-                <p class="book-desc todo" style="font-size: 20px;">Add New Todo</p>
-                <form name="addnewTodoForm" method="post" method="post" ng-submit="addTodo(formtodo)">
-                   
-                <input type="text" ng-model="formtodo.todo" name="todo" placeholder="Todo" style="width: 500px; padding: 5px; font-size: 20px;">
-                <button type="submit" style="padding: 5px">Add Todo</button>
-
-                </form>
-                
-            </div>
-            <!--
-            {{todos.todos}}
-            -->
-            <div class="books-list-item" ng-repeat="todo in todos.todos" ng-class="todo.is_complited == 1 ? 'done' : 'pending'">
-
-	            <p class="status">Status: <span> {{todo.is_complited == 1 ? "Done" : "Pending"}} </span> </p>
-
-	            <p class="book-desc todo" style="font-size: 20px;">
-	                   - {{todo.todo}}
-	                </p>
-
-	            <a href="/todo/clear/id/user_id" class="remove-todo-btn">X</a>
-	                
-
-	                <form name="markTodoComplepted/id" action="/todo/update/id?>" method="post">
-	                <label class="markDone"> 
-	                <input type="hidden" name="date_complited" value="">
-	                    <input type="checkbox" name="is_complited" value="{{todo.is_complited}}" ng-model="todo.is_complited" parse-int ng-true-value="1" ng-false-value="0"
-	                    ng-checked="todo.is_complited == 1"> Complited {{todo.is_complited}} </label>
-	                </form>
+		<li class="userinfo">Welcome, Username</li>
+		<li class=""><a href="/logout">Logout</a></li>	
+			
+	</ul>
 
 
-	                </h3>
-	                
-	                
-	                <div class="book-meta clear-after todo">
-	                    <span class="publised_date">Published Date : date_created </span>
-	                    <span class="complited_date">Complited Date : date_complited</span>
-	                </div>
-            </div> <!-- item -->
+	<div class="clearfix"></div>
+</header>
 
 
-        
 
-
-</div>	
-
-
+<div class="wrapper" ui-view>
+	
+loading ...
 
 </div><!-- wrapper -->
 
 
 
 	<script type="text/javascript" src="/assets/js/angular.js"></script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0/angular-ui-router.min.js"></script>
 	<script type="text/javascript" src="/assets/js/app.js"></script>
 </body>
 </html>

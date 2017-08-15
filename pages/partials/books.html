@@ -1,0 +1,13 @@
+<div class="book-list-wrapper">   
+            <div class="books-list-item" ng-repeat="book in books">
+                <h3 class="title"><a href="#"> {{book.name}} </a></h3>
+                
+                <p class="book-desc">
+                    {{book.details}}
+                </p>
+                <div class="book-meta clear-after">
+                    <span class="author">Posted By : {{book.author}}</span>
+                    <span class="publised_date">Published Date : {{book.published_date}}</span>
+                </div>
+            </div>
+    </div>

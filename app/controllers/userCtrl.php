@@ -121,18 +121,19 @@ class userCtrl {
 
 		if(Auth::loginStatus())
 		{
+			
 			$response['status'] = true;
 			$response['userCount'] = 1;
-			$response['error'] = false;
 			$response['user'] = Auth::User();
-			
 			
 		}
 		else
 		{
+
 			$response['status'] = false;
 			$response['userCount'] = 0;
-			$response['error'] = true;
+			
+
 		}
 
 	View::responseJson($response);

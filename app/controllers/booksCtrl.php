@@ -131,7 +131,7 @@ class booksCtrl
 
       $db = new Database();
       $db->table = 'books';
-      $data = $db->listall( ['id', 'name', 'author'] )->returnData();
+      $data = $db->listall( ['id', 'name', 'author', 'published_date', 'details'] )->returnData();
       View::responseJson($data, 200);
 
     } 

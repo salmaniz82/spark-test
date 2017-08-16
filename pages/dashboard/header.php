@@ -5,6 +5,8 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <link rel='shortcut icon' type='image/ico' href='/favicon.ico' />
 	<link rel="apple-touch-icon" type='image/ico' href="/favicon.ico">
+	<meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
 

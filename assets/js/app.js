@@ -122,9 +122,19 @@ angular.module('todoSPA').controller('booksController', function($scope, $http){
 });
 
 
-angular.module('todoSPA').controller('carsController', function($scope){
+angular.module('todoSPA').controller('carsController', function($scope, $http){
 
     $scope.message = 'Message from Controller for Cars Page';
+
+    
+
+    $http.post('/parseheaders', {}).then(function(response) {
+
+        console.log(response);
+
+    });
+    
+
 
 });
 

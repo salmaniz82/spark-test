@@ -3,9 +3,15 @@ angular.module('todoSPA', ['ui.router']);
 
 angular.module('todoSPA').config(function($stateProvider, $urlRouterProvider, $locationProvider){
 
+    
+    $locationProvider.hashPrefix('');
+    
+    
+
+
     $urlRouterProvider.otherwise('/');
 
-    //$locationProvider.hashPrefix('');
+    
 
     $stateProvider
 
@@ -22,9 +28,19 @@ angular.module('todoSPA').config(function($stateProvider, $urlRouterProvider, $l
         url: '/books',
         templateUrl: '/pages/partials/books.html',
         controller : 'booksController'
-    });
+    })
 
-    
+    .state('cars', {
+        url: '/cars',
+        templateUrl: '/pages/partials/cars.html',
+        controller : 'carsController'
+    })
+
+    .state('phones', {
+        url: '/phones',
+        templateUrl: '/pages/partials/phones.html',
+        controller : 'phonesController'
+    });
 
 
 });
@@ -104,3 +120,18 @@ angular.module('todoSPA').controller('booksController', function($scope, $http){
 
 
 });
+
+
+angular.module('todoSPA').controller('carsController', function($scope){
+
+    $scope.message = 'Message from Controller for Cars Page';
+
+});
+
+
+angular.module('todoSPA').controller('phonesController', function($scope){
+
+    $scope.message = 'Message from Controller for Phone Page';
+
+});
+

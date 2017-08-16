@@ -121,6 +121,14 @@ $route->get('/dbcheck/{perPage}/{currentPage}', function() {
 
 });
 
+$route->post('/testpost', function() {
+
+	var_dump($_POST); 
+
+
+
+});
+
 
 
 

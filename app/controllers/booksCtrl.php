@@ -11,14 +11,22 @@ class booksCtrl
         $this->DB->table = 'books';
     }
 
-    public function listbooks()
+    public function bookListHandler()
     {
-        
         $data['books'] = $this->DB->listall( ['id', 'name', 'author', 'published_date', 'details'] )->returnData();
         $data['count'] = count($data['books']);
         $data['title'] = 'List of All Books 2nd Example';
+        return $data;
+    }
+
+    public function listbooks()
+    {
+        
+        $data = $this->bookListHandler();
         View::render('books', $data);
     }
+
+
 
     public function single()
     {
@@ -129,9 +137,7 @@ class booksCtrl
     public function bookApi()
     {
 
-      $db = new Database();
-      $db->table = 'books';
-      $data = $db->listall( ['id', 'name', 'author', 'published_date', 'details'] )->returnData();
+      $data = $this->bookListHandler();
       View::responseJson($data, 200);
 
     } 

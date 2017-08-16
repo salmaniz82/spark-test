@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> IGNITE MVC - <?php if(isset($data['title'])) echo $data['title']; ?></title>
+    <title> Phantom MVC - <?php if(isset($data['title'])) echo $data['title']; ?></title>
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <meta name="robots" content="noindex" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

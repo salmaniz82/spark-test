@@ -71,6 +71,8 @@ angular.module('todoSPA').controller('todoController', function($scope, $http){
 
 
 
+
+
     $scope.addTodo = function(formdata)
     {
         
@@ -80,7 +82,9 @@ angular.module('todoSPA').controller('todoController', function($scope, $http){
         formdata.date_created = (new Date()).toISOString().substring(0, 10);
         formdata.is_complited = '0';
 
-     
+        console.log('add todo updated function');
+
+     /*
         $http.post("/todospa/add", formdata)
         .then(function(response) {
              
@@ -95,7 +99,38 @@ angular.module('todoSPA').controller('todoController', function($scope, $http){
 
              }
 
-        });     
+        });
+        */
+
+        // $scope.data = formdata;
+
+
+        $http({
+            method: 'POST',
+            url: '/todospa/add',
+            data: formdata
+
+        }).then(function(response){
+
+           
+
+            if(response.data.status == 'Succeess')
+             {
+                   $http.get("/todospa/listapi")
+                .then(function(response) {
+                    $scope.todos =  response.data;
+                    formdata.todo = '';  
+                });
+
+             }
+             
+
+             console.log(response.data);
+
+        });
+    
+
+
         
     }
 
@@ -126,11 +161,27 @@ angular.module('todoSPA').controller('carsController', function($scope, $http){
 
     $scope.message = 'Message from Controller for Cars Page';
 
-    
+    /*
 
     $http.post('/parseheaders', {}).then(function(response) {
 
-        console.log(response);
+        console.log(response.data);
+
+    });
+
+    */
+
+
+    $http({
+        method: 'POST',
+        url: '/parseheaders',
+        data: "message=" + $scope.message,
+        
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+    }).then(function(response){
+
+        console.log(response.data);
 
     });
     

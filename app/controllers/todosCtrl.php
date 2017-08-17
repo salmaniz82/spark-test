@@ -49,8 +49,7 @@ class todosCtrl {
 		}
 		else 
 		{
-			$sqlString = "SELECT * FROM todos WHERE user_id = {$userID} ORDER BY id DESC";
-    		$data['todos'] = $this->DB->rawSql($sqlString)->returnData();
+    		$data['todos'] = $this->DB->build('S')->Colums()->Where("user_id = '".$userID."'")->go()->returnData();	
 		}
 
 		return $data;
@@ -89,7 +88,8 @@ class todosCtrl {
 
 	public function saveTodoApi()
 	{
-		Route::setPostJson();
+		
+	//	Route::setPostJson();
 		if( $this->todoSanitizerAndInsert() )
 		{
 			$data['status'] = 'Succeess';
@@ -100,6 +100,8 @@ class todosCtrl {
 			$data['status'] = 'Failed';
 			return View::responseJson($data);
 		}
+		
+
 	}
 
 

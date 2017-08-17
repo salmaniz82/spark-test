@@ -67,6 +67,12 @@ class Route
 
      if($this->method == 'POST')
         {
+            
+            if(empty($_POST) || strpos($_SERVER["CONTENT_TYPE"], "application/json") !== false)
+            {
+                $this->setAcceptJson();
+            }
+
             $this->execute($appUri, $callback);
         }   
     }
@@ -261,6 +267,11 @@ class Route
     static function setPostJson()
     {
         $_POST = json_decode(file_get_contents('php://input'), true);
+    }
+
+    public function setAcceptJson()
+    {
+        $_POST = json_decode(file_get_contents('php://input'), true);   
     }
 
     public function filter($callback)

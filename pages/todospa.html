@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="todoSPA">
+<html ng-app="todoSPA" ng-controller="appController">
 <head>
 	<title>Phantom - MVC with Angular JS</title>
 	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
@@ -34,7 +34,7 @@
 	<ul class="nav right-nav">
 
 	
-		<li class="userinfo">Welcome, Username</li>
+		<li class="userinfo">Welcome, {{userName}}</li>
 		<li class=""><a href="/logout" target="_self">Logout</a></li>	
 			
 	</ul>

@@ -22,21 +22,12 @@
 	                   - {{todo.todo}}
 	                </p>
 
-	            <a href="/todo/clear/id/user_id" class="remove-todo-btn">X</a>
+	            <a href="#" class="remove-todo-btn" ng-click="clearTodo(todo.id, $index)">X</a>
 	                
 
 	                <form name="markTodoComplepted/id" method="post">
 	                <label class="markDone"> 
 	                
-	                <!--
-
-	        		<input type="checkbox" name="is_complited"  
-	        		ng-model="todo.is_complited" parse-int ng-true-value="1" ng-false-value="0"
-	                ng-checked="todo.is_complited == 1" 
-	                ng-change="changeStatus(todo)"> Complited {{todo.is_complited}} </label>
-
-	                -->
-
 	                <input type="checkbox" name="is_complited" ng-model="todo.is_complited" ng-true-value="'1'" ng-false-value="'0'"
 	                ng-checked="todo.is_complited == '1'" 
 	                ng-change="changeStatus(todo)"> Complited {{todo.is_complited}} </label>

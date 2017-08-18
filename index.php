@@ -125,7 +125,7 @@ $route->get('/dbcheck/{perPage}/{currentPage}', function() {
 
 $route->post('/parseheaders', function() {
 
-  //  $data = apache_request_headers();
+    //  $data = apache_request_headers();
 
     // $header = $data['Content-Type'];
 
@@ -135,10 +135,6 @@ $route->post('/parseheaders', function() {
     View::responseJson($header);
 
 });
-
-
-
-
 
 
 $route->otherwise( function() {

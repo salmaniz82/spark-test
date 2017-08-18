@@ -12,6 +12,10 @@
 	<link rel='shortcut icon' type='image/ico' href='/favicon.ico' />
 	<link rel="apple-touch-icon" type='image/ico' href="/favicon.ico">
 
+	<!--
+	<base href="/todospa">
+	-->
+
 
 
 </head>
@@ -20,7 +24,7 @@
 <header class="wrapper">
 
 	<ul class="nav main-nav">
-		<li><a href="/">Home</a></li>
+		<li><a href="/" target="_self">Home</a></li>
 		<li ui-sref-active="active"><a ui-sref="todos">Todos - AngularJS</a></li>
 		<li ui-sref-active="active"><a ui-sref="books">Books</a></li>
 		<li ui-sref-active="active"><a ui-sref="cars">Cars</a></li>
@@ -31,7 +35,7 @@
 
 	
 		<li class="userinfo">Welcome, Username</li>
-		<li class=""><a href="/logout">Logout</a></li>	
+		<li class=""><a href="/logout" target="_self">Logout</a></li>	
 			
 	</ul>
 

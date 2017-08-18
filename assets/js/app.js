@@ -6,6 +6,10 @@ angular.module('todoSPA').config(function($stateProvider, $urlRouterProvider, $l
     
     $locationProvider.hashPrefix('');
     
+    /*
+    $locationProvider.html5Mode(true);
+    */
+    
     
 
 
@@ -46,6 +50,42 @@ angular.module('todoSPA').config(function($stateProvider, $urlRouterProvider, $l
 });
 
 
+angular.module('todoSPA').service('getAuthData', function($http) {
+
+    //var this = {};
+    /*
+        var this = {};
+        in services empty object will be created and assigned to this 
+    */
+
+        this.prop = 'Prop From Service';
+
+
+        this.doSomething = function(){
+            return 'this is some string return via service';
+        }
+
+
+        this.checkReturnAuthStatus = function(){
+            $http.get('/getauthenticateduser').then(function(response){
+
+                this.userAuthLog = response.data;
+
+            });
+
+            return this.userAuthLog
+        }
+
+
+    /*
+        return this;
+        and this will be 
+    */
+    
+
+});
+
+
 angular.module('todoSPA').controller('todoController', function($scope, $http){
 
 
@@ -56,7 +96,7 @@ angular.module('todoSPA').controller('todoController', function($scope, $http){
 	$scope.todos;
 
 
-    $scope.fruits = ['lemon'];
+    
 
 	
 	$http.get("/todospa/listapi")
@@ -64,9 +104,33 @@ angular.module('todoSPA').controller('todoController', function($scope, $http){
 	     $scope.todos =  response.data;   
     });
 
-    changeStatus = function()
+    
+
+    $scope.changeStatus = function(todobj)
     {
-    	console.log('hello say');
+    	
+                
+        var id = todobj.id;
+        var url = '/todospa/update/'+todobj.id;
+        todobj.date_complited = (new Date()).toISOString().substring(0, 10);
+
+
+        
+
+
+        $http({
+
+        method: 'POST',
+        url:  url,
+        data: todobj
+
+        }).then(function(response){
+
+            console.log(response.data);
+
+        });
+
+
     }
 
 
@@ -82,29 +146,7 @@ angular.module('todoSPA').controller('todoController', function($scope, $http){
         formdata.date_created = (new Date()).toISOString().substring(0, 10);
         formdata.is_complited = '0';
 
-        console.log('add todo updated function');
-
-     /*
-        $http.post("/todospa/add", formdata)
-        .then(function(response) {
-             
-             console.log(response.data);
-             formdata.todo = '';
-             if(response.data.status == 'Succeess')
-             {
-                   $http.get("/todospa/listapi")
-                .then(function(response) {
-                    $scope.todos =  response.data;   
-                });
-
-             }
-
-        });
-        */
-
-        // $scope.data = formdata;
-
-
+      
         $http({
             method: 'POST',
             url: '/todospa/add',
@@ -125,12 +167,8 @@ angular.module('todoSPA').controller('todoController', function($scope, $http){
              }
              
 
-             console.log(response.data);
-
         });
     
-
-
         
     }
 
@@ -157,42 +195,55 @@ angular.module('todoSPA').controller('booksController', function($scope, $http){
 });
 
 
-angular.module('todoSPA').controller('carsController', function($scope, $http){
+angular.module('todoSPA').controller('carsController', function($scope, $http, getAuthData){
 
-    $scope.message = 'Message from Controller for Cars Page';
+    $scope.message = 'message is now changed';
 
-    /*
+    
+    $scope.userdata = getAuthData.checkReturnAuthStatus();
 
-    $http.post('/parseheaders', {}).then(function(response) {
 
-        console.log(response.data);
+    
 
-    });
-
-    */
-
+  /*
 
     $http({
         method: 'POST',
         url: '/parseheaders',
         data: "message=" + $scope.message,
         
+        
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
 
     }).then(function(response){
 
         console.log(response.data);
 
     });
+
+    */
     
 
 
 });
 
 
-angular.module('todoSPA').controller('phonesController', function($scope){
+angular.module('todoSPA').controller('phonesController', function($scope, $http){
 
-    $scope.message = 'Message from Controller for Phone Page';
+    $scope.message = 'Message from Controller for Phone Page';   
+  
+
+        $http.get('getauthenticateduser').then(function(response){
+
+            $scope.userdata = response.data;  
+
+         });
 
 });
+
+
+
+
+
 

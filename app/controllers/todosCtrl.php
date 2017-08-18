@@ -89,7 +89,7 @@ class todosCtrl {
 	public function saveTodoApi()
 	{
 		
-	//	Route::setPostJson();
+	
 		if( $this->todoSanitizerAndInsert() )
 		{
 			$data['status'] = 'Succeess';
@@ -146,7 +146,7 @@ class todosCtrl {
 
 	public function todoSpaUpdate()
 	{
-		
+	
 		if( $this->updateHandler() ) 
 		{
 			$data['status'] = 'Success';

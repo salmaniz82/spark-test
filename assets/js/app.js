@@ -13,10 +13,6 @@ angular.module('todoSPA').controller('appController', function($scope, $http, au
 
     });
 
-    
-
-    
-    
 
 });
 

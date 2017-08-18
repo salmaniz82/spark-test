@@ -15,7 +15,7 @@
                 <p class="book-desc todo" style="font-size: 20px;">Add New Todo</p>
                 <form name="addnewTodoForm" method="post" action="/todo/add" method="post">
                    
-                    <input type="text" name="todo" placeholder="Todo" style="width: 500px; padding: 5px; font-size: 20px;">
+                    <input type="text" name="todo" autocomplete="off" placeholder="Todo" style="width: 500px; padding: 5px; font-size: 20px;">
                     <input type="hidden" name="date_created" value="<?= date("Y-m-d") ?>">
                     <input type="hidden" name="user_id" value="<?= Auth::User()['id']; ?>">
                     <input type="hidden" name="is_complited" value="0">

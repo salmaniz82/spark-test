@@ -13,6 +13,14 @@ $route->get('/products', ['pages', 'productsPage']);
 
 $route->get('/contact', ['pages', 'contactPage']);
 
+$route->get('/shop', function() {
+
+    $data['title'] = 'Shop Section';
+
+    View::render('shop', $data);
+
+});
+
 
 
 
@@ -118,6 +126,17 @@ $route->get('/dbcheck/{perPage}/{currentPage}', function() {
     $data = $db->build('S')->Colums('id, todo')->Paginate($perPage, $currentPage)->go()->returnData();
     var_dump($data);
 
+
+});
+
+$route->get('/dbcheck', function() {
+
+    $db = new Database();
+    $db->table = 'todos';
+
+    $data = $db->build('S')->Colums()->Where('user_id = 11')->go()->returnData();
+
+    var_dump($data);
 
 });
 

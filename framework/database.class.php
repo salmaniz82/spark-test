@@ -113,7 +113,14 @@ class Database
             $colValues = "'".$colValues."'";
             $sql = "INSERT INTO ". $this->table . " (". $cols .") VALUES ". "(". $colValues . ")";
             $this->sqlSyntax = $sql;
-            return $this->runQuery();
+            if($this->runQuery())
+            {
+                return $this->last_id = $this->connection->insert_id;
+            }
+            else
+            {
+                return false;
+            }
 
         }
 
@@ -225,11 +232,14 @@ class Database
             case "S":
                 $string = "SELECT ";
                 break;
-            case "I":
-                $string = "INSERT INTO ";
+            case "U":
+                $string = "UPDATE {$this->table} SET";
                 break;
             case "D": 
                 $string = "DELETE FROM {$this->table} ";
+                break;
+            case "C": 
+                $string = "COUNT {$this->table} ";
                 break;
             default:
                 $string = "SELECT ";

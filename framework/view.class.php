@@ -27,4 +27,9 @@ class View
     	echo json_encode($data);
     }
 
+    public static function getTemplatePartial()
+    {
+        
+    }
+
 }

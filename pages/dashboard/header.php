@@ -16,7 +16,13 @@
 	<ul class="nav main-nav">
 		<li><a href="/">Public Area</a></li>
 		<li><a href="/book/add">Add Book</a></li>
+
+		
+
+		<?php if(Auth::User()['role_id'] == 1 ) {?>
 		<li><a href="/dashboard/pages">Pages</a></li>
+		<li><a href="/dashboard/products/add">Products</a></li>
+		<?php }?>
 	</ul>
 
 	<ul class="nav right-nav">

@@ -45,7 +45,7 @@ class booksCtrl
      }
 
         $data['title'] = 'Adding Books to Database';
-        View::render('book-add', $data);
+        View::render('dashboard/book-add', $data);
         exit();
     }
 
@@ -77,7 +77,7 @@ class booksCtrl
                 $data['class'] = 'error';
             }
 
-            View::render('book-add', $data);
+            View::render('dashboard/book-add', $data);
 
            
 
@@ -88,7 +88,7 @@ class booksCtrl
       $id = (int) Route::$params['id'];
       $data['title'] = 'Update Book Details';
       $data['book'] = $this->DB->getbyId($id)->returnData();    
-      View::render('book-edit', $data);
+      View::render('dashboard/book-edit', $data);
     }
 
     public function updateBook()

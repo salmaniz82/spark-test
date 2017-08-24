@@ -13,13 +13,10 @@ $route->get('/products', ['pages', 'productsPage']);
 
 $route->get('/contact', ['pages', 'contactPage']);
 
-$route->get('/shop', function() {
+$route->get('/shop', ['shop', 'index']);
 
-    $data['title'] = 'Shop Section';
 
-    View::render('shop', $data);
 
-});
 
 
 
@@ -69,6 +66,11 @@ $route->get('/dashboard/pages', ['dashboard', 'pagesList']);
 $route->get('/dashboard/page/edit/{id}', ['dashboard', 'showPageEdit']);
 
 $route->post('/dashboard/page/edit', ['dashboard', 'updatePage']);
+
+
+$route->get('/dashboard/products/add', ['dashboard', 'showAddProducts']);
+
+$route->post('/dashboard/products/add', ['dashboard', 'saveProducts']);
 
 
 
@@ -129,14 +131,14 @@ $route->get('/dbcheck/{perPage}/{currentPage}', function() {
 
 });
 
-$route->get('/dbcheck', function() {
+$route->get('/treecheck', function() {
 
     $db = new Database();
-    $db->table = 'todos';
+    $db->table = 'categories';
 
-    $data = $db->build('S')->Colums()->Where('user_id = 11')->go()->returnData();
+    $data['categories'] = $db->listall()->returnData();
 
-    var_dump($data);
+    var_dump($data['categories']);
 
 });
 

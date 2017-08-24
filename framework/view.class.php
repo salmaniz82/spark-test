@@ -27,9 +27,12 @@ class View
     	echo json_encode($data);
     }
 
-    public static function getTemplatePartial()
+    public static function composeTemplatePartial($templateRoute)
     {
-        
+
+        $templateRoute = siteURL().$templateRoute;
+        echo file_get_contents($templateRoute);
+
     }
 
 }

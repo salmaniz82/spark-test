@@ -13,11 +13,12 @@ $route->get('/products', ['pages', 'productsPage']);
 
 $route->get('/contact', ['pages', 'contactPage']);
 
+
+
+
 $route->get('/shop', ['shop', 'index']);
 
-
-
-
+$route->get('/buildshopcategories', ['template', 'buildShopCategories']);
 
 
 

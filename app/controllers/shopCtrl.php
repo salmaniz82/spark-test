@@ -15,13 +15,9 @@ class shopCtrl {
 	public function index()
 	{
 		
-		$this->DB->table = 'categories';
-		$data['categories'] = $this->DB->listall()->returnData();
 		$data['title'] = 'Online Store';
-
 		$this->DB->table = 'products';
 		$data['products'] = $this->DB->listall()->returnData();
-
 		View::render('shop', $data);
 	}
 }

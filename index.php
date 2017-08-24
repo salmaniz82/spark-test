@@ -17,6 +17,7 @@ $route->get('/contact', ['pages', 'contactPage']);
 
 
 $route->get('/shop', ['shop', 'index']);
+$route->get('/shop/{category_id}', ['shop', 'showByCategory']);
 
 $route->get('/buildshopcategories', ['template', 'buildShopCategories']);
 
@@ -139,7 +140,34 @@ $route->get('/treecheck', function() {
 
     $data['categories'] = $db->listall()->returnData();
 
-    var_dump($data['categories']);
+    function has_children($rows,$id) {
+  foreach ($rows as $row) {
+    if ($row['parent_id'] == $id)
+      return true;
+  }
+  return false;
+}
+
+function build_menu($rows,$parent=null)
+{  
+  $result = "<ul>";
+  foreach ($rows as $row)
+  {
+    if ($row['parent_id'] == $parent){
+      $result.= "<li><a href=\"{$row['id']}\">{$row['name']}</a>";
+      if (has_children($rows,$row['id']))
+        $result.= build_menu($rows,$row['id']);
+      $result.= "</li>";
+    }
+  }
+  $result.= "</ul>";
+
+  return $result;
+}
+
+echo build_menu($data['categories']);
+
+
 
 });
 

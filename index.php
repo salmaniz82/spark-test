@@ -17,6 +17,7 @@ $route->get('/contact', ['pages', 'contactPage']);
 
 
 $route->get('/shop', ['shop', 'index']);
+
 $route->get('/shop/{category_id}', ['shop', 'showByCategory']);
 
 $route->get('/buildshopcategories', ['template', 'buildShopCategories']);
@@ -185,6 +186,36 @@ $route->post('/parseheaders', function() {
     View::responseJson($header);
 
 });
+
+$route->get('/tabletrash', function() {
+
+    $db = new Database();
+
+    $result = $db->rawSql('SHOW TABLES')->returnData();
+
+    foreach ($result as $key => $value) {
+        
+        $tables[] = $value['Tables_in_'.DATABASE];
+    }
+
+    foreach ($tables as $table) 
+    {
+
+        $query = "DROP TABLE IF EXISTS ". DATABASE.$table;
+        
+        if($db->rawSql($query))
+        {
+            echo $table . "deleted" . "<br />";
+        }
+        else {
+            echo 'cannot remove data';
+        }
+    }
+    
+
+});
+
+
 
 
 $route->otherwise( function() {

@@ -2,7 +2,14 @@
 
 <div class="shop-container">
     
-    <?php View::composeTemplatePartial('buildshopcategories'); ?>
+    <?php 
+
+    // echo View::composeTemplatePartial('buildshopcategories'); 
+
+    View::composeTemplateCurl('buildshopcategories');
+    ?>
+
+    
 
 
     <main class="products listings bg-white">

@@ -1,8 +1,23 @@
 <?php
+
+
 define('SERVER', 'localhost');
 define('USER', 'root');
 define('DATABASE', 'mymvc_db');
 define('PASSWORD', '');
+
+
+
+/*
+
+
+define('SERVER', 'localhost');
+define('USER', 'sa_mvctest');
+define('DATABASE', 'sa_mvc');
+define('PASSWORD', 'RT}W.lrOG[1R');
+
+*/
+
 
 
 function siteURL()

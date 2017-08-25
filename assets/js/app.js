@@ -151,7 +151,7 @@ angular.module('todoSPA').controller('todoController', function($scope, $http){
                 $http.get("/todospa/single/"+lastid)
                 .then(function(response) {
                     
-                    $scope.todos.todos.push(response.data.todos[0]);
+                    $scope.todos.todos.splice(0, 0, response.data.todos[0]);
                     formdata.todo = ''; 
                 });
 

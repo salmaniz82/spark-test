@@ -24,6 +24,7 @@ $route->get('/buildshopcategories', ['template', 'buildShopCategories']);
 
 
 
+
 $route->get('/books', ['books', 'listbooks']);
 
 $route->get('/book/add', ['books', 'showAdd']);
@@ -43,7 +44,6 @@ $route->get('/bookapi', ['books', 'bookApi']);
 
 
 // USERS specifics routes
-
 $route->get('/register', ['user', 'showRegister']);
 
 $route->post('/register', ['user', 'doRegister']);
@@ -110,6 +110,7 @@ $route->get('/todospa/listapi', ['todos', 'listTodoApi']);
 // API FOR SAVE TODO
 $route->post('/todospa/add', ['todos', 'saveTodoApi']);
 
+// API getting single todo
 $route->get('/todospa/single/{id}', ['todos', 'getSingleTodo']);
 
 // API FOR UPDATE
@@ -117,7 +118,6 @@ $route->post('/todospa/update/{id}', ['todos', 'todoSpaUpdate']);
 
 // REMOVE TODO FROM API
 $route->post('/todospa/clear/{id}/{userId}', ['todos', 'clearTodoApi']);
-
 
 
 
@@ -138,6 +138,7 @@ $route->get('/dbcheck/{perPage}/{currentPage}', function() {
 
 
 
+
 $route->get('/treecheck', function() {
 
     $db = new Database();
@@ -145,13 +146,18 @@ $route->get('/treecheck', function() {
 
     $data['categories'] = $db->listall()->returnData();
 
-    function has_children($rows,$id) {
-  foreach ($rows as $row) {
-    if ($row['parent_id'] == $id)
-      return true;
+    function has_children($rows,$id) 
+    {
+      foreach ($rows as $row) 
+      {
+        if ($row['parent_id'] == $id)
+        return true;
+      }
+      return false;
   }
-  return false;
-}
+
+
+
 
 function build_menu($rows,$parent=null)
 {  
@@ -170,13 +176,10 @@ function build_menu($rows,$parent=null)
   return $result;
 }
 
-echo build_menu($data['categories']);
-
+  echo build_menu($data['categories']);
 
 
 });
-
-
 
 
 

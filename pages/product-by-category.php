@@ -2,14 +2,40 @@
 
 <div class="shop-container">
     
-    <?php 
-    //echo View::composeTemplatePartial('buildshopcategories'); 
-    View::composeTemplateCurl('buildshopcategories');
-    ?>
+    <?php View::composeTemplateCurl('buildshopcategories'); ?>
 
 
     <main class="products listings bg-white">
-        <?php var_dump($data['products']) ?>
+
+    
+
+    <?php if( $data['products'] !=null) {?>
+
+    <?php foreach($data['products'] as $key => $value ) {?>
+
+    	<div class="item-wrap">
+
+    		<img src="http://placehold.it/100x100" class="item-name">
+    		<div class="item-name"><?= $value['name']?></div>
+    		<div class="item-name">$ 100.99</div>
+    		<div class="item-name">Add To Cart</div>
+    		
+    	</div> <!--item wrap-->
+
+    	<?php }
+    		// end foreach 
+    	} 
+    	
+    		else {
+    	// 
+    	?>
+
+    	<p>No Records in this category Yet</p>
+
+    	<?php }?>
+
+
+        
     </main>
 
 

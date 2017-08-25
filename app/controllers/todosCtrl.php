@@ -87,16 +87,29 @@ class todosCtrl {
 	{
 		
 	
-		if( $this->todoSanitizerAndInsert() )
+		if($lastId = $this->todoSanitizerAndInsert() )
 		{
 			$data['status'] = 'Succeess';
+			$data['lastId'] = $lastId;
 			return View::responseJson($data, 200);
 		}
 		else
 		{
 			$data['status'] = 'Failed';
 			return View::responseJson($data);
-		}
+		}	
+
+	}
+
+	public function	getSingleTodo()
+	{
+
+		$id = Route::$params['id'];
+		$this->DB->table = 'todos';
+		$data['todos'] = $this->DB->build('S')->Colums()->Where("id = '".$id."'")->go()->returnData();
+
+		
+		View::responseJson($data);
 		
 
 	}

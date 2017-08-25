@@ -110,6 +110,8 @@ $route->get('/todospa/listapi', ['todos', 'listTodoApi']);
 // API FOR SAVE TODO
 $route->post('/todospa/add', ['todos', 'saveTodoApi']);
 
+$route->get('/todospa/single/{id}', ['todos', 'getSingleTodo']);
+
 // API FOR UPDATE
 $route->post('/todospa/update/{id}', ['todos', 'todoSpaUpdate']);
 
@@ -118,11 +120,12 @@ $route->post('/todospa/clear/{id}/{userId}', ['todos', 'clearTodoApi']);
 
 
 
+
+
 $route->get('/dbcheck/{perPage}/{currentPage}', function() {
 
     $perPage = Route::$params['perPage'];
     $currentPage = Route::$params['currentPage'];
-
 
     $db = new Database();
     $db->table = 'todos';
@@ -131,8 +134,9 @@ $route->get('/dbcheck/{perPage}/{currentPage}', function() {
     $data = $db->build('S')->Colums('id, todo')->Paginate($perPage, $currentPage)->go()->returnData();
     var_dump($data);
 
-
 });
+
+
 
 $route->get('/treecheck', function() {
 
@@ -174,46 +178,7 @@ echo build_menu($data['categories']);
 
 
 
-$route->post('/parseheaders', function() {
 
-    //  $data = apache_request_headers();
-
-    // $header = $data['Content-Type'];
-
-    $header = $_SERVER;
-
-    
-    View::responseJson($header);
-
-});
-
-$route->get('/tabletrash', function() {
-
-    $db = new Database();
-
-    $result = $db->rawSql('SHOW TABLES')->returnData();
-
-    foreach ($result as $key => $value) {
-        
-        $tables[] = $value['Tables_in_'.DATABASE];
-    }
-
-    foreach ($tables as $table) 
-    {
-
-        $query = "DROP TABLE IF EXISTS ". DATABASE.$table;
-        
-        if($db->rawSql($query))
-        {
-            echo $table . "deleted" . "<br />";
-        }
-        else {
-            echo 'cannot remove data';
-        }
-    }
-    
-
-});
 
 
 

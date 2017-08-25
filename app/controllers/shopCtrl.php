@@ -27,6 +27,7 @@ class shopCtrl {
 		$this->DB->table = 'products';
 
 		$data['products'] = $this->DB->build('S')->Colums()->Where("category_id = '".$category_id."'")->go()->returnData();
+		$data['count'] = count($data);
 
 		View::render('product-by-category', $data);
 	}

@@ -139,16 +139,22 @@ angular.module('todoSPA').controller('todoController', function($scope, $http){
 
         }).then(function(response){
 
-            console.log(response.data);
+            
 
 
             if(response.data.status == 'Succeess')
              {
-                   $http.get("/todospa/listapi")
+                
+                
+                var lastid = response.data.lastId;
+
+                $http.get("/todospa/single/"+lastid)
                 .then(function(response) {
-                    $scope.todos =  response.data;
-                    formdata.todo = '';  
+                    
+                    $scope.todos.todos.push(response.data.todos[0]);
+                    formdata.todo = ''; 
                 });
+
 
              }
              

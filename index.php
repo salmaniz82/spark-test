@@ -203,7 +203,7 @@ $route->get('/checkjwt', function(){
 $route->get('/login-jwt', function() {
 
 
-    $creds = ['email'=> 'hammad@gmail.com', 'password'=> '123456'];
+    $creds = ['email'=> 'salmaniz.82@gmail.com', 'password'=> '123456'];
     /*
      * if success will return user array or will return false;
      * */
@@ -230,7 +230,7 @@ $route->get('/login-jwt', function() {
 
 $route->get('/token-validate', function() {
 
-    if( $match = JwtAuth::validateToken() )
+    if( JwtAuth::validateToken() )
     {
 
         $data['status'] = true;
@@ -248,6 +248,21 @@ $route->get('/token-validate', function() {
 
 });
 
+
+$route->get('/jwt-protect-admin-only', function() {
+
+    if( JwtAuth::validateToken() && JwtAuth::$user['role_id'] == 1)
+    {
+        $data['message'] = "you are admin you can access this route";
+        return View::responseJson($data, 200);
+    }
+    else {
+        $data['message'] = "Un Authorize attempt you don not have permission to access this route";
+        return View::responseJson($data, 401);
+    }
+
+
+});
 
 
 

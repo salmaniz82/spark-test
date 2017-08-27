@@ -110,7 +110,9 @@ class JwtAuth {
 
             $user_id = $storedToken[0]['user_id'];
 
-            self::$user = $db->getbyId($user_id, ['id', 'name', 'email', 'role_id'])->returnData();
+            $user = $db->getbyId($user_id, ['id', 'name', 'email', 'role_id'])->returnData();
+
+            self::$user = $user[0];
 
             return $storedToken;
         }

@@ -165,7 +165,7 @@ angular.module('todoSPA').controller('todoController', function($scope, $http){
     };
 
 
-    $scope.clearTodo = function(id, index) {
+    $scope.clearTodo = function(id, $index) {
         
         url = '/todospa/clear/'+id+'/'+$scope.authData.user.id;
 
@@ -173,7 +173,8 @@ angular.module('todoSPA').controller('todoController', function($scope, $http){
 
             if(response.data.status == 'Success')
             {
-               $scope.todos.todos.splice(index, 1);
+               $scope.todos.todos.splice($index, 1);
+               console.log($index);
             }            
 
         });
@@ -288,6 +289,8 @@ angular.module('todoSPA').controller('phonesController', function($scope, $http)
          });
 
 });
+
+
 
 
 

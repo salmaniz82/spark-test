@@ -11,21 +11,16 @@ class Auth
     private static $_instance = null;
     protected static $user = [];
 
-     private function __construct () { }
-
-     public static function getInstance ()
-    {
-       
-    }
-
 
     public static function loginStatus()
     {
         
-        if( isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true ) {
+        if( isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true ) 
+        {
             return true;    
         }
-        else {
+        else 
+        {
             return false;
         }      
     }
@@ -46,7 +41,8 @@ class Auth
 
     public static function check()
     {
-         if (self::$_instance === null) {
+        if (self::$_instance === null) 
+        {
             self::$_instance = new self;
         }
 
@@ -63,6 +59,7 @@ class Auth
 
     public static function attemptLogin($creds)
     {
+        
         $db = new Database();
         $db->table = 'users';
         $email = mysqli_real_escape_string($db->connection, $creds['email']);
@@ -75,10 +72,12 @@ class Auth
             $_SESSION['user'] = $result[0];
             self::$user = $_SESSION['user'];
             return $result;
-        } else
-            {
-                return false;
-            }
+        } 
+        else
+        {
+            return false;
+        }
+        
     }
 
 }

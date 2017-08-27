@@ -23,8 +23,6 @@ $route->get('/shop/{category_id}', ['shop', 'showByCategory']);
 $route->get('/buildshopcategories', ['template', 'buildShopCategories']);
 
 
-
-
 $route->get('/books', ['books', 'listbooks']);
 
 $route->get('/book/add', ['books', 'showAdd']);
@@ -40,7 +38,6 @@ $route->post('/book/edit/{id}', ['books', 'updateBook']);
 $route->get('/book/delete/{id}', ['books', 'removeBook']);
 
 $route->get('/bookapi', ['books', 'bookApi']);
-
 
 
 // USERS specifics routes
@@ -181,6 +178,74 @@ function build_menu($rows,$parent=null)
 
 });
 
+
+
+
+$route->get('/checkjwt', function(){
+
+  if(JwtAuth::hasToken())
+  {
+      $data['message'] = "token was present in header";
+      $data['status'] = true;
+      View::responseJson($data, 200);
+  }
+  else
+      {
+          $data['message'] = "Un Authenticated token was not provided";
+          $data['status'] = false;
+          View::responseJson($data, 403);
+      }
+
+});
+
+
+
+$route->get('/login-jwt', function() {
+
+
+    $creds = ['email'=> 'farhansagar@hotmail.com', 'password'=> '123456'];
+    /*
+     * if success will return user array or will return false;
+     * */
+
+    if( $payload = JwtAuth::findUserWithCreds($creds) )
+    {
+
+        $token = JwtAuth::generateToken($payload);
+        $data['status'] = true;
+        $data['message'] = 'user found';
+        $data['token'] = $token;
+        $data['user'] = $payload;
+        return View::responseJson($data, 200);
+    }
+    else
+        {
+            $data['status'] = false;
+            $data['message'] = 'user not found';
+            return View::responseJson($data, 401);
+        }
+
+});
+
+
+$route->get('/token-validate', function() {
+
+    if( $match = JwtAuth::validateToken() )
+    {
+
+        $data['status'] = true;
+        $data['message'] = 'user found';
+        return View::responseJson($data, 200);
+    }
+    else
+    {
+        $data['status'] = false;
+        $data['message'] = 'not a valid token';
+        return View::responseJson($data, 401);
+    }
+
+
+});
 
 
 

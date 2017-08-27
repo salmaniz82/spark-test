@@ -282,7 +282,8 @@ class Route
 
     }
 
- 
+
+     
     public function otherwise($callback)
     {
         if(!in_array($this->getRoute(), $this->registered))

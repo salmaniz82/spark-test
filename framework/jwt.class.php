@@ -3,6 +3,7 @@
 class JwtAuth {
 
     public static $isLoggedIn;
+    public static $user;
 
 
     public static function hasToken()
@@ -29,6 +30,7 @@ class JwtAuth {
         {
 
             self::$isLoggedIn = true;
+            self::$user = $result[0];
             return $user = $result[0];
 
         }
@@ -103,7 +105,14 @@ class JwtAuth {
 
         if($storedToken = $db->build('S')->Colums()->Where($searchCondition)->go()->returnData())
         {
-           return $storedToken;
+
+            $db->table = 'users';
+
+            $user_id = $storedToken[0]['user_id'];
+
+            self::$user = $db->getbyId($user_id, ['id', 'name', 'email', 'role_id'])->returnData();
+
+            return $storedToken;
         }
         else {
             return false;

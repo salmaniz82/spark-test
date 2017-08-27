@@ -203,7 +203,7 @@ $route->get('/checkjwt', function(){
 $route->get('/login-jwt', function() {
 
 
-    $creds = ['email'=> 'farhansagar@hotmail.com', 'password'=> '123456'];
+    $creds = ['email'=> 'hammad@gmail.com', 'password'=> '123456'];
     /*
      * if success will return user array or will return false;
      * */
@@ -235,6 +235,7 @@ $route->get('/token-validate', function() {
 
         $data['status'] = true;
         $data['message'] = 'user found';
+        $data['user'] = JwtAuth::$user;
         return View::responseJson($data, 200);
     }
     else
@@ -246,7 +247,6 @@ $route->get('/token-validate', function() {
 
 
 });
-
 
 
 

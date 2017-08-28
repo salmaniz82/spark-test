@@ -20,7 +20,7 @@
 		<li class="<?php Route::Current('/services') ?>"><a href="/services">Services</a></li>
 		<li class="<?php Route::Current('/contact') ?>"><a href="/contact">Contact</a></li>
 		<li class="<?php Route::Current('/books') ?>"><a href="/books">Books</a></li>
-		<li class="<?php Route::Current('/shop');  Route::Current('/shop/'.Route::$params['category_id']);?>"><a href="/shop">Shop</a></li>
+		<li class="<?php Route::Current('/shop'); if(isset(Route::$params['category_id'])) { Route::Current('/shop/'.Route::$params['category_id']); }?>"><a href="/shop">Shop</a></li>
 		<li class="<?php Route::Current('/todos') ?>"><a href="/todos">Todos</a></li>
 		<li class="<?php Route::Current('/todospa') ?>"><a href="/todospa">Todos - AngularJS</a></li>
 	</ul>

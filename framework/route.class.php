@@ -79,7 +79,7 @@ class Route
 
     public function put($appUri, $callback) 
     {
-
+        $this->setAcceptJson();
      if($this->method == 'PUT')
         {
             $this->execute($appUri, $callback);
@@ -88,7 +88,7 @@ class Route
 
     public function delete($appUri, $callback) 
     {
-
+        $this->setAcceptJson();
      if($this->method == 'DELETE')
         {
             $this->execute($appUri, $callback);

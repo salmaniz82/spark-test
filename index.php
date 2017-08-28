@@ -266,9 +266,11 @@ $route->get('/jwt-protect-admin-only', function() {
 
 
 
+
 $route->otherwise( function() {
     
-    http_response_code(404);
-    View::render('404');
+    
+    $data['message'] = 'Request Not found';
+    View::responseJson($data, 404);
 
 });

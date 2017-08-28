@@ -9,17 +9,23 @@
 
 	public function postRequest()
 	{
-		echo 'Responce for POST';
+		echo 'Responce for POST' . "<br>";
+
+		var_dump($_POST);
 	}
 
 	public function putRequest()
 	{
-		echo 'Responce for PUT';
+		echo 'Responce for PUT' . "<br>";
+
+        var_dump($_POST);
 	}
 
 	public function deleteRequest()
 	{
-		echo 'Responce for DELETE';
+		echo 'Responce for DELETE' . "<br>";
+
+        var_dump($_POST);
 	}
 
 }

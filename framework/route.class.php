@@ -68,10 +68,11 @@ class Route
      if($this->method == 'POST')
         {
             
-            if(empty($_POST) || strpos($_SERVER["CONTENT_TYPE"], "application/json") !== false)
+            if(strpos($_SERVER["CONTENT_TYPE"], "application/json") !== false)
             {
                 $this->setAcceptJson();
             }
+            
 
             $this->execute($appUri, $callback);
         }   
@@ -79,18 +80,20 @@ class Route
 
     public function put($appUri, $callback) 
     {
-        $this->setAcceptJson();
+        
      if($this->method == 'PUT')
         {
+            $this->setAcceptJson();
             $this->execute($appUri, $callback);
         }   
     }
 
     public function delete($appUri, $callback) 
     {
-        $this->setAcceptJson();
+        
      if($this->method == 'DELETE')
         {
+            $this->setAcceptJson();
             $this->execute($appUri, $callback);
         }   
     }
@@ -280,6 +283,29 @@ class Route
         if($callback())
             return $this;
 
+    }
+
+    public function enableCORS()
+    {
+        if (isset($_SERVER['HTTP_ORIGIN'])) 
+        {
+            header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+            header('Access-Control-Allow-Credentials: true');
+            header('Access-Control-Max-Age: 86400');    // cache for 1 day
+        }
+
+    // Access-Control headers are received during OPTIONS requests
+    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') 
+    {
+
+        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+            header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+
+        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+            header("Access-Control-Allow-Headers:  {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+
+        exit(0);
+    }
     }
 
 

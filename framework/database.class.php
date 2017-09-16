@@ -13,6 +13,7 @@ class Database
     public $last_id;
     public $noRows;
     public $buildStatement;
+    public $queryError;
 
 
     public function __construct()
@@ -23,6 +24,8 @@ class Database
         {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
+
+        $this->connection->set_charset("utf8");
 
     }
 
@@ -45,7 +48,9 @@ class Database
         }
         else
             {
-                echo $this->connection->error;
+              
+                $this->queryError = mysqli_error($this->connection);
+                return false;
             }
     }
 
@@ -319,9 +324,15 @@ class Database
         return $this;
     }
 
+
     public function showQuery()
     {
         return $this->sqlSyntax;
+    }
+
+    public function getCharset()
+    {
+         return $this->connection->character_set_name();
     }
 
 }

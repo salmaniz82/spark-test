@@ -2,7 +2,7 @@
 
 require_once 'framework/mvc.class.php';
 $route = new Route();
-
+$route->enableCORS();
 
 
 $route->get('/', ['pages', 'homePage']);
@@ -101,7 +101,7 @@ $route->get('/todo/clear/{id}/{userId}', ['todos', 'clearTodos']);
 // SHOW TODO PAGE FOR SPA
 $route->get('/todospa', ['todos', 'setSpaPage']);
 
-// RETURN LIST OF TODOS 
+// RETURN LIST OF TODOS
 $route->get('/todospa/listapi', ['todos', 'listTodoApi']);
 
 // API FOR SAVE TODO
@@ -143,9 +143,9 @@ $route->get('/treecheck', function() {
 
     $data['categories'] = $db->listall()->returnData();
 
-    function has_children($rows,$id) 
+    function has_children($rows,$id)
     {
-      foreach ($rows as $row) 
+      foreach ($rows as $row)
       {
         if ($row['parent_id'] == $id)
         return true;
@@ -157,7 +157,7 @@ $route->get('/treecheck', function() {
 
 
 function build_menu($rows,$parent=null)
-{  
+{
   $result = "<ul>";
   foreach ($rows as $row)
   {
@@ -261,15 +261,17 @@ $route->get('/jwt-protect-admin-only', function() {
         return View::responseJson($data, 401);
     }
 
-
 });
 
 
+$route->get('/lang',['lang', 'listall']);
+$route->get('/lang/add',['lang', 'addInterface']);
+$route->post('/lang/add',['lang', 'save']);
+$route->post('/lang/debug',['lang', 'debugpost']);
 
 
 $route->otherwise( function() {
-    
-    
+
     $data['message'] = 'Request Not found';
     View::responseJson($data, 404);
 

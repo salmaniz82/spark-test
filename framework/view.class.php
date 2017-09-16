@@ -21,10 +21,10 @@ class View
 
     public static function responseJson($data, $statusCode = 202)
     {
-    	
-    	http_response_code($statusCode);
-    	header('Content-Type: application/json');
-    	echo json_encode($data);
+        
+        http_response_code($statusCode);
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 
     public static function composeTemplatePartial($templateRoute)

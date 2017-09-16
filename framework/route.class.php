@@ -240,13 +240,40 @@ class Route
                 }
             }
 
+            if(is_string($callback) == 'string')
+        {
+                $callback = explode('@', $callback);
+                
+                $filepathCtrl = 'app/controllers/'.$callback[0].'.php';
+
+
+                if( file_exists($filepathCtrl) )
+                {
+                    require_once $filepathCtrl;
+                    if( method_exists($callback[0], $callback[1]) )
+                        {
+                            // find controller and class ready for dynamic instansiation
+                            $ctrlClassname = $callback[0];
+                            $controller = new $ctrlClassname();
+                            $controller->$callback[1]();
+                            
+                            return $this;
+                        }
+                        else {
+                            echo 'canot find method';
+                        }
+                }
+                else
+                {
+                    echo 'file is not there';
+                }
+
         }
 
-        else {
-
-            
-            
         }
+
+        
+        
 
             
     }

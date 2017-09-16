@@ -1,7 +1,9 @@
 <?php ob_start(); session_start();
 
 require_once 'framework/mvc.class.php';
+
 $route = new Route();
+
 $route->enableCORS();
 
 
@@ -13,7 +15,7 @@ $route->get('/products', ['pages', 'productsPage']);
 
 $route->get('/contact', ['pages', 'contactPage']);
 
-
+$route->get('/stringdispatch', 'langCtrl@listall');
 
 
 $route->get('/shop', ['shop', 'index']);
@@ -268,6 +270,9 @@ $route->get('/lang',['lang', 'listall']);
 $route->get('/lang/add',['lang', 'addInterface']);
 $route->post('/lang/add',['lang', 'save']);
 $route->post('/lang/debug',['lang', 'debugpost']);
+
+
+
 
 
 $route->otherwise( function() {

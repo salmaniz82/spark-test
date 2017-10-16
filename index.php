@@ -274,6 +274,11 @@ $route->post('/lang/debug',['lang', 'debugpost']);
 
 
 
+$route->get('/validationtest', 'validationCtrl@show');
+
+$route->post('/validationtest', 'validationCtrl@processForm');
+
+
 
 $route->otherwise( function() {
 

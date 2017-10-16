@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2017 at 05:04 PM
+-- Generation Time: Oct 01, 2017 at 04:30 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -107,6 +107,32 @@ INSERT INTO `categories` (`id`, `parent_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `lang`
+--
+
+CREATE TABLE `lang` (
+  `id` int(11) NOT NULL,
+  `name_en` varchar(200) CHARACTER SET latin1 NOT NULL,
+  `name_ar` varchar(200) CHARACTER SET utf8mb4 NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `lang`
+--
+
+INSERT INTO `lang` (`id`, `name_en`, `name_ar`) VALUES
+(1, 'salman en', 'salman ar'),
+(2, 'salman en 2', 'salman ar 2'),
+(3, 'salman 4', 'hello'),
+(4, 'salman en 4', 'salman en 5'),
+(5, 'hello world', '?????'),
+(6, 'wilson', 'wilson'),
+(7, 'hello', 'هالو دنيا'),
+(8, 'hello', 'هالو دنيا');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pages`
 --
 
@@ -152,7 +178,8 @@ INSERT INTO `products` (`id`, `name`, `detail`, `category_id`, `thumb`) VALUES
 (3, 'LG v10', 'very nice phone by LG', 14, NULL),
 (4, 'Lenevo', 'Model 660 9t0', 9, NULL),
 (5, 'Sony Vega', 'Sony Vegas Details is here .. ', 16, NULL),
-(6, 'Kenwood 7j', 'This is all about kenwood 7j', 17, NULL);
+(6, 'Kenwood 7j', 'This is all about kenwood 7j', 17, NULL),
+(7, 'LG v10', 'LG V10', 23, NULL);
 
 -- --------------------------------------------------------
 
@@ -194,21 +221,12 @@ CREATE TABLE `todos` (
 --
 
 INSERT INTO `todos` (`id`, `user_id`, `todo`, `date_created`, `date_complited`, `is_complited`) VALUES
-(566, 1, 'add', '2017-08-20', NULL, 0),
-(567, 1, 'raw add', '2017-08-20', NULL, 0),
-(568, 1, 'raw add 2', '2017-08-20', NULL, 0),
-(569, 1, 'raw add 2', '2017-08-20', NULL, 0),
-(574, 1, 'add working after last id', '2017-08-20', NULL, 0),
-(575, 1, 'raw add 3', '2017-08-20', NULL, 0),
-(588, 1, 'add', '2017-08-24', '2017-08-24', 1),
-(577, 11, 'add via angular', '2017-08-20', '2017-08-24', 0),
-(578, 11, 'add nother', '2017-08-20', '2017-08-24', 0),
-(579, 11, 'add another one', '2017-08-20', '2017-08-24', 0),
-(580, 11, 'why not add another', '2017-08-20', '2017-08-24', 0),
-(583, 1, 'very new', '2017-08-21', '2017-08-24', 0),
-(584, 11, 'added by hammad', '2017-08-23', '2017-08-24', 0),
-(585, 3, 'added by farhan', '2017-08-23', '2017-08-24', 0),
-(586, 3, 'hello', '2017-08-23', '2017-08-24', 0);
+(641, 1, 'add some', '2017-08-25', NULL, 0),
+(642, 11, 'add', '2017-08-25', '2017-08-25', 1),
+(644, 1, 'CHECK', '2017-09-11', NULL, 0),
+(645, 1, 'check 2', '2017-09-11', NULL, 0),
+(646, 1, 'hello', '2017-09-11', NULL, 0),
+(650, 1, 'hello another one', '2017-09-29', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -238,8 +256,28 @@ INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `password`) VALUES
 (7, 3, 'Gimmy', 'gimmy@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b'),
 (8, 3, 'John Smith', 'john@domain.com', '7c4a8d09ca3762af61e59520943dc26494f8941b'),
 (12, 3, 'taimoor', 'taimoor@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b'),
-(11, 3, 'hammad', 'hammad@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b'),
-(13, 3, '', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709');
+(11, 3, 'hammad', 'hammad@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_token`
+--
+
+CREATE TABLE `user_token` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `token` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_token`
+--
+
+INSERT INTO `user_token` (`id`, `user_id`, `token`) VALUES
+(1, 11, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExIiwibmFtZSI6ImhhbW1hZCIsImVtYWlsIjoiaGFtbWFkQGdtYWlsLmNvbSIsInJvbGVfaWQiOiIzIn0=.XsZ3qcAPBg9i3sKcoVe5WmidyEEu/kd/XklkPYPHN8E='),
+(2, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYW1lIjoiTWFuaSIsImVtYWlsIjoic2FsbWFuaXouODJAZ21haWwuY29tIiwicm9sZV9pZCI6IjEifQ==.uqDZZ60AlplG0DQ08YLbT9wxCHgY/XMKszpu+UjrU2U='),
+(7, 3, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMiLCJuYW1lIjoiRmFyaGFuIEFsaSBLaGFuIiwiZW1haWwiOiJmYXJoYW5zYWdhckBob3RtYWlsLmNvbSIsInJvbGVfaWQiOiIyIn0=.0bLIv5CZywg/GJRBcDX9tfemk3LE2hQ7FtDqV6i/exE=');
 
 --
 -- Indexes for dumped tables
@@ -255,6 +293,12 @@ ALTER TABLE `books`
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lang`
+--
+ALTER TABLE `lang`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -288,6 +332,13 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_token`
+--
+ALTER TABLE `user_token`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_id` (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -302,6 +353,11 @@ ALTER TABLE `books`
 ALTER TABLE `categories`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
+-- AUTO_INCREMENT for table `lang`
+--
+ALTER TABLE `lang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
@@ -310,7 +366,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `roles`
 --
@@ -320,12 +376,17 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `todos`
 --
 ALTER TABLE `todos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=589;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=651;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `user_token`
+--
+ALTER TABLE `user_token`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

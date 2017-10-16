@@ -56,10 +56,10 @@ class Route
 
         if($this->method == 'GET')
         {
-
             $this->execute($appUri, $callback);
             return $this;
         }
+        
     }
 
     public function post($appUri, $callback) 
@@ -68,12 +68,14 @@ class Route
      if($this->method == 'POST')
         {
             
-            if(strpos($_SERVER["CONTENT_TYPE"], "application/json") !== false)
+            if(isset($_SERVER["CONTENT_TYPE"]))
             {
-                $this->setAcceptJson();
+                if(strpos($_SERVER["CONTENT_TYPE"], "application/json") !== false)
+                {
+                    $this->setAcceptJson();
+                }    
             }
             
-
             $this->execute($appUri, $callback);
         }   
     }

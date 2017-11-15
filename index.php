@@ -7,278 +7,148 @@ $route = new Route();
 $route->enableCORS();
 
 
-$route->get('/', ['pages', 'homePage']);
+$route->get('/', 'pagesCtrl@homePage');
 
-$route->get('/services', ['pages', 'servicesPage']);
+$route->get('/services', 'pagesCtrl@servicesPage');
 
-$route->get('/products', ['pages', 'productsPage']);
+$route->get('/products', 'pagesCtrl@productsPage');
 
-$route->get('/contact', ['pages', 'contactPage']);
-
-$route->get('/stringdispatch', 'langCtrl@listall');
+$route->get('/contact', 'pagesCtrl@contactPage');
 
 
-$route->get('/shop', ['shop', 'index']);
 
-$route->get('/shop/{category_id}', ['shop', 'showByCategory']);
+$route->get('/shop', 'shopCtrl@index');
 
-$route->get('/buildshopcategories', ['template', 'buildShopCategories']);
+$route->get('/shop/{category_id}', 'shopCtrl@showByCategory');
+
+$route->get('/buildshopcategories', 'templateCtrl@buildShopCategories');
 
 
-$route->get('/books', ['books', 'listbooks']);
+$route->get('/books', 'booksCtrl@listbooks');
 
-$route->get('/book/add', ['books', 'showAdd']);
+$route->get('/book/add', 'booksCtrl@showAdd');
 
-$route->post('/book/add', ['books', 'saveBook']);
+$route->post('/book/add', 'booksCtrl@saveBook');
 
-$route->get('/book/{id}', ['books', 'single']);
+$route->get('/book/{id}', 'booksCtrl@single');
 
-$route->get('/book/edit/{id}', ['books', 'showUpdateForm']);
+$route->get('/book/edit/{id}', 'booksCtrl@showUpdateForm');
 
-$route->post('/book/edit/{id}', ['books', 'updateBook']);
+$route->post('/book/edit/{id}', 'booksCtrl@updateBook');
 
-$route->get('/book/delete/{id}', ['books', 'removeBook']);
+$route->get('/book/delete/{id}', 'booksCtrl@removeBook');
 
-$route->get('/bookapi', ['books', 'bookApi']);
+$route->get('/bookapi', 'booksCtrl@bookApi');
 
 
 // USERS specifics routes
-$route->get('/register', ['user', 'showRegister']);
+$route->get('/register', 'userCtrl@showRegister');
 
-$route->post('/register', ['user', 'doRegister']);
+$route->post('/register', 'userCtrl@doRegister');
 
-$route->get('/login', ['user', 'showLogin']);
+$route->get('/login', 'userCtrl@showLogin');
 
-$route->post('/login', ['user', 'doLogin']);
+$route->post('/login', 'userCtrl@doLogin');
 
-$route->get('/logout', ['user', 'logout']);
+$route->get('/logout', 'userCtrl@logout');
 
-$route->get('/profile', ['user', 'showProfile']);
+$route->get('/profile', 'userCtrl@showProfile');
 
-$route->get('/getauthenticateduser', ['user', 'checkReturnAuthenticatedUser']);
+$route->get('/getauthenticateduser', 'userCtrl@checkReturnAuthenticatedUser');
 
 
 
 
 // Dashboard routes
-$route->get('/dashboard', ['dashboard', 'dasboardLanding']);
+$route->get('/dashboard', 'dashboardCtrl@dasboardLanding');
 
-$route->get('/dashboard/pages', ['dashboard', 'pagesList']);
+$route->get('/dashboard/pages', 'dashboardCtrl@pagesList');
 
-$route->get('/dashboard/page/edit/{id}', ['dashboard', 'showPageEdit']);
+$route->get('/dashboard/page/edit/{id}', 'dashboardCtrl@showPageEdit');
 
-$route->post('/dashboard/page/edit', ['dashboard', 'updatePage']);
+$route->post('/dashboard/page/edit', 'dashboardCtrl@updatePage');
 
+$route->get('/dashboard/products/add', 'dashboardCtrl@showAddProducts');
 
-$route->get('/dashboard/products/add', ['dashboard', 'showAddProducts']);
-
-$route->post('/dashboard/products/add', ['dashboard', 'saveProducts']);
-
+$route->post('/dashboard/products/add', 'dashboardCtrl@saveProducts');
 
 
 // Simple REstful Routes for tesing purpose
 
-$route->get('/request', ['request', 'getRequest']);
+$route->get('/request', 'requestCtrl@getRequest');
 
-$route->post('/request', ['request', 'postRequest']);
+$route->post('/request', 'requestCtrl@postRequest');
 
-$route->put('/request', ['request', 'putRequest']);
+$route->put('/request', 'requestCtrl@putRequest');
 
-$route->delete('/request', ['request', 'deleteRequest']);
-
+$route->delete('/request', 'requestCtrl@deleteRequest');
 
 
 // TODOS
-$route->get('/todos', ['todos', 'listTodos']);
+$route->get('/todos', 'todosCtrl@listTodos');
 
-$route->post('/todo/add', ['todos', 'saveTodos']);
+$route->post('/todo/add', 'todosCtrl@saveTodos');
 
-$route->post('/todo/update/{id}', ['todos', 'updateTodos']);
+$route->post('/todo/update/{id}', 'todosCtrl@updateTodos');
 
-$route->get('/todo/clear/{id}/{userId}', ['todos', 'clearTodos']);
+$route->get('/todo/clear/{id}/{userId}', 'todosCtrl@clearTodos');
 
 
 /*-------------- Todo SPA -----------------*/
 
 // SHOW TODO PAGE FOR SPA
-$route->get('/todospa', ['todos', 'setSpaPage']);
+$route->get('/todospa', 'todosCtrl@setSpaPage');
 
 // RETURN LIST OF TODOS
-$route->get('/todospa/listapi', ['todos', 'listTodoApi']);
+$route->get('/todospa/listapi', 'todosCtrl@listTodoApi');
 
 // API FOR SAVE TODO
-$route->post('/todospa/add', ['todos', 'saveTodoApi']);
+$route->post('/todospa/add', 'todosCtrl@saveTodoApi');
 
 // API getting single todo
-$route->get('/todospa/single/{id}', ['todos', 'getSingleTodo']);
+$route->get('/todospa/single/{id}', 'todosCtrl@getSingleTodo');
 
 // API FOR UPDATE
-$route->post('/todospa/update/{id}', ['todos', 'todoSpaUpdate']);
+$route->post('/todospa/update/{id}', 'todosCtrl@todoSpaUpdate');
 
 // REMOVE TODO FROM API
-$route->post('/todospa/clear/{id}/{userId}', ['todos', 'clearTodoApi']);
+$route->post('/todospa/clear/{id}/{userId}', 'todosCtrl@clearTodoApi');
 
 
 
 
-$route->get('/dbcheck/{perPage}/{currentPage}', function() {
+// JWT AUTHENTICATION CHECKING
 
-    $perPage = Route::$params['perPage'];
-    $currentPage = Route::$params['currentPage'];
+$route->get('/jwt/check', 'jwtauthCtrl@check');
 
-    $db = new Database();
-    $db->table = 'todos';
+$route->get('/jwt/login', 'jwtauthCtrl@login');
 
-   // $data = $db->rawSql('SELECT * FROM todos LIMIT 10 OFFSET 10')->returnData();
-    $data = $db->build('S')->Colums('id, todo')->Paginate($perPage, $currentPage)->go()->returnData();
-    var_dump($data);
+$route->get('/jwt/validate', 'jwtauthCtrl@validateToken');
 
-});
+$route->get('/jwt/admin', 'jwtauthCtrl@adminOnlyProtected');
 
 
 
+// LANGUAGE TESTING
+$route->get('/lang', 'langCtrl@listall');
 
-$route->get('/treecheck', function() {
+$route->get('/lang/add','langCtrl@addInterface');
 
-    $db = new Database();
-    $db->table = 'categories';
+$route->post('/lang/add','langCtrl@save');
 
-    $data['categories'] = $db->listall()->returnData();
-
-    function has_children($rows,$id)
-    {
-      foreach ($rows as $row)
-      {
-        if ($row['parent_id'] == $id)
-        return true;
-      }
-      return false;
-  }
+$route->post('/lang/debug','langCtrl@debugpost');
 
 
+// Test & Debug
+$route->get('/dbcheck/{perPage}/{currentPage}', 'testCtrl@testPaginate');
+
+$route->get('/treecheck', 'testCtrl@treeCheck');
 
 
-function build_menu($rows,$parent=null)
-{
-  $result = "<ul>";
-  foreach ($rows as $row)
-  {
-    if ($row['parent_id'] == $parent){
-      $result.= "<li><a href=\"{$row['id']}\">{$row['name']}</a>";
-      if (has_children($rows,$row['id']))
-        $result.= build_menu($rows,$row['id']);
-      $result.= "</li>";
-    }
-  }
-  $result.= "</ul>";
-
-  return $result;
-}
-
-  echo build_menu($data['categories']);
-
-
-});
-
-
-
-
-$route->get('/checkjwt', function(){
-
-  if(JwtAuth::hasToken())
-  {
-      $data['message'] = "token was present in header";
-      $data['status'] = true;
-      View::responseJson($data, 200);
-  }
-  else
-      {
-          $data['message'] = "Un Authenticated token was not provided";
-          $data['status'] = false;
-          View::responseJson($data, 403);
-      }
-
-});
-
-
-
-$route->get('/login-jwt', function() {
-
-
-    $creds = ['email'=> 'salmaniz.82@gmail.com', 'password'=> '123456'];
-    /*
-     * if success will return user array or will return false;
-     * */
-
-    if( $payload = JwtAuth::findUserWithCreds($creds) )
-    {
-
-        $token = JwtAuth::generateToken($payload);
-        $data['status'] = true;
-        $data['message'] = 'user found';
-        $data['token'] = $token;
-        $data['user'] = $payload;
-        return View::responseJson($data, 200);
-    }
-    else
-        {
-            $data['status'] = false;
-            $data['message'] = 'user not found';
-            return View::responseJson($data, 401);
-        }
-
-});
-
-
-$route->get('/token-validate', function() {
-
-    if( JwtAuth::validateToken() )
-    {
-
-        $data['status'] = true;
-        $data['message'] = 'user found';
-        $data['user'] = JwtAuth::$user;
-        return View::responseJson($data, 200);
-    }
-    else
-    {
-        $data['status'] = false;
-        $data['message'] = 'not a valid token';
-        return View::responseJson($data, 401);
-    }
-
-
-});
-
-
-$route->get('/jwt-protect-admin-only', function() {
-
-    if( JwtAuth::validateToken() && JwtAuth::$user['role_id'] == 1)
-    {
-        $data['message'] = "you are admin you can access this route";
-        return View::responseJson($data, 200);
-    }
-    else {
-        $data['message'] = "Un Authorize attempt you don not have permission to access this route";
-        return View::responseJson($data, 401);
-    }
-
-});
-
-
-$route->get('/lang',['lang', 'listall']);
-$route->get('/lang/add',['lang', 'addInterface']);
-$route->post('/lang/add',['lang', 'save']);
-$route->post('/lang/debug',['lang', 'debugpost']);
-
-
-
-
+// VALIDATION TESTING
 $route->get('/validationtest', 'validationCtrl@show');
 
 $route->post('/validationtest', 'validationCtrl@processForm');
-
-
 
 $route->otherwise( function() {
 

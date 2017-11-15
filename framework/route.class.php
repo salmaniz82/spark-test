@@ -10,6 +10,8 @@ class Route
     public $appURI;
     public $serverRawURI;
     static $activeRoute;
+    static $_PUT;
+    static $_DELETE;
 
     
     
@@ -85,7 +87,42 @@ class Route
         
      if($this->method == 'PUT')
         {
-            $this->setAcceptJson();
+         
+
+            if(isset($_SERVER["CONTENT_TYPE"]))
+            {
+                if(strpos($_SERVER["CONTENT_TYPE"], "application/json") !== false)
+                {
+                    
+                        /*
+                                $_PUT = file_get_contents("php://input");
+                                string 
+                                '{"user":"salman","email":"hello"}'
+                                
+                        */
+
+                $_PUT = json_decode(file_get_contents('php://input'), true);
+                    
+
+                    
+                }
+
+                else {
+
+                    /*
+                        $_PUT = file_get_contents("php://input");
+                        String
+                        'user=salman&email=hello'
+                    */
+
+                     parse_str(file_get_contents("php://input"),$_PUT);
+
+                }
+
+                self::$_PUT = $_PUT;
+
+            }
+
             $this->execute($appUri, $callback);
         }   
     }
@@ -95,7 +132,40 @@ class Route
         
      if($this->method == 'DELETE')
         {
-            $this->setAcceptJson();
+            if(isset($_SERVER["CONTENT_TYPE"]))
+            {
+                if(strpos($_SERVER["CONTENT_TYPE"], "application/json") !== false)
+                {
+                    
+                        /*
+                                $_PUT = file_get_contents("php://input");
+                                string 
+                                '{"user":"salman","email":"hello"}'
+                                
+                        */
+
+                $_DELETE = json_decode(file_get_contents('php://input'), true);
+                    
+
+                    
+                }
+
+                else {
+
+                    /*
+                        $_PUT = file_get_contents("php://input");
+                        String
+                        'user=salman&email=hello'
+                    */
+
+                     parse_str(file_get_contents("php://input"),$_DELETE);
+
+                }
+
+                self::$_DELETE = $_DELETE;
+
+            }
+            
             $this->execute($appUri, $callback);
         }   
     }
@@ -303,7 +373,9 @@ class Route
 
     public function setAcceptJson()
     {
-        $_POST = json_decode(file_get_contents('php://input'), true);   
+     
+       $_POST = json_decode(file_get_contents('php://input'), true);   
+
     }
 
     public function filter($callback)

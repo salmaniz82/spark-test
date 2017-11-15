@@ -56,7 +56,7 @@ class todosCtrl {
 	public function listTodoApi()
 	{
 		$data = $this->getTodoList();
-		return View::responseJson($data);
+		return View::responseJson($data, 200);
 	}
 
 

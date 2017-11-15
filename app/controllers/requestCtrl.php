@@ -3,29 +3,35 @@
 	
 	public function getRequest()
 	{
-		echo 'Responce for GET';
 		
+		$data['message'] = "Resonse for get";
+		return View::responseJson($data, 200);
+
 	}
 
 	public function postRequest()
 	{
-		echo 'Responce for POST' . "<br>";
+		
 
 		var_dump($_POST);
 	}
 
 	public function putRequest()
 	{
-		echo 'Responce for PUT' . "<br>";
 
-        var_dump($_POST);
+        $data['input'] = Route::$_PUT;
+		View::responseJson($data, 200);
+
 	}
 
 	public function deleteRequest()
 	{
-		echo 'Responce for DELETE' . "<br>";
 
-        var_dump($_POST);
+        
+        $data['message'] = "Resonse for DELETE";
+		$data['incoming'] = $_POST;
+		return View::responseJson($data, 200);
+
 	}
 
 }

@@ -73,7 +73,7 @@ h3.title a{color: #2d74a8; text-transform: capitalize; text-decoration: none; fo
 
 .message { padding: 10px; font-size: 17px; text-align: center; margin-bottom: 10px;}
 .message.success { background-color: aquamarine; }
-.message.error { background-color: darkred; color: #fff}
+.message.error { background-color: #ee3c4d; color: #fff}
 
 .danger{color: red;}
 .bg-white{background-color: #fff;}
@@ -133,7 +133,7 @@ header.wrapper ul.nav.right-nav{float: right;}
 
 ul.dashed {list-style-type: circle; color: #984c59;}
 
-form[name="login"] input[type="text"], form[name="login"] input[type="email"]  {width: 200px; padding: 10px 5px; display: inline-block; }
+form[name="login"] input[type="text"], form[name="login"] input[type="email"], form[name="login"] input[type="password"]  {width: 200px; padding: 10px 5px; display: inline-block; }
 
 form[name="register"] input[type="text"], form[name="register"] input[type="register"], form[name="register"] input[type="email"]  {width: 200px; padding: 10px 5px; display: block; margin-bottom: 5px; }
 
@@ -194,3 +194,18 @@ ul.categories li a {color: #03a9f4; text-decoration: none; padding-bottom: 5px; 
 
 
 .item-wrap {display: inline-block; width: 200px; margin-bottom: 20px;}
+
+
+.centerbox {
+
+
+	position: fixed;
+	width: 300px;
+	height: 300px;
+	top: 50%;
+	left: 50%;
+	opacity: 0.6;
+	margin-left: -150px;
+	margin-top: -150px;
+
+}

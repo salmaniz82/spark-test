@@ -4,7 +4,13 @@ class userCtrl {
 
 	public function showLogin() 
 	{
-		 $data['title'] = 'Login';
+
+		if(Auth::loginStatus())
+		{
+			return header('location: /');
+		}
+
+		$data['title'] = 'Login';
     	View::render('login', $data);
 
 	}
@@ -31,7 +37,9 @@ class userCtrl {
 	            } 
 	            else 
 		        {
-		                $data['message'] = 'user not found';
+		                $_SESSION['flashMsg'] = 'Invalid Credentials';
+		                header("location: /login");
+
 		        }
 
 

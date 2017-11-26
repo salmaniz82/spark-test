@@ -8,9 +8,9 @@
 
 			<?php if(isset($_SESSION['flashMsg'])) {?>
 
-			<div class="message error"><?=$_SESSION['flashMsg']?></div>
+			<div class="message <?=$_SESSION['fClass']?>" id="flash-message"><?=$_SESSION['flashMsg']?></div>
 
-			<?php }unset($_SESSION['flashMsg'])?>
+			<?php }unset($_SESSION['flashMsg']); unset($_SESSION['fClass']);?>
 
 			
 			<form method="post" name="login" action="/login">

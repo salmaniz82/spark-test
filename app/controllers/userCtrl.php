@@ -38,6 +38,7 @@ class userCtrl {
 	            else 
 		        {
 		                $_SESSION['flashMsg'] = 'Invalid Credentials';
+		                $_SESSION['fClass'] = 'error';
 		                header("location: /login");
 
 		        }

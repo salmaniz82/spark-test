@@ -11,4 +11,4 @@
 </div>
 
 
-<?php require_once '/pages/footer.php'; ?>
+<?php require_once 'pages/footer.php'; ?>

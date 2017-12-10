@@ -10,10 +10,7 @@
                     <select name="category_id" class="form-control">
 
                     <?php foreach($data['categories'] as $key => $cat) {?>
-
-
                         <option value="<?= $cat['id']?>"><?= $cat['name']?></option>
-
                         <?php }?>
                     </select>
                 </div>
@@ -39,4 +36,4 @@
 	</div>
 </div>
 
-<?php require_once '/pages/footer.php'; ?>
+<?php require_once 'pages/footer.php'; ?>

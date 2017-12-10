@@ -1,12 +1,12 @@
 <?php
 
-/*
 
 Event::on('load', function() {
 
 	echo "this should fire when load fired <br />";
 
 });
+
 
 Event::on('load', function() {
 
@@ -50,17 +50,10 @@ Event::fire('update');
 
 Event::fire('nothing');
 
-
 Event::fire('update');
 
 
 Event::fire('publish');
 
-*/
 
 ?>
-
-
-
-
-

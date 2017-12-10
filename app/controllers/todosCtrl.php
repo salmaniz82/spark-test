@@ -6,12 +6,15 @@ class todosCtrl {
 	public function __construct()
 	{
 
+
+
 		if( !Auth::loginStatus() ) 
      	{
       
          return header("Location: /login");
        
      	}
+
      	     	
 		$this->DB = new Database();
 		$this->DB->table = 'todos';

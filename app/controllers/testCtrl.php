@@ -57,19 +57,22 @@ class testCtrl extends appCtrl
     $data['categories'] = $db->listall()->returnData();
 
     function has_children($rows,$id)
-    {
-      foreach ($rows as $row)
-      {
-        if ($row['parent_id'] == $id)
-        return true;
-      }
-      return false;
+	    {
+	      foreach ($rows as $row)
+	      {
+	        if ($row['parent_id'] == $id)
+	        return true;
+	      }
+	      return false;
+		}
+
 	}
 
 
 	public function buildMenu()
 	{
 		
+		echo 'Building menu';
 	}
 
 

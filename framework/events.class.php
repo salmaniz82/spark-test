@@ -51,4 +51,3 @@ class Event
 }
 
 
-require_once '/app/events.php';

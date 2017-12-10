@@ -313,7 +313,11 @@ class Route
             }
 
             if(is_string($callback) == 'string')
-        {
+            {
+                
+
+
+
                 $callback = explode('@', $callback);
                 
                 $filepathCtrl = 'app/controllers/'.$callback[0].'.php';
@@ -327,7 +331,8 @@ class Route
                             // find controller and class ready for dynamic instansiation
                             $ctrlClassname = $callback[0];
                             $controller = new $ctrlClassname();
-                            $controller->$callback[1]();
+                            $method = $callback[1];
+                            $controller->$method();
                             
                             return $this;
                         }

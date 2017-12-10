@@ -3,7 +3,6 @@
 require_once 'framework/mvc.class.php';
 
 $route = new Route();
-
 $route->enableCORS();
 
 
@@ -149,6 +148,16 @@ $route->get('/treecheck', 'testCtrl@treeCheck');
 $route->get('/validationtest', 'validationCtrl@show');
 
 $route->post('/validationtest', 'validationCtrl@processForm');
+
+
+// VALIDATION TESTING
+$route->get('/features', 'featuresCtrl@index');
+$route->get('/features/add', 'featuresCtrl@save');
+$route->get('/features/{id}', 'featuresCtrl@single');
+$route->get('/features/u/{id}', 'featuresCtrl@update');
+$route->get('/features/d/{id}', 'featuresCtrl@delete');
+
+
 
 $route->otherwise( function() {
 

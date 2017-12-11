@@ -44,11 +44,19 @@ class featuresCtrl extends appCtrl{
         $data['status'] = 1;
         $data['user_id'] = 33;
 
-	    if( $this->DB->insert($data) )
+	    if($lastId =  $this->DB->insert($data) )
 	    {
+            $data['id'] = $lastId;
             $data['message'] = "New Features is added";
             $data['type'] = "success";
+
+      //      Route::$params['id'] = $lastId;
+
+      //      $data['newFeatures'] = $this->single();
+
+
             $statusCode = 200;
+
         }
         else
             {
@@ -77,6 +85,8 @@ class featuresCtrl extends appCtrl{
                 // found and updated
                 $data['message'] = "Feature Updated";
                 $data['type'] = "success";
+                $data['status'] = true;
+                $data['keys'] = $keys;
                 $statusCode = 200;
             }
 

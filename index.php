@@ -1,9 +1,6 @@
 <?php ob_start(); session_start();
-
 require_once 'framework/mvc.class.php';
-
 $route = new Route();
-$route->enableCORS();
 
 
 $route->get('/', 'pagesCtrl@homePage');
@@ -120,7 +117,11 @@ $route->post('/todospa/clear/{id}/{userId}', 'todosCtrl@clearTodoApi');
 
 $route->get('/jwt/check', 'jwtauthCtrl@check');
 
-$route->get('/jwt/login', 'jwtauthCtrl@login');
+// for testing only
+
+$route->post('/jwt/login', 'jwtauthCtrl@login');
+
+
 
 $route->get('/jwt/validate', 'jwtauthCtrl@validateToken');
 
@@ -160,6 +161,16 @@ $route->get('/features/{id}', 'featuresCtrl@single');
 $route->put('/features/{id}', 'featuresCtrl@update');
 
 $route->delete('/features/{id}', 'featuresCtrl@delete');
+
+
+
+/*CLIENTS API */
+$route->get('/api/clients', 		'clientsCtrl@index');
+$route->get('/api/clients/{id}', 	'clientsCtrl@single');
+$route->post('/api/clients', 		'clientsCtrl@save');
+$route->put('/api/clients/{id}', 	'clientsCtrl@update');
+$route->delete('/api/clients/{id}',	'clientsCtrl@delete');
+
 
 
 

@@ -1,6 +1,4 @@
-<?php
-
-class Route
+<?php class Route
 {
     public $req_uri; /* incomming server uri in arrays */
     public $registered = array();
@@ -12,23 +10,47 @@ class Route
     static $activeRoute;
     static $_PUT;
     static $_DELETE;
-
-    
-    
-    
    
     public function __construct()
     {
-
+        
+        $this->enableCORS();
         $this->serverRawURI = $_SERVER['REQUEST_URI'];
         $uri = explode('/', $this->serverRawURI);
         $uri[0] = '/';      
         $uri = array_values(array_filter($uri));
         $this->req_uri = $uri;
         $this->method = $_SERVER['REQUEST_METHOD'];
-
     }
 
+    public function enableCORS()
+    {
+
+
+            if( isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] != "")
+            {
+                header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");   
+            }
+            else {
+                header("Access-Control-Allow-Origin: *");
+            }
+
+        // Access-Control headers are received during OPTIONS requests
+        if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') 
+        {
+
+            if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+                header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+
+            if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+                header("Access-Control-Allow-Headers:  {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+
+            exit(0);
+        }
+    }
+
+
+    
 
     public function breakStringToArray($string)
     {
@@ -316,12 +338,8 @@ class Route
             {
                 
 
-
-
                 $callback = explode('@', $callback);
-                
                 $filepathCtrl = 'app/controllers/'.$callback[0].'.php';
-
 
                 if( file_exists($filepathCtrl) )
                 {
@@ -337,7 +355,7 @@ class Route
                             return $this;
                         }
                         else {
-                            echo 'canot find method';
+                            echo 'canot find method' . $filepathCtrl;
                         }
                 }
                 else
@@ -387,28 +405,7 @@ class Route
 
     }
 
-    public function enableCORS()
-    {
-        if (isset($_SERVER['HTTP_ORIGIN'])) 
-        {
-            header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-            header('Access-Control-Allow-Credentials: true');
-            header('Access-Control-Max-Age: 86400');    // cache for 1 day
-        }
-
-    // Access-Control headers are received during OPTIONS requests
-    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') 
-    {
-
-        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-            header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-
-        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
-            header("Access-Control-Allow-Headers:  {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-
-        exit(0);
-    }
-    }
+    
 
 
      

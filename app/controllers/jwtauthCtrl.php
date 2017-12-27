@@ -23,10 +23,13 @@ class jwtauthCtrl extends appCtrl {
 	public function login()
 	{
 
-    $creds = ['email'=> 'hammad@gmail.com', 'password'=> '123456'];
-    /*
-     * if success will return user array or will return false;
-     * */
+
+    $creds = array(
+    	'email'=> $_POST['email'],
+    	'password' => $_POST['password']
+    );
+
+
 
 	    if( $payload = JwtAuth::findUserWithCreds($creds) )
 	    {
@@ -42,7 +45,7 @@ class jwtauthCtrl extends appCtrl {
 	        {
 	            $data['status'] = false;
 	            $data['message'] = 'user not found';
-	            return View::responseJson($data, 401);
+	            return View::responseJson($data, 400);
 	        }
 
 	}

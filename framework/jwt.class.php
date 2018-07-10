@@ -75,6 +75,8 @@ class JwtAuth {
             if($storedToken = self::findExistingToken(null, $user_id))
             {
                 return $storedToken;
+
+
             }
             else if ($newToken = $db->insert($data))
             {
@@ -113,8 +115,10 @@ class JwtAuth {
             $user = $db->getbyId($user_id, ['id', 'name', 'email', 'role_id'])->returnData();
 
             self::$user = $user[0];
+           
+            return $storedToken[0]['token'];
 
-            return $storedToken;
+
         }
         else {
             return false;

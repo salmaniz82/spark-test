@@ -1,6 +1,6 @@
 <?php
 
-require_once 'app/config.php';
+
 
 
 class Database
@@ -26,6 +26,8 @@ class Database
         }
 
         $this->connection->set_charset("utf8");
+        $this->setTimeZone();
+        
 
     }
 
@@ -167,9 +169,38 @@ class Database
 
     }
 
-    public function delete($id)
+    public function delete($id, $limit=true)
     {
-        $sql = "DELETE FROM {$this->table} WHERE id = {$id} LIMIT 1";
+
+        if(!is_array($id))
+        {
+            if($limit)
+            {
+                $sql = "DELETE FROM {$this->table} WHERE id = {$id} LIMIT 1";    
+            }
+
+            else {
+                $sql = "DELETE FROM {$this->table} WHERE id = {$id}";
+            }    
+        }
+        else {
+
+            $col = $id[0];
+            $id = $id[1];
+
+            if($limit)
+            {
+                $sql = "DELETE FROM {$this->table} WHERE {$col} = {$id} LIMIT 1";
+            }
+            else {
+                $sql = "DELETE FROM {$this->table} WHERE {$col} = {$id}";
+            }
+
+            
+
+        }
+     
+        
         $this->sqlSyntax = $sql;
         return $this->runQuery();
     }
@@ -333,6 +364,20 @@ class Database
     public function getCharset()
     {
          return $this->connection->character_set_name();
+    }
+
+    public function setTimeZone()
+    {
+
+        $now = new DateTime();
+        $mins = $now->getOffset() / 60;
+        $sgn = ($mins < 0 ? -1 : 1);
+        $mins = abs($mins);
+        $hrs = floor($mins / 60);
+        $mins -= $hrs * 60;
+        $offset = sprintf('%+d:%02d', $hrs*$sgn, $mins);
+        $this->connection->query("SET time_zone='{$offset}'");
+
     }
 
 }

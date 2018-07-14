@@ -4,7 +4,11 @@
     <li>Check</li>
     	<?php foreach($data['categories'] as $key => $cat) { ?>
 
-    		<li><a href="/shop/<?= $cat['id'] ?>"><?= $cat['name'] ?></a></li>
+
+
+
+    		<li class="<?= (Route::$params['category_id'] == $cat['id']) ? 'active' :  '' ?>">
+    			<a href="/shop/<?= $cat['id'] ?>"><?= $cat['name'] ?></a></li>
 
 		<?php } ?>    	
 		</ul>

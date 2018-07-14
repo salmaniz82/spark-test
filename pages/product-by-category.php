@@ -2,7 +2,7 @@
 
 <div class="shop-container">
     
-    <?php View::composeTemplateCurl('buildshopcategories'); ?>
+    <?php View::composeTemplateCurl('buildshopcategories/'. Route::$params['category_id']); ?>
 
 
     <main class="products listings bg-white">

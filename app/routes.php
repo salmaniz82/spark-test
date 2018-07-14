@@ -16,7 +16,7 @@ $route->get('/shop', 'shopCtrl@index');
 
 $route->get('/shop/{category_id}', 'shopCtrl@showByCategory');
 
-$route->get('/buildshopcategories', 'templateCtrl@buildShopCategories');
+$route->get('/buildshopcategories/{category_id}', 'templateCtrl@buildShopCategories');
 
 
 $route->get('/books', 'booksCtrl@listbooks');

@@ -3,7 +3,7 @@
 <div class="shop-container">
 
     
-    <?php View::composeTemplateCurl('buildshopcategories'); ?>
+    <?php View::composeTemplateCurl('buildshopcategories/all'); ?>
 
     
     <main class="products listings bg-white">

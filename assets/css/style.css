@@ -216,7 +216,20 @@ ul.features li {margin-bottom: 5px; color: #9e9e9e;}
 ul.categories {list-style-type: none; padding-left: 5px;}
 
 
-ul.categories li a {color: #03a9f4; text-decoration: none; padding-bottom: 5px; display: inline-block;}
+ul.categories li a {
+	color: #03a9f4; text-decoration: none; padding-bottom: 5px; display: inline-block;
+	transition: all .2s ease-in;
+	display: inline-block;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid transparent;
+}
+
+
+ul.categories li a:hover, ul.categories li.active a {
+	color: #8349b7;
+	border-bottom: 1px solid #8349b7;
+} 
 
 
 .item-wrap {display: inline-block; width: 200px; margin-bottom: 20px;}

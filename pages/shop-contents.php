@@ -1,7 +1,4 @@
-
-    <?php if( $data['products'] !=null) {?>
-
-    <?php foreach($data['products'] as $key => $value ) {?>
+<?php foreach($data['products'] as $key => $value ) {?>
 
     	<div class="item-wrap">
 
@@ -12,17 +9,4 @@
     		
     	</div> <!--item wrap-->
 
-    	<?php }
-    		// end foreach 
-    	} 
-    	
-    		else {
-    	// 
-    	?>
-
-    	<p>No Records in this category Yet</p>
-
-    	<?php }?>
-
-
-      
+<?php }?>

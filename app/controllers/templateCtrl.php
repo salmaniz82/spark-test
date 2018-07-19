@@ -14,8 +14,9 @@ class templateCtrl
 	public function buildShopCategories()
 	{
 		$this->DB->table = 'categories';
-		$data['categories'] = $this->DB->rawSql('select categories.id, categories.name from categories inner join products on categories.id = products.category_id')->returnData();
-		View::render('templates/shop-categories', $data);
+		$query = 'select distinct categories.id, categories.name from categories right join products on categories.id = products.category_id';
+		$data['categories'] = $this->DB->rawSql($query)->returnData();
+		return View::render('templates/shop-categories', $data);
 	}
 
 

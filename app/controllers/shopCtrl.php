@@ -33,7 +33,9 @@ class shopCtrl {
 		$template = new Template();
 		$data['products'] = $this->DB->build('S')->Colums()->Where("category_id = '".$category_id."'")->go()->returnData();
 		$data['count'] = count($data);
+
+
 		 // View::render('product-by-category', $data);
-		$template->layout('shop-master.php')->compile('product-by-category.php', $data);
+		$template->layout('shop-master.php')->compile('shop-contents.php', $data);
 	}
 }

@@ -226,10 +226,15 @@ ul.categories li a {
 }
 
 
-ul.categories li a:hover, ul.categories li.active a {
+ul.categories li a:hover {
 	color: #8349b7;
-	border-bottom: 1px solid #8349b7;
+	border-bottom: 1px solid #dddddd;
 } 
+
+ul.categories li.active a {
+	color: #8349b7;
+	border-bottom: 1px solid #8349b7;	
+}
 
 
 .item-wrap {display: inline-block; width: 200px; margin-bottom: 20px;}

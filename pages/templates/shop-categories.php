@@ -10,6 +10,18 @@
     		<li class="<?= (Route::$params['category_id'] == $cat['id']) ? 'active' :  '' ?>">
     			<a href="/shop/<?= $cat['id'] ?>"><?= $cat['name'] ?></a></li>
 
-		<?php } ?>    	
+
+    		<?php }?>
+
+		  	
 		</ul>
+
+
+		
+		
+		
+			<a href="/cart/clear" id="clear-cart-button">Clear Cart Items</a>
+
+		
+
     </aside>

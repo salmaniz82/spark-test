@@ -18,7 +18,6 @@ $route->get('/shop/{category_id}', 'shopCtrl@showByCategory');
 
 $route->get('/buildshopcategories/{category_id}', 'templateCtrl@buildShopCategories');
 
-
 $route->get('/books', 'booksCtrl@listbooks');
 
 $route->get('/book/add', 'booksCtrl@showAdd');
@@ -200,11 +199,30 @@ $route->put('/api/finance/{id}', 	'financeCtrl@update');
 $route->delete('/api/finance/{id}',	'financeCtrl@delete');
 
 
-$route->otherwise( function() {
 
+$route->get('/testpost', function() {
+
+
+
+});
+
+/*
+$route->get('/cart', 'cartCtrl@index');
+*/
+
+$route->post('/cart/add/{p_id}/{qty}', 'cartCtrl@add');
+
+$route->post('/cart/less/{p_id}/{qty}', 'cartCtrl@incrementCart');
+
+$route->post('/cart/more/{p_id}/{qty}', 'cartCtrl@decrementCart');
+
+$route->get('/cart/clear', 'cartCtrl@clearCart');
+
+
+
+$route->otherwise( function() {
     $data['message'] = 'Request Not found';
     View::responseJson($data, 404);
-
 });
 
 

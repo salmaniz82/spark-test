@@ -6,15 +6,20 @@
     <?php 
 
     $tempPath = ( isset(Route::$params['category_id']) ) ? Route::$params['category_id'] : 'all';
-    View::composeTemplateCurl('buildshopcategories/'.$tempPath); ?>
+	    View::composeTemplateCurl('buildshopcategories/'.$tempPath); 
+	    
+    ?>
+
+
+
     
 
     
     <main class="products listings bg-white">
-
         {{contents}}
-       
     </main>
+
+
 
 
     <div class="clearfix"></div>

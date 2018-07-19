@@ -27,6 +27,13 @@
 
 	<ul class="nav right-nav">
 
+
+
+			<?php if(isset($_SESSION['cart'])) {?>
+				<li id="header-cart">Cart <?php echo sizeOf($_SESSION['cart']);?></li>
+			<?php }?>
+			
+
 	
 	
 

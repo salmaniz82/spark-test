@@ -1,0 +1,17 @@
+testingfiles
+spark-test
+.idea
+error_log
+favicon.png
+favicon.ico
+mysql_db.sql
+server.php
+test2
+app/config.php
+app/controllers/financeCtrl.php
+app/controllers/insuranceCtrl.php
+pages/gears.svg
+pages/lang-add.php
+pages/page-basic.php
+pages/validation-test.php
+pages/validity.php

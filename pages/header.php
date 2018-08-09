@@ -29,9 +29,9 @@
 
 
 
-			<?php if(isset($_SESSION['cart'])) {?>
-				<li id="header-cart">Cart <?php echo sizeOf($_SESSION['cart']);?></li>
-			<?php }?>
+			
+				<li id="header-cart"><span class="count">0</span><span class="text">Cart Items</span></li>
+			
 			
 
 	

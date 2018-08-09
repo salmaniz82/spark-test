@@ -43,7 +43,7 @@
                 ?> </p>
 
             <p class="book-desc todo" style="font-size: 20px;">
-                   - <?= $todos['todo']; ?>
+                   - <?= htmlspecialchars($todos['todo']); ?>
                 </p>
 
             <a href="/todo/clear/<?= $todos['id'].'/'.$todos['user_id']?>" class="remove-todo-btn">X</a>

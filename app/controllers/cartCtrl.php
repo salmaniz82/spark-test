@@ -36,7 +36,7 @@
 		
 		// echo 'p_id ' . $product_id .'& Qty : '. $quantity;
 
-		echo 'hello I am test controller from somewhere';
+		echo 'I am test controller from somewhere';
 
 
 	}

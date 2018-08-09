@@ -6,11 +6,15 @@ $(function() {
 
 	var Cart = {
 
+		items : {},
+
 		init : function(){
 
 			this.add();
-			this.clear();
+			this.render();
 
+
+			
 		},
 		add : function(){
 
@@ -21,11 +25,14 @@ $(function() {
 					url : url,
 					method : 'POST',
 					success : function(response){
-						console.log('I am success function');
+
+						Cart.items = response;
+						Cart.render();
+						
 					},
 					error : function(xhr, ajaxOptions, thrownError){
 
-						console.log('I am the error functions');
+						
 					}
 				});
 
@@ -41,18 +48,17 @@ $(function() {
 					url : url,
 					method : 'GET',
 					success : function(response){
-						console.log('I am success function');
+
+
+						Cart.render();
+						
 					},
 					error : function(xhr, ajaxOptions, thrownError){
-
-						console.log('I am the error functions');
 					}
 				});
 
 			});
 
-
-			
 		},
 
 		more : function(){
@@ -61,13 +67,40 @@ $(function() {
 
 		less : function(){
 			console.log('I will do decrease');
+		},
+
+		render : function()
+		{
+			
+			elem = $('#header-cart');
+			var count = Object.keys(Cart.items).length;
+
+			elem.find('span.count').text(count);
+
+			if(count < 1)
+			{
+				elem.addClass('hide');
+			}
+			else {
+				if(elem.hasClass('hide'))
+				{
+					elem.removeClass('hide');
+				}
+			}
+
+
 		}
+
+		
+
+		
 
 
 	};
 
 
 	Cart.init();
+	Cart.render();
 
 
 

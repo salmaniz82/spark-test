@@ -21,9 +21,6 @@
         $uri = array_values(array_filter($uri));
         $this->req_uri = $uri;
         $this->method = $_SERVER['REQUEST_METHOD'];
-
-
-
     }
 
     public function enableCORS()
@@ -462,8 +459,6 @@
             }
 
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-
-
         $response = curl_exec($curl);
         curl_close($curl);
         $response = json_decode($response, true);

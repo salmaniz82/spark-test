@@ -340,13 +340,9 @@ class Database
     {
 
         $string = $this->sqlSyntax;
-
         $string .= ' LIMIT ' . $limit;
-
         $this->sqlSyntax = $string;
-
         return $this;
-
     }
 
     public function go()

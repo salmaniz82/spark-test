@@ -201,10 +201,15 @@ $route->delete('/api/finance/{id}',	'financeCtrl@delete');
 
 
 $route->get('/testpost', function() {
-
-
-
+	require_once ABSPATH.'/app/controllers/testCtrl.php';
+	$handle = new testCtrl();
+	$handle->module01('hello sing is king');
 });
+
+
+$route->get('/testpost/{message}', 'testCtrl@mapToModule01');
+
+
 
 /*
 $route->get('/cart', 'cartCtrl@index');

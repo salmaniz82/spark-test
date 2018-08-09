@@ -33,6 +33,24 @@ class testCtrl extends appCtrl
 		}	
 	}
 
+	public function module01($message)
+	{
+		
+		//echo $message;
+		echo 'I am moduluar and flexible . your message is ' . $message;
+
+	}
+
+	public function mapToModule01()
+	{
+		
+		$message = Route::$params['message'];
+
+		$this->module01($message);
+
+
+	}
+
 
 	public function testPaginate()
 	{

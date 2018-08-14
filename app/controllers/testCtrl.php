@@ -94,4 +94,13 @@ class testCtrl extends appCtrl
 	}
 
 
+	public function testModuleLoad()
+	{
+		
+		$testModule = $this->load('module', 'test');
+		echo $testModule->add(2,3);
+
+	}
+
+
 }

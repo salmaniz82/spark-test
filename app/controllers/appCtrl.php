@@ -35,4 +35,17 @@ class appCtrl {
 		}
 	}
 
+
+	public function load($loadType, $Loadentity)
+	{
+
+		if($loadType == 'module')
+		{
+			require_once ABSPATH.'app/modules/'.$Loadentity.'Module.php';
+			$ModuleClass =  $Loadentity.'Module';
+			return new $ModuleClass();
+		}	
+
+	}
+
 }

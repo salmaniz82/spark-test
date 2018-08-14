@@ -210,6 +210,9 @@ $route->get('/testpost', function() {
 $route->get('/testpost/{message}', 'testCtrl@mapToModule01');
 
 
+$route->get('/testmoduleload', 'testCtrl@testModuleLoad');
+
+
 
 /*
 $route->get('/cart', 'cartCtrl@index');

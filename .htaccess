@@ -4,5 +4,6 @@ Options -Indexes
     RewriteBase /
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
+    #RewriteRule ^(.*)$ /project01/index.php?path=$1 [NC,L,QSA]
     RewriteRule . /index.php [L]
 </IfModule>

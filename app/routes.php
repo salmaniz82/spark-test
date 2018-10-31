@@ -213,6 +213,8 @@ $route->get('/testpost/{message}', 'testCtrl@mapToModule01');
 $route->get('/testmoduleload', 'testCtrl@testModuleLoad');
 
 
+$route->get('/module2', 'testCtrl@showPage');
+
 
 /*
 $route->get('/cart', 'cartCtrl@index');
@@ -226,6 +228,27 @@ $route->post('/cart/more/{p_id}/{qty}', 'cartCtrl@decrementCart');
 
 $route->get('/cart/clear', 'cartCtrl@clearCart');
 
+
+
+$route->get('/flex?', function() {
+	echo 'testing slug';
+	if(isset($_GET) && !empty($_GET))
+	{
+		foreach($_GET as $key => $value)
+		{
+			$$key = $value;
+		}
+		echo $name;
+	}
+
+});
+
+
+$route->get('/flex/{id}', function() {
+
+	echo $id;
+
+});
 
 
 $route->otherwise( function() {

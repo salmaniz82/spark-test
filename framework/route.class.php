@@ -276,6 +276,20 @@
         }
 
 
+                /*start ?*/
+                if(strpos($appUri, '?') && !strpos($this->serverRawURI, '?')) 
+                {
+                    $appUri = rtrim($appUri, '?');
+                }
+                elseif(strpos($appUri, '?') && strpos($this->serverRawURI, '?')) {
+
+                    $apendURIQuery = substr($this->serverRawURI, strpos($this->serverRawURI, "?") + 1);
+                    $appUri = $appUri.$apendURIQuery;
+                    
+                }
+            /*end ?*/
+
+
             } 
 
         } 

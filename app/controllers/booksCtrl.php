@@ -1,6 +1,6 @@
 <?php
 
-class booksCtrl
+class booksCtrl extends appCtrl
 {
     
     public $DB;

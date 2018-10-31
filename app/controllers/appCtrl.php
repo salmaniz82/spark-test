@@ -1,5 +1,5 @@
 <?php 
-class appCtrl {
+abstract class appCtrl {
 	
 	
 

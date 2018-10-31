@@ -102,5 +102,16 @@ class testCtrl extends appCtrl
 
 	}
 
+	public function showPage()
+    {
+        $categoryModule = $this->load('module', 'categories');
+
+        $data['module'] = $categoryModule;
+
+        View::render('module', $categoryModule);
+
+
+    }
+
 
 }

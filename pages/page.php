@@ -9,7 +9,9 @@
 <?php $page = $data['page'][0]; ?>
 
 		<?php if(isset($page['title'])) { ?>
+
 				<h1 class="page-title" style="color: blue"><?= ucwords($page['title']); ?></h1>
+				
 		<?php }?>
 
 		<p class="desc"><?php echo $page['contents']; ?> </p>

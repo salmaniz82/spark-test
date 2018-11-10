@@ -10,7 +10,7 @@
 
 		<?php if(isset($page['title'])) { ?>
 
-				<h1 class="page-title" style="color: red"><?= ucwords($page['title']); ?></h1>
+				<h1 class="page-title" style="color: orange"><?= ucwords($page['title']); ?></h1>
 				
 		<?php }?>
 

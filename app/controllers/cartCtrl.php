@@ -38,19 +38,50 @@
 
 		echo 'I am test controller from somewhere';
 
-
 	}
 
-	public function incrementCart($product_id, $quantity = null)
+	public function incrementCart()
 	{
+	
+
+		/*
+		$product_id = (int) Route::$params['p_id'];
+		$quantity = (int) Route::$params['qty'];
 		$_SESSION['cart'][$product_id] += (int) $quantity;
 		$this->updateCartItems();
+
+		*/
+
+
+
+
+		$data = $this->items;
+
+		view::responseJson($this->items, 200);
 	}
 
-	public function decrementCart($product_id, $quantity = null)
+	public function decrementCart()
 	{
-		$_SESSION['cart'][$product_id] -=  (int) $quantity;
+		$product_id = (int) Route::$params['p_id'];
+		$quantity = (int) Route::$params['qty'];
+		$_SESSION['cart'][$product_id] -=  $quantity;
+
+		
+
+		foreach($_SESSION['cart'] as $key => $item)
+		{
+			
+
+			if($item <= 0)
+			{
+				unset($_SESSION['cart'][$key]);
+			}
+		}
+
+		
 		$this->updateCartItems();
+
+		view::responseJson($this->items, 200);
 	}
 
 	public function clearCart()
@@ -65,12 +96,21 @@
 	public function updateCartItems()
 	{
 		$this->items = $_SESSION['cart'];
+		
 	}
 
 
 	public static function getItems()
 	{
-		return $this->items;
+		view::responseJson($this->items, 200);
+	}
+
+
+	public function showItems()
+	{
+		
+		print_r($_SESSION);
+
 	}
 
 

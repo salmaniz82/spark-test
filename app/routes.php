@@ -220,13 +220,19 @@ $route->get('/module2', 'testCtrl@showPage');
 $route->get('/cart', 'cartCtrl@index');
 */
 
-$route->post('/cart/add/{p_id}/{qty}', 'cartCtrl@add');
+$route->get('/cart/add/{p_id}/{qty}', 'cartCtrl@add');
 
-$route->post('/cart/less/{p_id}/{qty}', 'cartCtrl@incrementCart');
+$route->get('/cart/less/{p_id}/{qty}', 'cartCtrl@decrementCart');
 
-$route->post('/cart/more/{p_id}/{qty}', 'cartCtrl@decrementCart');
+$route->get('/cart/more/{p_id}/{qty}', 'cartCtrl@incrementCart');
 
 $route->get('/cart/clear', 'cartCtrl@clearCart');
+
+
+$route->get('/cart/items', 'cartCtrl@showItems');
+
+
+
 
 
 

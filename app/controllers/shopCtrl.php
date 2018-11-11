@@ -36,6 +36,8 @@ class shopCtrl {
 
 
 		 // View::render('product-by-category', $data);
+
 		$template->layout('shop-master.php')->compile('shop-contents.php', $data);
+		
 	}
 }

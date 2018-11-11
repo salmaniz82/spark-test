@@ -6,6 +6,7 @@
     <?php 
 
     $tempPath = ( isset(Route::$params['category_id']) ) ? Route::$params['category_id'] : 'all';
+    
 	    View::composeTemplateCurl('buildshopcategories/'.$tempPath); 
 	    
     ?>

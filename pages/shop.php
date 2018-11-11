@@ -19,7 +19,27 @@
     		
     	</div> <!--item wrap-->
 
+
+
+
     	<?php }?>
+
+
+        <div>Session DAta : 
+
+            <?php if(isset($_SESSION)) { 
+
+                print_r($_SESSION);
+
+            }?>
+
+
+
+
+
+
+        </div>
+        
         
     </main>
 

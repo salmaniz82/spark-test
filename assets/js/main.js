@@ -74,7 +74,7 @@ $(function() {
 					}
 				});
 
-			console.log('I ran');
+			
 	}
 
 
@@ -84,7 +84,7 @@ $(function() {
 
 	$(window).on('load', function() {
 
-		console.log('on load is caleed');
+		
 		showCartItems('/cart');
 
 	});

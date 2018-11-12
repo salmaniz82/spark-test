@@ -2,23 +2,17 @@ $(function() {
 
 	
 	console.log('JQuery is working!');
+	var addToCartBtn = $('a#add-to-cart');
+	var clearCartBtn = $('a#clear-cart-button');
+	var elem = $('#header-cart');
+	var cartIndicator = $('span.count');
 
 
-	var Cart = {
-
-		items : {},
-
-		init : function(){
-
-			this.add();
-			this.render();
 
 
-			
-		},
-		add : function(){
 
-			$('a#add-to-cart').on('click', function(e) {
+
+	$('a#add-to-cart').on('click', function(e) {
 				e.preventDefault();
 				var url = $(this).attr('href');
 				$.ajax({
@@ -26,83 +20,77 @@ $(function() {
 					method : 'POST',
 					success : function(response){
 
-						Cart.items = response;
-						Cart.render();
+						cartIndicator.text(response.total);
 						
 					},
 					error : function(xhr, ajaxOptions, thrownError){
 
-						
+					
 					}
 				});
+	});
 
-			});
 
-		},
-		clear : function(){
+	$("a#clear-cart-button").on('click', function(event) {
 
-			$('a#clear-cart-button').on('click', function(e) {
-				e.preventDefault();
-				var url = $(this).attr('href');
+		event.preventDefault();
+
+
+		var url = $(this).attr('href');
 				$.ajax({
 					url : url,
 					method : 'GET',
 					success : function(response){
 
-
-						Cart.render();
+						cartIndicator.text(response.total);
 						
 					},
-					error : function(xhr, ajaxOptions, thrownError){
+					error : function(response, xhr, ajaxOptions, thrownError){
+
+						cartIndicator.text(response.total);
+						
 					}
 				});
 
-			});
-
-		},
-
-		more : function(){
-			console.log('I will do increment');
-		},
-
-		less : function(){
-			console.log('I will do decrease');
-		},
-
-		render : function()
-		{
-			
-			elem = $('#header-cart');
-			var count = Object.keys(Cart.items).length;
-
-			elem.find('span.count').text(count);
-
-			if(count < 1)
-			{
-				elem.addClass('hide');
-			}
-			else {
-				if(elem.hasClass('hide'))
-				{
-					elem.removeClass('hide');
-				}
-			}
 
 
-		}
-
-		
-
-		
-
-
-	};
-
-
-	Cart.init();
-	Cart.render();
+	});
 
 
 
+	function showCartItems(url)
+	{
+			$.ajax({
+					url : url,
+					method : 'GET',
+					success : function(response){
+						cartIndicator.text(response.total);
+						console.log(response.total);					
+						
+					},
+
+					error : function(xhr, ajaxOptions, thrownError){
+					
+					}
+				});
+
+			console.log('I ran');
+	}
+
+
+	// on load
+	// showCartItems('/cart');
+
+
+	$(window).on('load', function() {
+
+		console.log('on load is caleed');
+		showCartItems('/cart');
+
+	});
+
+
+
+	
 
 });

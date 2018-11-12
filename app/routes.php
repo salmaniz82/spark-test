@@ -216,20 +216,24 @@ $route->get('/testmoduleload', 'testCtrl@testModuleLoad');
 $route->get('/module2', 'testCtrl@showPage');
 
 
-/*
+
 $route->get('/cart', 'cartCtrl@index');
-*/
+
 
 $route->get('/cart/add/{p_id}/{qty}', 'cartCtrl@add');
 
-$route->get('/cart/less/{p_id}/{qty}', 'cartCtrl@decrementCart');
+$route->post('/cart/add/{p_id}/{qty}', 'cartCtrl@add');
 
-$route->get('/cart/more/{p_id}/{qty}', 'cartCtrl@incrementCart');
-
-$route->get('/cart/clear', 'cartCtrl@clearCart');
+$route->get('/cart/less/{p_id}/{qty}', 'cartCtrl@less');
 
 
-$route->get('/cart/items', 'cartCtrl@showItems');
+$route->get('/cart/u/{p_id}/{qty}', 'cartCtrl@updateCart');
+
+
+$route->get('/cart/clear?', 'cartCtrl@clearCart');
+
+
+$route->get('/cart-details', 'cartCtrl@cartDetails');
 
 
 
@@ -252,7 +256,7 @@ $route->get('/flex?', function() {
 
 $route->get('/flex/{id}', function() {
 
-	echo $id;
+	echo 1;
 
 });
 

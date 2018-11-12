@@ -14,7 +14,7 @@
 
     		<img src="http://placehold.it/100x100" class="item-name">
     		<div class="item-name"><?= $value['name']?></div>
-    		<div class="item-name">$ 100.99</div>
+    		<div class="item-name">$<?= $value['price']?></div>
     		<div class="item-name">Add To Cart</div>
     		
     	</div> <!--item wrap-->
@@ -25,20 +25,7 @@
     	<?php }?>
 
 
-        <div>Session DAta : 
-
-            <?php if(isset($_SESSION)) { 
-
-                print_r($_SESSION);
-
-            }?>
-
-
-
-
-
-
-        </div>
+        
         
         
     </main>

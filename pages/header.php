@@ -30,7 +30,7 @@
 
 
 			
-				<li id="header-cart"><span class="count">0</span><span class="text"> <a href="cart-details">Cart </a> </span></li>
+				<li id="header-cart" class="<?php Route::Current('/cart-details') ?>"><span class="count">0</span><span class="text"> <a href="cart-details">Cart </a> </span></li>
 			
 			
 

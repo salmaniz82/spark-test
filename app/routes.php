@@ -233,7 +233,7 @@ $route->get('/cart/u/{p_id}/{qty}', 'cartCtrl@updateCart');
 $route->get('/cart/clear?', 'cartCtrl@clearCart');
 
 
-$route->get('/cart-details', 'cartCtrl@cartDetails');
+$route->get('/cart-details?', 'cartCtrl@cartDetails');
 
 
 

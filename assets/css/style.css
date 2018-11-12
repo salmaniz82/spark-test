@@ -260,3 +260,16 @@ ul.categories li.active a {
 }
 
 th {text-align: left;}
+
+
+
+table.cart-table thead tr th {padding-bottom: 1rem; }
+
+table.cart-table thead tr {
+		border-bottom: 1px solid #333 !important;	
+}
+
+
+table.cart-table tbody tr td {padding-bottom: 1rem}
+
+table.cart-table tbody tr {border-bottom: 1px; border-color: #333;}

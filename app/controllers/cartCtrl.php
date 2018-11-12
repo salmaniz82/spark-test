@@ -52,11 +52,10 @@
 	}
 
 
-	private function cartItemExists()
+	private function cartItemExists($product_id, $quantity)
 	{
 
-		$product_id = Route::$params['p_id'];	
-		$quantity   = Route::$params['qty'];
+		
 
 		$cartKeys = array_keys($_SESSION['cart']);
 
@@ -78,9 +77,19 @@
 	{
 
 		$product_id = Route::$params['p_id'];	
-		$quantity   = Route::$params['qty'];
-		$this->init();
+		$quantity   = Route::$params['qty'];	
 
+		$this->addHandler($product_id, $quantity);
+		$this->index();
+
+		
+	}
+
+
+	public function addHandler($product_id, $quantity)
+	{
+
+		$this->init();
 		if(isset($_SESSION['cart'][$product_id]))
 		{
 			$_SESSION['cart'][$product_id] += (int) $quantity;	
@@ -88,27 +97,30 @@
 			$_SESSION['cart'][$product_id] = (int) $quantity;
 		}
 
-		$this->index();
-
-		
 	}
 
 	
 
 	public function less()
 	{
+
 		$product_id = (int) Route::$params['p_id'];
 		$quantity = (int) Route::$params['qty'];
+		$this->lessHandler($product_id, $quantity);
+		$this->index();
+
+	}
 
 
-		if($this->cartItemExists())
+	public function lessHandler($product_id, $quantity)
+	{
+
+		
+		if($this->cartItemExists($product_id, $quantity))
 		{
 			$_SESSION['cart'][$product_id] -=  $quantity;
 			$this->updateCartItems();
-
 		}
-		
-		$this->index();
 
 	}
 
@@ -138,18 +150,7 @@
 	}
 
 
-	public static function getItems()
-	{
-		view::responseJson($this->items, 200);
-	}
-
-
-	public function showItems()
-	{
-		
-		print_r($_SESSION);
-
-	}
+	
 
 
 	public function updateCart()
@@ -157,10 +158,14 @@
 
 		/* input from text box for value udpate */
 
-		if($this->cartItemExists()) 
+		$product_id = (int) Route::$params['p_id'];
+		$quantity = (int) Route::$params['qty'];
+
+
+
+		if($this->cartItemExists($product_id, $quantity)) 
 		{		
-			$product_id = (int) Route::$params['p_id'];
-			$quantity = (int) Route::$params['qty'];
+			
 			$_SESSION['cart'][$product_id] = $quantity;
 
 		}
@@ -206,6 +211,31 @@
 
 		$db = new Database();
 		$db->table = 'products'; 
+		
+		
+
+
+		if( isset($_GET['a'], $_GET['p'], $_GET['q']) )
+		{
+			
+			$pid = (int) $_GET['p'];
+			$qty = (int) $_GET['q'];
+
+			if($_GET['a'] == 'l')
+			{
+				$this->lessHandler($pid, $qty);
+
+			}
+
+			else if($_GET['a'] == 'm')
+			{
+				
+				$this->addHandler($pid, $qty);
+
+
+			}
+		}
+
 		$cartKeys = array_keys($_SESSION['cart']);
 		$pIds = implode(',', $cartKeys);
 

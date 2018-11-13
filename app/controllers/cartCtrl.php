@@ -175,6 +175,32 @@
 	}
 
 
+
+
+	public function clearSingleHandler($id)
+	{
+
+		if( $this->sessionHasCart() ) 
+		{
+		
+
+			$p_id = (int) $id;
+			$p_ids = array_keys($_SESSION['cart']);
+
+			if(in_array($p_id, $p_ids))
+			{
+				unset($_SESSION['cart'][$p_id]);
+			}
+			
+		}
+
+	}
+
+
+
+
+
+
 	public function clearCart()
 	{
 
@@ -209,11 +235,6 @@
 	public function cartDetails()
 	{
 
-		$db = new Database();
-		$db->table = 'products'; 
-		
-		
-
 
 		if( isset($_GET['a'], $_GET['p'], $_GET['q']) )
 		{
@@ -234,7 +255,40 @@
 
 
 			}
+
+			else if ($_GET['a'] == 'rs' && ( isset($_GET['p']) && is_numeric($_GET['p']) ) )
+			{
+
+				$rspid = (int) $_GET['p'];
+
+				$this->clearSingleHandler($rspid);
+
+				echo 'I am called to work';
+
+				//return header("location: /cart-details");
+
+			}
+
+
+			
+
+			return header("location: /cart-details");
+
 		}
+
+
+		if(!$this->sessionHasCart())
+		{
+
+			$originUrl = '/shop';
+			return header("location: {$originUrl}");
+			die();
+
+		}
+
+
+		$db = new Database();
+		$db->table = 'products'; 
 
 		$cartKeys = array_keys($_SESSION['cart']);
 		$pIds = implode(',', $cartKeys);
@@ -265,9 +319,6 @@
 		
 
 	}
-
-
-	
 
 
 }

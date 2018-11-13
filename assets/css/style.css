@@ -1,5 +1,7 @@
+html, body {margin: 0; padding: 0;}
+
 body {
-	background-color: #ccc;
+	background-color: #f3f3f3;
 	font-family: Calibri;
 }
 
@@ -280,9 +282,34 @@ table.fixed {table-layout: fixed}
 a.cart-ud-btn {
 	text-decoration: none;
 	color: #ccc;
+	transition: color 0.3s ease-in-out;
 }
 
-a.cart-ud-btn:hover {
-	
-	color: #333;
+a.cart-ud-btn.less {
+	color: rgba(255, 193, 1, 0.7);
+}
+
+a.cart-ud-btn.less:hover {
+	color: rgba(255, 193, 1, 1);
+}
+
+a.cart-ud-btn.more {
+	color: rgba(139, 195, 74, 0.7);	
+}
+
+a.cart-ud-btn.more:hover {
+	color: rgba(139, 195, 74, 1);	
+}
+
+
+a.cart-ud-btn.rmv {
+	color: #ff0000;
+}
+
+
+.cart-ud-wrap
+{
+	display: flex;
+    flex-direction: column-reverse;
+    font-size: 0.7rem;
 }

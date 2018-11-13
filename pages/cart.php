@@ -2,14 +2,14 @@
 
 <div class="wrapper bg-white">
 
-<table class="w-100 cart-table">
+<table class="w-100 cart-table fixed">
 	<thead>
 		<th>Id</th>
-		<th>Product</th>
+		<th style="width: 50%">Product</th>
 		<th>Price</th>
-		<th>&nbsp</th>
+		<th><<</th>
 		<th>Quantity</th>
-		<th>&nbsp</th>
+		<th>>></th>
 		<th>Sub Total</th>
 	</thead>
 
@@ -24,24 +24,19 @@
 			<td><?=$prdc['id']?></td>
 			<td><?= ucwords($prdc['name']) ?></td>
 			<td><?=$prdc['price']?></td>
-			<td><a href="/cart-details?a=l&p=<?=$prdc['id']?>&q=1">( - )</a></td>
+			
 			<td>
-
-				
-
-				<form action="#" method="get">
-					
-				<input type="text" name="quantity" value="<?=$prdc['quantity']?>">
-				
+				<form action="#" method="get">				
+				<input type="text" name="quantity" value="<?=$prdc['quantity']?>" style="width: 3rem">
 				</form>	
-
-
-
-
 			</td>
 
 			<td>
-				<td><a href="/cart-details?a=m&p=<?=$prdc['id']?>&q=1">( + )</a></td>
+				<div class="cart-ud-wrap">
+					<a href="/cart-details?a=l&p=<?=$prdc['id']?>&q=1" class="cart-ud-btn">&#9660;</a>
+					<a href="/cart-details?a=m&p=<?=$prdc['id']?>&q=1" class="cart-ud-btn">&#9650;</a>
+				</div>
+				
 			</td>
 
 
@@ -57,7 +52,7 @@
 	<?php endforeach ?>
 
 	<tr>
-		<td colspan="7" style="text-align: right">Total Cost</td>
+		<td colspan="6" style="text-align: right">Total Cost</td>
 		<td style="font-size: 1.5rem"><?php echo $total; ?></td>
 
 	</tr>

@@ -273,3 +273,16 @@ table.cart-table thead tr {
 table.cart-table tbody tr td {padding-bottom: 1rem}
 
 table.cart-table tbody tr {border-bottom: 1px; border-color: #333;}
+
+table.fixed {table-layout: fixed}
+
+
+a.cart-ud-btn {
+	text-decoration: none;
+	color: #ccc;
+}
+
+a.cart-ud-btn:hover {
+	
+	color: #333;
+}

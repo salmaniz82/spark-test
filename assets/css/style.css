@@ -130,11 +130,14 @@ ul.nav {
 ul.nav li {display: inline-block; border-right: 1px solid #ccc; padding-top: 5px; padding-bottom: 5px}
 
 ul.nav li a {text-decoration: none; padding-right: 10px; padding-left: 10px; color: #333; 
-	font-size: 16px; transition: all 0.3s ease-in-out;}
+	font-size: 0.9rem; transition: all 0.3s ease-in-out;}
 ul.nav li:last-child {border-right: none;}
 ul.nav li a:hover {color:  #91fc20;}
 
-ul.nav li.active a {color: #03a9f4; font-weight: bold; transform: scale(1.1); }
+
+ul.nav li.active {background-color: #03a9f4; }
+
+ul.nav li.active a {color: #ffffff; transform: scale(1.1); font-weight: 500}
 
 ul.nav li.userinfo {position: absolute; top: 5px; right: 5px; color: #2d74a8; border-right: none;}
 
@@ -143,8 +146,8 @@ header.wrapper {background-color: #fff; margin-bottom: 5px; position: relative;}
 header.wrapper ul.nav.main-nav{float: left;}
 ul.nav.main-nav li {transition: all 0.2s ease-in; }
 
-/*
 
+/*
 ul.nav.main-nav li:hover { transform: scale(1.2); }
 ul.nav.main-nav li:nth-child(1) { background-color: #91fc20; }
 ul.nav.main-nav li:nth-child(2) { background-color: #2d74a8; }
@@ -153,8 +156,9 @@ ul.nav.main-nav li:nth-child(4) { background-color: #2085fc; }
 ul.nav.main-nav li:nth-child(5) { background-color: #9120fc; }
 ul.nav.main-nav li:nth-child(6) { background-color: #fc2088; }
 ul.nav.main-nav li:nth-child(7) { background-color: #8e950a; }
-
 */
+
+
 
 header.wrapper ul.nav.right-nav{float: right;}
 
@@ -224,6 +228,7 @@ ul.categories li a {
 	padding-bottom: 10px;
 	margin-bottom: 10px;
 	border-bottom: 1px solid transparent;
+	font-size: 0.9rem;
 }
 
 
@@ -238,7 +243,7 @@ ul.categories li.active a {
 }
 
 
-.item-wrap {display: inline-block; width: 200px; margin-bottom: 20px;}
+.item-wrap {display: inline-block; width: 200px; margin-bottom: 20px; font-size: 0.9rem}
 
 
 .centerbox {
@@ -262,6 +267,10 @@ ul.categories li.active a {
 
 th {text-align: left;}
 
+
+table.cart-table {
+font-size: 0.9rem;	
+}
 
 
 table.cart-table thead tr th {padding-bottom: 1rem; }
@@ -311,4 +320,9 @@ a.cart-ud-btn.rmv {
 	display: flex;
     flex-direction: column-reverse;
     font-size: 0.7rem;
+}
+
+p.desc {
+    font-size: 0.9rem;
+    color: #333;
 }

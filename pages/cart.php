@@ -22,7 +22,9 @@
 
 		<tr>
 			<td><?=$prdc['id']?></td>
-			<td><?= ucwords($prdc['name']) ?></td>
+			<td><?= ucwords($prdc['name']) ?>
+				<p style="color: #bbb; padding-top: 0.3rem"><small>-<?= $prdc['detail'] ?></small></p>
+			</td>
 
 			<?php $price = (double) number_format($prdc['price'], 2); ?>	
 

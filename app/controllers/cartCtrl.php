@@ -37,11 +37,15 @@
 			$data['message'] = 'Cart Items';
 			$data['status'] = true;
 			$data['total'] = array_sum($_SESSION['cart']);		
+			$noPrdc = array_keys($_SESSION['cart']);
+			$data['prdc'] = sizeof($noPrdc);
 			$statusCode = 200;
 		}
 		else {
 			$data['cart'] = null;
 			$data['message'] = 'No Items Found';
+			$data['products'] = 0;
+			$data['prdc'] = 0;
 			$data['status'] = false;
 			$data['total'] = 0;
 			$statusCode = 202;

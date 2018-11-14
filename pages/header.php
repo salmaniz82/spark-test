@@ -29,8 +29,8 @@
 
 
 
-			
-				<li id="header-cart" class="<?php Route::Current('/cart-details') ?>"><span class="count">0</span><span class="text"> <a href="/cart-details">Cart </a> </span></li>
+				<span class="nav-cart-count">0</span>
+				<li id="header-cart" class="<?php Route::Current('/cart-details') ?>"><a href="/cart-details"> Cart </a> </span></li>
 			
 			
 

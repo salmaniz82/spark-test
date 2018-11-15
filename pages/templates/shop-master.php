@@ -1,5 +1,11 @@
 <?php require_once ABSPATH.'pages/header.php'; ?>
 
+<?php if(isset($_SESSION['flashMsg'])) {?>
+
+			<div class="message <?=$_SESSION['fClass']?>" id="flash-message"><?=$_SESSION['flashMsg']?></div>
+
+			<?php }unset($_SESSION['flashMsg']); unset($_SESSION['fClass']);?>
+
 <div class="shop-container">
 
     

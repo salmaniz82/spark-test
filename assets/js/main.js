@@ -106,6 +106,13 @@ $(function() {
 	});
 
 
+	$('.menu-icon').click(function() {
+
+		$('.mobile-toggle-wrap').toggleClass('menu-is_visible');
+
+	});
+
+
 
 	
 

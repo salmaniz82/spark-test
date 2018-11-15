@@ -29,7 +29,14 @@
 
             if( isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] != "")
             {
-                header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");   
+                header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");  
+
+                /*AMP specific*/
+
+                header("AMP-Access-Control-Allow-Source-Origin: {$_SERVER['HTTP_ORIGIN']}");
+                header("Access-Control-Expose-Headers: AMP-Access-Control-Allow-Source-Origin");
+                header("Access-Control-Expose-Headers: AMP-Redirect-To, AMP-Access-Control-Allow-Source-Origin"); 
+                 
             }
             else {
                 header("Access-Control-Allow-Origin: *");
@@ -479,6 +486,7 @@
         return $response;
 
     }
+
 
      
     public function otherwise($callback)

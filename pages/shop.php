@@ -8,6 +8,8 @@
     
     <main class="products listings bg-white">
 
+        
+
     <?php foreach($data['products'] as $key => $value ) {?>
 
     	<div class="item-wrap">
@@ -23,6 +25,9 @@
 
 
     	<?php }?>
+
+
+
 
 
         

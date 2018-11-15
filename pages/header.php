@@ -14,7 +14,19 @@
 
 <header class="wrapper">
 
+	<div class="branding">
+		<div id="logo">Flex MVC</div>
+		<div class="menu-icon">
+			<img src="/assets/images/menu.svg">
+		</div>
+	</div>
+
+	<div class="fix-spacer">&nbsp</div>
+
+	<div class="mobile-toggle-wrap">
+
 	<ul class="nav main-nav">
+
 		<li class="<?php Route::Current('/') ?>"><a href="/">Home</a></li>
 		<li class="<?php Route::Current('/products') ?>"><a href="/products">Product</a></li>
 		<li class="<?php Route::Current('/services') ?>"><a href="/services">Services</a></li>
@@ -56,4 +68,6 @@
 			
 	</ul>
 	<div class="clearfix"></div>
+
+	</div><!--mobile toggle wrap -->
 </header>

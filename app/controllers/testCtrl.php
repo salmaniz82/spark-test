@@ -114,4 +114,19 @@ class testCtrl extends appCtrl
     }
 
 
+    public function votest()
+    {
+
+
+    	$data['title'] = 'helloword';
+    	$template = new Template();
+
+    	$data['rows'] = ['apple', 'orange', 'mango'];
+
+
+    	$template->layout('default-tpl.php')->compile('test.php', $data);
+
+    }
+
+
 }

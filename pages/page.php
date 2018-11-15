@@ -2,10 +2,6 @@
 
 <div class="wrapper bg-white">
 
-
-	
-
-
 <?php $page = $data['page'][0]; ?>
 
 		<?php if(isset($page['title'])) { ?>

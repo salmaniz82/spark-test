@@ -30,6 +30,8 @@ require_once ABSPATH . 	'framework/template.class.php';
 require_once ABSPATH . 	'framework/jwt.class.php';
 require_once ABSPATH . 	'framework/events.class.php';
 
+require_once ABSPATH . 	'framework/helpers.php';
+
 /*
 	Loading External GUMP Validation Class
 */

@@ -1,38 +1,52 @@
-<?php include_once 'header.php'; ?>
-
+<?php require_once 'header.php'; ?>
 
 <div class="wrapper bg-white">
-	
-<?php if(isset($data['title'])) {?>
-				<h1 class="page-title"><?= $data['title']; ?></h1>
+
+<?php $page = $data['page'][0]; ?>
+
+		<?php if(isset($page['title'])) { ?>
+
+				<h1 class="page-title"><?= ucwords($page['title']); ?></h1>
+				
 		<?php }?>
 
+		<h3>Introduction</h3>
 
-<p>This is a minimal MVC - Framework written in PHP using OOD i.e Object Oriented Design.
-its constanly going under fine tuning and refractoring
-We opplogize if you encountered any incovenience while using this framwork
-
-This is usefull when available framework and CMS is just an overkill for you application or simple doest have the flexibilty.</p>
-
-This will give you flavour of MVC and yet keep the door open customization and flexibility.</p>
-
-<p>Future plans to have support for the following features. Routing, Controller Mapping and CRUD Functionality already added and working</p>
+		<p class="desc"><?php echo $page['contents']; ?> </p>
+	
+</div>
 
 
-<?php foreach ($data['features'] as $value) { ?>
-	<p class="desc"> - <?= $value?></p>
-
-<?php }?>
-
+<div class="wrapper">
+	<h4>What it offers and what it doesn't have</h4>
+</div>
 
 
+<div class="book-list-wrapper">
 
-	<p class="bg-green"> View is rendered from View class and content fruits is dynamically injected using arrays </p>
+	
+
+	
+
+	<?php foreach($data['todos'] as $key => $todo) {?>
 
 
+		
 
+		<div class="books-list-item wrapper <?php echo ($todo['is_complited'] == 1 ? 'done' : 'pending');?>">
+
+            <p class="status">Status: <span><?php echo ($todo['is_complited'] == 1 ? 'Completed' : 'Work in progress');?></span> </p>
+
+            <p class="book-desc todo" style="font-size: 20px;">
+                   - <?=_e($todo['todo'])?>           </p>
+            </div>
+
+
+	<?php }?>
+
+		
 
 </div>
 
-</body>
-</html>
+
+<?php require_once 'footer.php'; ?>

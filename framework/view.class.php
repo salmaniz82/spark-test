@@ -4,6 +4,7 @@ class View
 {
     public static function render($page, $data=null)
     {
+        header('Content-Type: text/html; charset=utf-8');
         
     	if(strpos($page, '.') === false)
     	{

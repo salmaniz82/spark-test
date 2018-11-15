@@ -215,6 +215,8 @@ $route->get('/testmoduleload', 'testCtrl@testModuleLoad');
 
 $route->get('/module2', 'testCtrl@showPage');
 
+$route->get('/votest', 'testCtrl@votest');
+
 
 
 $route->get('/cart', 'cartCtrl@index');

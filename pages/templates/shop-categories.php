@@ -17,10 +17,9 @@
 		</ul>
 
 
-		
-		
-		
 			<a href="/cart/clear" id="clear-cart-button">Clear Cart Items</a>
+
+		
 
 		
 

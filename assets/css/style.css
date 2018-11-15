@@ -185,7 +185,7 @@ a.remove-todo-btn {position: absolute; right: 10px; top: 10px; display: inline-b
 
 .books-list-item.pending .complited_date {display: none;}
 
-.books-list-item.done .book-desc.todo {text-decoration: line-through; color: #ccc; }
+.books-list-item.done .book-desc.todo {color: #ccc; }
 
 
 p.status {margin-top: 5px; margin-bottom: 5px;}
@@ -382,12 +382,12 @@ span.nav-cart-count.bump {
 
 button {
 	background-color: #8bc34a; 
-    padding: 0.8rem;
+    padding: 1rem;
     color: #ffffff;
     font-weight: 600;
     font-family: 'Raleway', sans-serif;
     outline: none;
     border: none;
-    border-radius: 4px;
+    
     font-size: 0.8rem;
 }

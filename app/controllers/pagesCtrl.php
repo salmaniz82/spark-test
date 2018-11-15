@@ -24,7 +24,14 @@ class pagesCtrl{
         
         $data['page'] = $this->getPageDataHandler('/');
         $data['title'] = $data['page']['0']['title'];
-        View::render('page', $data);
+
+        $this->DB->table = 'todos';
+        $data['todos'] = $todos = $this->DB->build('S')->Colums()->Where("user_id = 11")->go()->returnData();
+
+        
+
+
+        View::render('home', $data);
 
 	}
 

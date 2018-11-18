@@ -239,28 +239,125 @@ $route->get('/cart-details?', 'cartCtrl@cartDetails');
 
 
 
+$route->get('/img-libs', function() {
+
+	/*
+
+	checking if GD module is available or not;
+
+	if (!extension_loaded('imagick'))
+    echo 'imagick not installed';
+    */
+
+	
+
+	// loading file with absolute url;
 
 
+	$filename = ABSPATH.'/assets/images/shift1920.jpg';
 
-$route->get('/flex?', function() {
-	echo 'testing slug';
-	if(isset($_GET) && !empty($_GET))
+	// imagecreatefrompng($filename);
+
+
+	$imgOrgDimensions = getimagesize($filename, $info);
+
+
+	$width_org = $imgOrgDimensions[0];
+	$height_org = $imgOrgDimensions[1];
+	$image_type = $imgOrgDimensions['mime'];
+	$bits_org = $imgOrgDimensions['bits'];
+	$aspectRatio_W_org = $width_org / $height_org;
+	$aspectRatio_H_org = $height_org / $width_org;
+
+
+	 ddx($imgOrgDimensions);
+
+
+	
+
+
+	function imagePrep($filename, $image_type)
 	{
-		foreach($_GET as $key => $value)
-		{
-			$$key = $value;
-		}
-		echo $name;
+
+			if($image_type == 'image/png' || strpos($image_type, 'png') )
+			{
+				echo "image is png";
+			}
+
+			else if ($image_type == 'image/jpeg' || strpos($image_type, 'jpg') )
+			{
+				echo "image is jpeg";
+
+			}
+
+			else if ( strpos($image_type, 'bmp') )
+			{
+				echo "this is bmp";
+			}
+
+			else if ( $image_type == "image/gif" || strpos($image_type, 'gif') ) 
+			{
+				echo "format is GIF";
+			}
+
+			else {
+
+				throw new Exception("File is not support with type of $image_type", 1);
+				
+			}
+
 	}
 
+
+
+
+	$destination = imagecreatetruecolor(500, 500);
+
+	$sourceImage = imagecreatefromjpeg($filename);
+
+	
+
+	$width_new = 500; 
+
+	$height_new = 500;
+
+
+	imagecopyresampled($destination, $sourceImage, 0, 0, 0, 0, $width_org, $height_org, $width_new, $height_new);
+
+	imagejpeg($destination, null, 100);
+
+
+	
+
+	header('Content-Type: image/jpeg');
+
+
 });
 
 
-$route->get('/flex/{id}', function() {
+$route->get('/testimagework', 'testCtrl@imageWork');
 
-	echo 1;
+
+
+
+$route->get('/imglib/{filepath}/?', function() {
+
+	$filepath = Route::$params['filepath'];
+
+	$filename = ABSPATH.$filepath;
+
+	echo $filename;
 
 });
+
+
+
+$route->get('/imgbuild', function() {
+
+	
+
+});
+
 
 
 $route->otherwise( function() {

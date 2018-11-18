@@ -29,6 +29,7 @@ require_once ABSPATH . 	'framework/view.class.php';
 require_once ABSPATH . 	'framework/template.class.php';
 require_once ABSPATH . 	'framework/jwt.class.php';
 require_once ABSPATH . 	'framework/events.class.php';
+require_once ABSPATH . 	'framework/imageTrans.class.php';
 
 require_once ABSPATH . 	'framework/helpers.php';
 

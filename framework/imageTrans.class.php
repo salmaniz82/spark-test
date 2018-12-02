@@ -4,9 +4,7 @@
 	public $imageType;
 	public $filePath;
 	public $imageSourceInfo = array();
-
 	public $typeInDigit;
-
     public $width_org;
     public $height_org;
     public $image_type;
@@ -17,7 +15,6 @@
     public $newImageDimensions;
     public $newWidth;
     public $newHeight;
-
     public $imageBuild;
 
 
@@ -83,7 +80,14 @@
         if($newHeightRequested != 'auto' && $newWidthRequested != 'auto')
         {
 
-            $error += 1;
+
+            $newWidth = (int) $newWidthRequested;
+            $newHeight = (int) $newHeightRequested;
+
+            $this->newWidth = $newWidth;
+            $this->newHeight = $newHeight;
+            $this->newImageDimensions = imagecreatetruecolor($newWidth, $newHeight);
+
 
         }
         else if($newHeightRequested == 'auto' && $newWidthRequested != 'auto')
@@ -91,7 +95,7 @@
             // auto height
 
             $newWidth = (int) $newWidthRequested;
-            $newHeight = $newWidth / $this->aspectRatio_W_org;
+            $newHeight = (int) $newWidth / $this->aspectRatio_W_org;
             $this->newWidth = $newWidth;
             $this->newHeight = $newHeight;
             $this->newImageDimensions = imagecreatetruecolor($newWidth, $newHeight);
@@ -117,8 +121,8 @@
             $this->resampleImage();
         }
         else {
-            echo "failed";
-            exit();
+            return false;
+
         }
 
 
@@ -162,38 +166,21 @@
 
     public function resampleImage()
     {
-
         imagecopyresampled($this->newImageDimensions, $this->imageBuild, 0, 0, 0, 0, $this->newWidth, $this->newHeight, $this->width_org, $this->height_org);
-
     }
-
-
 
 	public function reproduceSaveImage(array $args=null)
     {
-
-
         // prepare default values
-
         $quality = (int) (isset($args['quality'])) ? $args['quality'] : 100;
-
-
         $baseDirectory = dirname($this->filePath);
-
         $filename = basename($this->filePath);
-
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
-
         $imgDimensionString = "--{$this->newWidth}x{$this->newHeight}";
-
         $filename = str_replace('.'.$ext, $imgDimensionString, $filename) . '.'.$ext;
-
         $filename = $baseDirectory.'/'.$filename;
-
-
         switch($this->typeInDigit)
         {
-
             case 1:
                 imagegif($this->newImageDimensions, $filename, $quality);
                 break;
@@ -201,14 +188,11 @@
                 imagejpeg($this->newImageDimensions, $filename, $quality);
                 break;
             case 3:
-
-                imagepng($this->newImageDimensions, $filename, null);
+                $pngQuality = ($quality - 100) / 11.111111;
+                $pngQuality = round(abs($pngQuality));
+                imagepng($this->newImageDimensions, $filename, $pngQuality);
                 break;
         }
-
-
 	}
-
-
 
 }

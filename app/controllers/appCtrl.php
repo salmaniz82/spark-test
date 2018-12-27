@@ -2,6 +2,43 @@
 abstract class appCtrl {
 	
 	
+	
+	public function refinePath($path)
+    {
+        $path = str_replace('\\', '/', $path);
+        $path = preg_replace('/\/+/', '/', $path);
+
+        return $path;
+    }
+
+
+	public function load($loadType, $Loadentity)
+	{
+
+		if($loadType == 'module')
+		{
+			
+			 
+
+			$path = ABSPATH.'app/modules/'.$Loadentity.'Module.php';
+			$path = $this->refinePath($path);
+			require_once $path;
+			$ModuleClass =  $Loadentity.'Module';
+			return new $ModuleClass();
+		}
+
+		elseif($loadType == 'external')
+		{
+			
+			$path = ABSPATH.'app/external/'.$Loadentity.'.php';
+			require_once($path);
+			
+		}
+
+	}
+
+
+	
 
 	public function getID()
 	{
@@ -36,16 +73,6 @@ abstract class appCtrl {
 	}
 
 
-	public function load($loadType, $Loadentity)
-	{
-
-		if($loadType == 'module')
-		{
-			require_once ABSPATH.'app/modules/'.$Loadentity.'Module.php';
-			$ModuleClass =  $Loadentity.'Module';
-			return new $ModuleClass();
-		}	
-
-	}
+	
 
 }

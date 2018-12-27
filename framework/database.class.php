@@ -1,6 +1,6 @@
 <?php
 
-
+require_once 'app/config.php';
 
 
 class Database
@@ -14,6 +14,7 @@ class Database
     public $noRows;
     public $buildStatement;
     public $queryError;
+    public $doPluck = false;
 
 
     public function __construct()
@@ -46,6 +47,13 @@ class Database
 
         if ($result = $this->connection->query($this->sqlSyntax))
         {
+
+            if(isset($result->num_rows)) 
+            {
+                $this->noRows = $result->num_rows;    
+            }
+
+            
             return $this->resource = $result;
         }
         else
@@ -61,7 +69,7 @@ class Database
 
         $data = null;
 
-        while($rows = mysqli_fetch_assoc($this->resource))
+        while( $rows = $this->resource->fetch_assoc() )
         {
             $data[] = $rows;
         }
@@ -128,6 +136,75 @@ class Database
             {
                 return false;
             }
+
+        }
+
+    }
+
+    public function pluck($col)
+    {
+        $this->sqlSyntax = "SELECT $col FROM $this->table ";
+
+        $this->doPluck = true;
+
+        return $this;
+    }
+
+
+    public function multiInsert($dataset)
+    {
+
+        $errCount = 0;
+
+        if(!$dataset || gettype($dataset) != 'array')
+        {  
+            $errCount++;
+            throw new Exception("Argument must be an array");
+            return false;
+        }
+        else if(!array_key_exists('cols', $dataset) && !array_key_exists('vals', $dataset))
+        {
+            $errCount++;
+            throw new Exception("Array missing cols and vals named keys");
+            return false;
+        }
+
+        else if(sizeof($dataset['cols']) != sizeof($dataset['vals'][0]))
+        {
+            $errCount++;
+            throw new Exception("Array Fields size miss matched");
+            return false;
+        }
+
+        if($errCount == 0)
+        {
+            
+            $cols = implode(', ', array_values($dataset['cols']));
+            $vals = $dataset['vals'];
+
+            $this->escArray($dataset['vals']);
+
+            $query = "INSERT INTO $this->table ( " ;
+
+            $query .= $cols . ") VALUES ";
+
+            $counter = 0;
+            foreach ($vals as $key => $value) {
+
+                $query .= " ( ";
+                $query .= "'". implode("', '", $value) ."'"; 
+                $query .= " ) ";
+
+                if($counter != sizeof($vals)-1)
+                {
+                    $query .= ",";
+                }
+
+                $counter++;
+            }
+
+            $this->sqlSyntax = $query;
+            return $this->runQuery();
 
         }
 
@@ -258,6 +335,19 @@ class Database
     }
 
 
+    public function escArray($dataarray)
+    {
+
+        $link = $this->connection;
+        array_walk_recursive($dataarray, function(&$val) use ($link) {
+
+            $val = $link->real_escape_string($val);
+
+        });
+
+    }
+
+
 
     public function build($queryType)
     {
@@ -319,6 +409,44 @@ class Database
 
         $this->sqlSyntax = $string;
 
+
+        if($this->doPluck)
+        {
+            $this->sqlSyntax .= ' LIMIT 1';         
+            $this->doPluck = false;
+
+            
+
+            $this->runQuery();
+
+
+            if($this->noRows)
+            {
+                $pluckData = $this->returnData();
+
+                    $pluckData = array_values($pluckData[0]);
+                    $pluckData = $pluckData[0];
+
+                    if(is_numeric($pluckData))
+                    {
+                        return (int) $pluckData;
+                    }
+                    else {
+                        return $pluckData;   
+                    }
+            }
+
+            else {
+                return false;
+
+
+            }
+            
+            
+
+            
+        }
+
         return $this;
 
     }
@@ -340,9 +468,13 @@ class Database
     {
 
         $string = $this->sqlSyntax;
+
         $string .= ' LIMIT ' . $limit;
+
         $this->sqlSyntax = $string;
+
         return $this;
+
     }
 
     public function go()

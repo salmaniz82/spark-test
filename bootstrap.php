@@ -14,6 +14,7 @@
 */
 require_once ABSPATH . 	'app/config.php';
 require_once ABSPATH . 	'app/controllers/appCtrl.php';
+require_once ABSPATH . 	'app/acl.php';
 
 
 /*

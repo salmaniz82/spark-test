@@ -363,7 +363,7 @@ a.remove-todo-btn {position: absolute; right: 10px; top: 10px; display: inline-b
 
 p.status {margin-top: 5px; margin-bottom: 5px;}
 
-.w-80 {width: 80%;}
+
 
 ul.features {list-style-type: none; padding-left: 10px;}
 ul.features li {margin-bottom: 5px; color: #9e9e9e;}
@@ -542,3 +542,78 @@ button {
     
     font-size: 0.8rem;
 }
+
+
+
+ul.actionDropDown {
+
+}
+
+ul.actionDropDown, ul.actionDropDown li  {
+	list-style: none;
+	padding-left: 0px;
+}
+
+
+ul.actionDropDown {position: relative;}
+
+
+ul.actionDropDown ul.dropdown-list {
+
+	position: absolute; top: 1rem; left: 0.5rem;
+	font-size: 0.8rem;
+	padding-left: 0px;
+}
+
+ul.actionDropDown ul.dropdown-list li a {text-decoration: none;}
+
+
+
+ul.actionDropDown ul.dropdown-list {}
+
+
+ul.actionDropDown .dropToggle:hover + ul.dropdown-list {display: block;}
+
+
+
+form.permissions .f-left {float: left;}
+form.permissions .r-right {float: right;}
+
+form.permissions select {padding: 10px;}
+
+.w-25 {width: 25%;}
+.w-30 {width: 30%;}
+.w-40 {width: 40%;}
+.w-80 {width: 80%;}
+.w-50 {width: 50%;}
+
+
+.row::after {
+	content: '';
+	clear: both;
+	display: table;
+	visibility: hidden;
+	opacity: 0;
+	height: 0px;
+}
+
+.d-block {display: block;}
+
+
+a.btn {
+	display: inline-block; text-decoration: none;
+	padding: 0.5rem;
+    color: #ffffff;
+    font-weight: 600;
+    font-family: 'Raleway', sans-serif;
+    outline: none;
+    border: none;
+    font-size: 0.8rem;
+}
+
+
+a.btn.btn-success {
+	background-color: #8bc34a;
+   
+}
+

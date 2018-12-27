@@ -23,6 +23,14 @@
         $this->method = $_SERVER['REQUEST_METHOD'];
     }
 
+
+    public static function refinePath($path)
+    {
+        $path = str_replace('\\', '/', $path);
+        $path = preg_replace('/\/+/', '/', $path);
+        return $path;
+    }
+
     public function enableCORS()
     {
 

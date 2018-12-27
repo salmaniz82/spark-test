@@ -51,20 +51,54 @@ $route->get('/profile', 'userCtrl@showProfile');
 $route->get('/getauthenticateduser', 'userCtrl@checkReturnAuthenticatedUser');
 
 
-
-
 // Dashboard routes
 $route->get('/dashboard', 'dashboardCtrl@dasboardLanding');
 
-$route->get('/dashboard/pages', 'dashboardCtrl@pagesList');
 
-$route->get('/dashboard/page/edit/{id}', 'dashboardCtrl@showPageEdit');
+if(ACL::isPermitted('manage-roles') || ACL::isAdmin() ) {
 
-$route->post('/dashboard/page/edit', 'dashboardCtrl@updatePage');
+	$route->get('/dashboard/roles?', 'rolesCtrl@roles');
 
-$route->get('/dashboard/products/add', 'dashboardCtrl@showAddProducts');
+	$route->post('/dashboard/roles', 'rolesCtrl@saveRole');
 
-$route->post('/dashboard/products/add', 'dashboardCtrl@saveProducts');
+}
+
+
+if(ACL::isPermitted('manage-resource') || ACL::isAdmin() ) {
+
+	$route->get('/dashboard/resource?', 'resourceCtrl@resource');
+
+	$route->post('/dashboard/resource', 'resourceCtrl@saveResource');
+}	
+
+if(ACL::isPermitted('manage-permissions') || ACL::isAdmin() ) {
+
+	$route->get('/dashboard/permissions?', 'permissionsCtrl@index');
+	
+	$route->post('/dashboard/permissions', 'permissionsCtrl@save');
+
+}
+
+
+if(ACL::isPermitted('manage-pages') || ACL::isAdmin() ) {
+
+	$route->get('/dashboard/pages', 'dashboardCtrl@pagesList');
+
+	$route->get('/dashboard/page/edit/{id}', 'dashboardCtrl@showPageEdit');
+
+	$route->post('/dashboard/page/edit', 'dashboardCtrl@updatePage');
+
+}
+
+
+if(ACL::isPermitted('manage-products') || ACL::isAdmin() ) {
+
+	$route->get('/dashboard/products/add', 'dashboardCtrl@showAddProducts');
+
+	$route->post('/dashboard/products/add', 'dashboardCtrl@saveProducts');
+
+}
+
 
 
 // Simple REstful Routes for tesing purpose
@@ -199,14 +233,6 @@ $route->put('/api/finance/{id}', 	'financeCtrl@update');
 $route->delete('/api/finance/{id}',	'financeCtrl@delete');
 
 
-
-$route->get('/testpost', function() {
-	require_once ABSPATH.'/app/controllers/testCtrl.php';
-	$handle = new testCtrl();
-	$handle->module01('hello sing is king');
-});
-
-
 $route->get('/testpost/{message}', 'testCtrl@mapToModule01');
 
 
@@ -323,41 +349,12 @@ $route->get('/img-libs', function() {
 
 
 	imagecopyresampled($destination, $sourceImage, 0, 0, 0, 0, $width_org, $height_org, $width_new, $height_new);
-
 	imagejpeg($destination, null, 100);
 
 
-	
-
 	header('Content-Type: image/jpeg');
 
-
 });
-
-
-$route->get('/testimagework', 'testCtrl@imageWork');
-
-
-
-
-$route->get('/imglib/{filepath}/?', function() {
-
-	$filepath = Route::$params['filepath'];
-
-	$filename = ABSPATH.$filepath;
-
-	echo $filename;
-
-});
-
-
-
-$route->get('/imgbuild', function() {
-
-	
-
-});
-
 
 
 $route->otherwise( function() {

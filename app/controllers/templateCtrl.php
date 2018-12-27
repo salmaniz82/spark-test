@@ -1,6 +1,6 @@
 <?php 
 
-class templateCtrl
+class templateCtrl extends appCtrl
 {
 
 

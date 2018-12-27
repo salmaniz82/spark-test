@@ -1,30 +1,25 @@
 <?php 
-class dashboardCtrl{
+class dashboardCtrl extends appCtrl{
 
     public $DB;
 
     public function __construct()
     {
+        if( !Auth::loginStatus() ) 
+        {
+            return header("Location: /login");
+        }    
+
+
         $this->DB = new Database();
     }
 
 
-    public function isAdminFilter()
-    {
-        if(Auth::User()['role_id'] != 1 ) { 
-
-            return header("Location: /");
-
-        }
-    }
-
+  
 	public function dasboardLanding()
 	{
 
-		if( !Auth::loginStatus() ) 
-    	{
-        	return header("Location: /login");
-    	}
+		
 
     	$data['title'] = 'Dashboard';
     	$data['message'] = 'You can perform administrative actions in dashoard section';
@@ -34,8 +29,7 @@ class dashboardCtrl{
     public function pagesList()
     {
         
-        $this->isAdminFilter();
-
+        
         $data['title'] = 'Dashboard';
         $data['message'] = 'Edit Pages';
         $this->DB->table = 'pages';
@@ -46,7 +40,7 @@ class dashboardCtrl{
     public function showPageEdit()
     {
         
-        $this->isAdminFilter();
+        
 
         $id = Route::$params['id'];
         $data['title'] = 'Dashboard';
@@ -60,7 +54,7 @@ class dashboardCtrl{
     public function updatePage()
     {
         
-        $this->isAdminFilter();
+       
 
         $id = $_POST['id'];
         $this->DB->table = 'pages';
@@ -81,7 +75,7 @@ class dashboardCtrl{
     public function showAddProducts()
     {
         
-        $this->isAdminFilter();
+       
 
         $this->DB->table = 'categories';
         $data['categories'] = $this->DB->listall()->returnData();
@@ -92,7 +86,7 @@ class dashboardCtrl{
     public function saveProducts()
     {
 
-        $this->isAdminFilter();
+        
         
         $key = array('category_id', 'name', 'detail');
         $data = $this->DB->sanitize($key);
@@ -107,5 +101,12 @@ class dashboardCtrl{
         }
 
     }
+
+
+   
+
+    
+
+
 
 }

@@ -32,10 +32,6 @@ class userCtrl {
 	            {
 
 	            		Auth::check()->id = Auth::User()['id'];
-
-	            		
-
-
 		                header('location: /todos');
 	                
 	            } 

@@ -114,7 +114,29 @@ $route->delete('/request', 'requestCtrl@deleteRequest');
 
 // TODOS
 
+/*
 $route->get('/todos', 'todosCtrl@listTodos');
+*/
+
+$route->get('/todos', function() {
+
+		$DB = new Database();
+		$DB->table = 'todos';
+
+		$userID = Auth::User()['id'];
+		$data['title'] = 'List of All Todos';
+		$data['count'] = sizeof($data['todos']);
+
+		$data['todos'] = $DB->listall( ['id', 'todo', 'user_id', 'date_created', 'date_complited', 'is_complited'] )->returnData();	
+
+		View::render('todos', $data);
+
+
+
+});
+
+
+		
 
 
 

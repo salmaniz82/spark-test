@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+    <title>Introduction to SSE</title>
+
+    <style type="text/css">
+
+    body, html {margin: 0; padding: 0;}
+    
+        
+        #update-notify {
+            position: fixed;
+            top: 0;
+            right: 0px;
+            background-color: #8BC34A;
+            width: 25%;
+            height: 30px;
+            color: #fff;
+            padding-top: 0px;
+            
+            opacity:0;
+            transform: translateX(100%);
+            transition: all 0.3s ease-in
+            
+
+        }
+
+        #update-notify.active {
+            
+            opacity: 1;
+            transform: translateX(0%);
+
+        }
+
+
+
+        
+    </style>
+
+
+
+</head>
+<body>
+
+
+
+    <p id="update-notify">This Page Got Some Updates</p>
+
+    <div class="container">
+        <h1>SSE TEst : </h1>
+        <span id="result"> </span> : <span id="status"></span>
+    </div>
+
+
+
+<script type="text/javascript">
+	
+
+var namesArray = [];
+
+if (!!window.EventSource) {
+    var source = new EventSource("server.php");
+} else {
+    alert("Your browser does not support Server-sent events! Please upgrade it!");
+}
+
+ var oldValue;
+
+source.addEventListener("message", function(e) {
+
+    
+     var data = JSON.parse(e.data);
+
+     var eventId = parseInt(e.lastEventId);
+
+
+     
+
+     
+
+     if(oldValue == undefined || oldValue != data['is_complited'])
+     {
+      
+        console.log('Dom Updated');
+        oldValue = data['is_complited'];
+
+
+     	document.getElementById('result').innerText = data.todo;
+        document.getElementById('status').innerText = (data['is_complited'] == 1) ? 'Done' : 'Pending';
+        var notifyEle = document.getElementById('update-notify');
+
+
+        if(eventId > 0) 
+        {
+            notifyEle.classList.add("active");
+        }
+
+
+        setTimeout(function() {
+
+            notifyEle.classList.remove("active");
+
+
+        }, 1500);
+
+        
+
+                
+     }
+
+
+
+
+
+}, false);
+
+source.addEventListener("open", function(e) {
+    console.log("Connection was opened.");
+}, false);
+
+source.addEventListener("error", function(e) {
+    console.log("Error - connection was lost.");
+}, false);
+
+
+</script>
+
+
+</body>
+</html>

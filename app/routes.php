@@ -113,14 +113,10 @@ $route->delete('/request', 'requestCtrl@deleteRequest');
 
 
 // TODOS
-/*
+
 $route->get('/todos', 'todosCtrl@listTodos');
-*/
 
 
-$route->get('/todos', function() {
-	echo "route is working";
-});
 
 $route->post('/todo/add', 'todosCtrl@saveTodos');
 

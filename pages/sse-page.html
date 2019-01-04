@@ -90,28 +90,19 @@ source.addEventListener("message", function(e) {
         document.getElementById('status').innerText = (data['is_complited'] == 1) ? 'Done' : 'Pending';
         var notifyEle = document.getElementById('update-notify');
 
-
         if(eventId > 0) 
         {
             notifyEle.classList.add("active");
         }
 
-
         setTimeout(function() {
 
             notifyEle.classList.remove("active");
 
-
         }, 1500);
-
-        
 
                 
      }
-
-
-
-
 
 }, false);
 

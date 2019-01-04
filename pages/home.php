@@ -24,27 +24,14 @@
 
 <div class="book-list-wrapper">
 
-	
-
-	
-
 	<?php foreach($data['todos'] as $key => $todo) {?>
 
-
-		
-
 		<div class="books-list-item wrapper <?php echo ($todo['is_complited'] == 1 ? 'done' : 'pending');?>">
-
             <p class="status">Status: <span><?php echo ($todo['is_complited'] == 1 ? 'Completed' : 'Work in progress');?></span> </p>
-
             <p class="book-desc todo" style="font-size: 20px;">
                    - <?=_e($todo['todo'])?>           </p>
             </div>
-
-
 	<?php }?>
-
-		
 
 </div>
 

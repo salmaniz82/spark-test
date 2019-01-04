@@ -15,6 +15,7 @@
     {
         
         $this->enableCORS();
+        $this->enableSSEheader();
         $this->serverRawURI = $_SERVER['REQUEST_URI'];
         $uri = explode('/', $this->serverRawURI);
         $uri[0] = '/';      
@@ -503,6 +504,17 @@
         {
             $callback();
             return false;
+        }
+    }
+
+
+    public function enableSSEheader()
+    {
+        if(isset($_SERVER["HTTP_LAST_EVENT_ID"]))
+        {
+            header("Content-Type: text/event-stream");
+            header("Cache-Control: no-cache");
+            header("Connection: keep-alive");
         }
     }
 

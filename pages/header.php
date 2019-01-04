@@ -1,6 +1,10 @@
 <!DOCTYPE html>
+<?php $lang = lang();
+
+ ?>
 <html>
 <head>
+
     <title> Phantom MVC - <?php if(isset($data['title'])) echo $data['title']; ?></title>
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <meta name="robots" content="noindex" />
@@ -27,8 +31,8 @@
 
 	<ul class="nav main-nav">
 
-		<li class="<?php Route::Current('/') ?>"><a href="/">Home</a></li>
-		<li class="<?php Route::Current('/products') ?>"><a href="/products">Product</a></li>
+		<li class="<?php Route::Current('/') ?>"><a href="/"><?= $lang->df('home') ?></a></li>
+		<li class="<?php Route::Current('/products') ?>"><a href="/products"><?= $lang->df('products') ?></a></li>
 		<li class="<?php Route::Current('/services') ?>"><a href="/services">Services</a></li>
 		<li class="<?php Route::Current('/contact') ?>"><a href="/contact">Contact</a></li>
 		<li class="<?php Route::Current('/books') ?>"><a href="/books">Books</a></li>
@@ -39,7 +43,10 @@
 
 	<ul class="nav right-nav">
 
-
+				<li class="lang-switch">
+					<a href="/switchLang">
+						<?= ($lang->lang == 'en') ? 'English' : 'Arabic' ?></li>
+					</a>
 
 				<span class="nav-cart-count">0</span>
 				<li id="header-cart" class="<?php Route::Current('/cart-details') ?>"><a href="/cart-details"> Cart </a> </span></li>

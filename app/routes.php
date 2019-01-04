@@ -174,6 +174,7 @@ $route->post('/lang/add','langCtrl@save');
 $route->post('/lang/debug','langCtrl@debugpost');
 
 
+
 // Test & Debug
 $route->get('/dbcheck/{perPage}/{currentPage}', 'testCtrl@testPaginate');
 
@@ -363,38 +364,26 @@ $route->get('/img-libs', function() {
 $route->get('/sse', 'sseCtrl@page');
 $route->get('/sse-server', function() {
 
+	echo "attempt to make it work within the system";
+
+});
 
 
-	header("Content-Type: text/event-stream");
-	header("Cache-Control: no-cache");
-	header("Connection: keep-alive");
+$route->get('/trans', function() {
 
-		$lastId = $_SERVER["HTTP_LAST_EVENT_ID"];
-		if (isset($lastId) && !empty($lastId) && is_numeric($lastId)) {
-		    $lastId = intval($lastId);
-		    $lastId++;
-		}
+$lang = lang();
+$lang->setLang();
+echo $lang->lang;
+
+});
 
 
-		$data = array('user'=> 'salman', 'email'=> 'sa@isystematic.com');
 
-		while (true) {
-		    
-		    if ($data) {
-		        sendMessage($lastId, $data);
-		        $lastId++;
-		    }
-		    sleep(2);
-		}
+$route->get('/switchLang', function() {
 
-		function sendMessage($id, $data) {
-		    echo "id: $id\n";
-		    echo 'data: ' . json_encode($data) . "\n\n";
-		    ob_flush();
-		    flush();
-		}
-
-
+	$redirectUrl = $_SERVER['HTTP_REFERER'];
+	lang()->switchLang();
+	header("Location: $redirectUrl");
 
 });
 

@@ -15,6 +15,7 @@
 require_once ABSPATH . 	'app/config.php';
 require_once ABSPATH . 	'app/controllers/appCtrl.php';
 require_once ABSPATH . 	'app/acl.php';
+require_once ABSPATH . 	'app/lang-def.php';
 
 
 /*
@@ -31,7 +32,7 @@ require_once ABSPATH . 	'framework/template.class.php';
 require_once ABSPATH . 	'framework/jwt.class.php';
 require_once ABSPATH . 	'framework/events.class.php';
 require_once ABSPATH . 	'framework/imageTrans.class.php';
-
+require_once ABSPATH . 	'framework/localeFactory.class.php';
 require_once ABSPATH . 	'framework/helpers.php';
 
 /*

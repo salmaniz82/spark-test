@@ -55,8 +55,7 @@
 
 	public function view()
 	{
-		echo '<br>view ran<br>';
-
+		
 		return $this;
 	}
 

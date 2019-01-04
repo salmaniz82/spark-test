@@ -46,4 +46,11 @@ function prx($var)
 }
 
 
+function lang()
+{
+	// interface for language singleton class;
+	return LocaleFactory::instance();
+}
+
+
 ?>

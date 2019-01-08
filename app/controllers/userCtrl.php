@@ -192,18 +192,9 @@ class userCtrl {
 
 				echo "Failed " . $user['name'] . "<br>";
 
-				
-
-				
-				
 			}
 
-
-
         }
-
-
-
 
 
 	}

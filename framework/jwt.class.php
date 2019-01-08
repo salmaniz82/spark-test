@@ -26,11 +26,25 @@ class JwtAuth {
         $email = mysqli_real_escape_string($db->connection, $creds['email']);
         $password = mysqli_real_escape_string($db->connection, $creds['password']);
 
-        if($result = $db->returnSet($email, $password))
+        $result = $db->build('S')->Colums()->Where("email = '".$email."'")->go()->returnData();
+
+        if($result != null)
         {           
-            self::$isLoggedIn = true;
-            self::$user = $result[0];
-            return $user = $result[0];
+           
+            $storedPassword = $result[0]['password'];
+
+            if(password_verify($password, $storedPassword))
+            {
+                unset($result[0]['password']);
+                self::$isLoggedIn = true;
+                self::$user = $result[0];
+
+                return $user = $result[0];
+            }
+            else{
+                return false;
+            }
+
         }
         else
         {
@@ -43,6 +57,8 @@ class JwtAuth {
     {
 
         $user_id = $payload['id'];
+
+        $payload['stamp'] = Date('h:m:s');
 
         $header = ["alg" => "HS256", "typ" => "JWT"];
 
@@ -70,11 +86,22 @@ class JwtAuth {
 
             $data = array('user_id' => $user_id, 'token'=> $token);
 
+
             if($storedToken = self::findExistingToken(null, $user_id))
             {
-                return $storedToken;
+                
+                $user_id = self::$user['id'];
+
+                if(self::updateToken($token, $user_id))
+                {
+                    return $token;
+                }
+                else {
+                    return "Error while updateing token";
+                }
 
 
+                
             }
             else if ($newToken = $db->insert($data))
             {
@@ -116,7 +143,6 @@ class JwtAuth {
            
             return $storedToken[0]['token'];
 
-
         }
         else {
             return false;
@@ -136,6 +162,32 @@ class JwtAuth {
             }
 
         }
+    }
+
+
+    public static function updateToken($token, $user_id)
+    {
+
+        $db = new Database();
+        $db->table = 'user_token';
+
+        $data['token'] = $token;
+        
+
+        $id = $db->pluck('id')->where("user_id = $user_id");
+
+
+
+        if($db->update($data, $id))
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+
+
     }
 
 

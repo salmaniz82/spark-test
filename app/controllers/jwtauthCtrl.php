@@ -8,9 +8,22 @@ class jwtauthCtrl extends appCtrl {
 
 		if(JwtAuth::hasToken())
 		  {
-		      $data['message'] = "token was present in header";
-		      $data['status'] = true;
-		      View::responseJson($data, 200);
+		      
+	  		if(JwtAuth::validateToken())
+	  		{
+
+	  			$data['message'] = "Token Authenticated";
+		    	$data['status'] = true;
+		    	View::responseJson($data, 200);
+	  		}
+	  		else {
+
+	  			$data['message'] = "Invalid Token";
+		    	$data['status'] = false;
+		    	View::responseJson($data, 401);
+
+	  		}
+		    
 		  }
 		  else
 		      {

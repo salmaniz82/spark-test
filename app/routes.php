@@ -156,8 +156,6 @@ $route->get('/jwt/check', 'jwtauthCtrl@check');
 
 $route->post('/jwt/login', 'jwtauthCtrl@login');
 
-
-
 $route->get('/jwt/validate', 'jwtauthCtrl@validateToken');
 
 $route->get('/jwt/admin', 'jwtauthCtrl@adminOnlyProtected');
@@ -390,16 +388,9 @@ $route->get('/switchLang', function() {
 
 
 $route->get('/hashbasic', function() {
-	$string = "abc123456";
-	/*
-	$hashedString = password_hash($string, PASSWORD_BCRYPT, array(
 
-		'cost' => 12
-	)
-
-	);
-
-	*/
+	$string = "$2y$12$8j92.bRPdXr2Ny3RbXkUGu3nAtVwC1g1h.Is.dFRPdI3Q6mRWlmHO";
+	
 
 	$hashedPassword = '$2y$12$JcwYboi/KQlh6icotHZc9uFC63tYUbEX4KgYWArM.jn8kBX/QL79u';
 	var_dump($hashedPassword);	
@@ -414,13 +405,34 @@ $route->get('/hashbasic', function() {
 
 
 
+$route->get('/check', function() {
+
+
+	$db = new Database();
+	$db->table = 'user_token';
+
+
+	$data = array('token' => '123', 'user_id' => '20');
+
+
+	$user_id = 20;
+
+
+	$searchCondition = "user_id = {$user_id}";
+
+
+	echo $db->build('U')->Where($searchCondition)->showQuery();
+
+
+
+
+
+});
+
+
+
 
 $route->get('/updatehash', 'userCtrl@udpatePasswordHash');
-
-
-
-
-
 
 
 

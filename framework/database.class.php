@@ -442,9 +442,6 @@ class Database
 
             }
             
-            
-
-            
         }
 
         return $this;

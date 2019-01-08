@@ -32,7 +32,7 @@ class Auth
 
     public static function User()
     {
-        if( $_SESSION['isLoggedIn'] === true )
+        if(isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] === true )
         {
             //$this->id = $_SESSION['user']['id'];
             return $_SESSION['user'];
@@ -65,18 +65,41 @@ class Auth
         $email = mysqli_real_escape_string($db->connection, $creds['email']);
         $password = mysqli_real_escape_string($db->connection, $creds['password']);
 
-        if($result = $db->returnSet($email, $password))
+        /*
+        i need to check the user via email and get this in variable
+        */
+
+        $user = $db->build('S')->Colums()->Where("email = '".$email."'")->go()->returnData();
+
+        if($user != NULL)
         {
-            $_SESSION['isLoggedIn'] = true;
-            self::$isLoggedIn = $_SESSION['isLoggedIn'];
-            $_SESSION['user'] = $result[0];
-            self::$user = $_SESSION['user'];
-            return $result;
-        } 
-        else
-        {
+
+            $storedPassword = $user[0]['password'];
+
+            if(password_verify($password, $storedPassword)) {
+            
+                unset($user['password']);
+
+                $_SESSION['isLoggedIn'] = true;
+                self::$isLoggedIn = $_SESSION['isLoggedIn'];
+                $_SESSION['user'] = $user[0];
+                self::$user = $_SESSION['user'];
+                return $user;
+
+            } 
+            else {
+                return false;
+            }
+
+
+        } else {
+
             return false;
+
         }
+
+
+       
         
     }
 

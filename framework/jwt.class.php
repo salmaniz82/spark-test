@@ -27,12 +27,10 @@ class JwtAuth {
         $password = mysqli_real_escape_string($db->connection, $creds['password']);
 
         if($result = $db->returnSet($email, $password))
-        {
-
+        {           
             self::$isLoggedIn = true;
             self::$user = $result[0];
             return $user = $result[0];
-
         }
         else
         {

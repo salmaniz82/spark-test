@@ -103,11 +103,20 @@ class userCtrl {
 		$db = new Database();
 		$db->table = 'users';
 
+		print_r($_POST);
+
+
+
 		$user['name'] = $_POST['name'];
 		$user['email'] = $_POST['email'];
 		$user['role_id'] = 3;
+
 		$password = $_POST['password'];
-		$password = sha1($password);
+		
+		$password = password_hash($password, PASSWORD_BCRYPT, array(
+		'cost' => 12
+		));
+
 		$user['password'] = $password;
 
 		if( $db->insert($user) ) 
@@ -146,6 +155,56 @@ class userCtrl {
 		}
 
 	View::responseJson($response);
+
+	}
+
+
+
+	public function udpatePasswordHash()
+	{
+
+
+		$db = new Database();
+        $db->table = 'users';
+
+        $users = $db->listall()->returnData();
+
+        foreach($users as $key => $user)
+        {
+
+
+        	$oldPassword = $user['password'];
+
+        	$hashedPassword = password_hash($oldPassword, PASSWORD_BCRYPT, array(
+				'cost' => 12
+			));
+
+			$data['password'] = $hashedPassword;
+
+			$id = (int) $user['id'];
+
+
+			if($db->update($data, $id))
+			{
+				echo $user['name'] . "updated hash success" . "<br>";
+			}
+			else {
+
+				echo "Failed " . $user['name'] . "<br>";
+
+				
+
+				
+				
+			}
+
+
+
+        }
+
+
+
+
 
 	}
 

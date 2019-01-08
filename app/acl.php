@@ -11,8 +11,6 @@ class ACL {
         return $path;
     }
 
-
-
 	public static function load($loadType, $Loadentity)
 	{
 
@@ -108,9 +106,6 @@ class ACL {
 			}
 
 
-		
-
-
 	}
 
 
@@ -145,11 +140,6 @@ class ACL {
 	{
 		return (Auth::loginStatus()) ? true : false;
 	}
-
-
-	
-
-
 
 
 }

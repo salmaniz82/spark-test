@@ -388,6 +388,43 @@ $route->get('/switchLang', function() {
 });
 
 
+
+$route->get('/hashbasic', function() {
+	$string = "abc123456";
+	/*
+	$hashedString = password_hash($string, PASSWORD_BCRYPT, array(
+
+		'cost' => 12
+	)
+
+	);
+
+	*/
+
+	$hashedPassword = '$2y$12$JcwYboi/KQlh6icotHZc9uFC63tYUbEX4KgYWArM.jn8kBX/QL79u';
+	var_dump($hashedPassword);	
+	if(password_verify($string, $hashedPassword)) {
+		echo "Matced";   
+	} 
+	else {
+		echo "not matched";
+	}
+
+});
+
+
+
+
+$route->get('/updatehash', 'userCtrl@udpatePasswordHash');
+
+
+
+
+
+
+
+
+
 $route->otherwise( function() {
     $data['message'] = 'Request Not found';
     View::responseJson($data, 404);
